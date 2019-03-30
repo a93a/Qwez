@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "199859736992",
+    "firebase_url": "https://quez-84dee.firebaseio.com",
+    "project_id": "quez-84dee",
+    "storage_bucket": "quez-84dee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199859736992:android:30245e41159ed5f1",
+        "android_client_info": {
+          "package_name": "com.example.qwez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199859736992-sb2dq7krbda2q5becaroamnmdj68blt2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQPykS37Gu9pwq7aLYz3z4OFab40S4qxI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
