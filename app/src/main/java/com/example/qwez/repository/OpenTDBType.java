@@ -11,6 +11,6 @@ import io.reactivex.Single;
 
 public interface OpenTDBType {
 
-    Single<List<Question>> getQuestionByCategory(int amount, Category category, Difficulty difficulty, QuestionType type);
+    Single<List<Question>> getQuestionByCategory(int amount, int category, String difficulty, String type);
 
 }

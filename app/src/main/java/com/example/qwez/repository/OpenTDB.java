@@ -23,12 +23,12 @@ public class OpenTDB implements OpenTDBType {
 
     @Override
     public Single<List<Question>> getQuestionByCategory(int amount,
-                                                        Category category,
-                                                        Difficulty difficulty,
-                                                        QuestionType type) {
+                                                        int category,
+                                                        String difficulty,
+                                                        String type) {
         return Single.fromObservable(
                 api
-                        .getQuestions(amount, category.getCategory(), difficulty.getDifficulty(), type.getType())
+                        .getQuestions(amount, category, difficulty, type)
                         .lift(new ApiErrorOperator<>())
                         .map(ResponseBody::getQuestions)
                         .subscribeOn(Schedulers.io())
