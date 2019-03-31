@@ -7,7 +7,8 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
 @Component(modules = {AndroidInjectionModule.class,
-        FireBaseAuthModule.class})
+        FireBaseAuthModule.class,
+        NetworkModule.class})
 public interface AppComponent {
 
     @Component.Builder
