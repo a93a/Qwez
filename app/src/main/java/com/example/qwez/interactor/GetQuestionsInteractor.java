@@ -1,6 +1,8 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.OpenTDBType;
+import android.util.Log;
+
+import com.example.qwez.repository.opentdb.OpenTDBType;
 import com.example.qwez.repository.entity.Question;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;

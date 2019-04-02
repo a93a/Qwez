@@ -1,5 +1,8 @@
-package com.example.qwez.repository;
+package com.example.qwez.repository.opentdb;
 
+import android.util.Log;
+
+import com.example.qwez.repository.ApiErrorOperator;
 import com.example.qwez.repository.entity.Question;
 import com.example.qwez.repository.entity.ResponseBody;
 import com.example.qwez.util.Category;
@@ -10,7 +13,6 @@ import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
 
 public class OpenTDB implements OpenTDBType {
 
@@ -28,7 +30,7 @@ public class OpenTDB implements OpenTDBType {
                                                         String type) {
         return Single.fromObservable(
                 api
-                        .getQuestions(amount, category, difficulty, type)
+                        .getQuestions(10, Category.FILMS.getCategory(), Difficulty.EASY.getDifficulty(), QuestionType.MULTIPLE_CHOICE.getType())
                         .lift(new ApiErrorOperator<>())
                         .map(ResponseBody::getQuestions)
                         .subscribeOn(Schedulers.io())

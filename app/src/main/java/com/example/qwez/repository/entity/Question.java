@@ -11,7 +11,7 @@ public class Question implements Serializable
 
     @SerializedName("category")
     @Expose
-    private int category;
+    private String category;
     @SerializedName("type")
     @Expose
     private String type;
@@ -44,7 +44,7 @@ public class Question implements Serializable
      * @param question
      * @param type
      */
-    public Question(int category, String type, String difficulty, String question, String correctAnswer, List<String> incorrectAnswers) {
+    public Question(String category, String type, String difficulty, String question, String correctAnswer, List<String> incorrectAnswers) {
         super();
         this.category = category;
         this.type = type;
@@ -54,11 +54,11 @@ public class Question implements Serializable
         this.incorrectAnswers = incorrectAnswers;
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -102,4 +102,15 @@ public class Question implements Serializable
         this.incorrectAnswers = incorrectAnswers;
     }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", question='" + question + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", incorrectAnswers=" + incorrectAnswers +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.qwez.repository;
+package com.example.qwez.repository.opentdb;
 
 import com.example.qwez.repository.entity.Question;
 import com.example.qwez.util.Category;

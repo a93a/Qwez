@@ -1,13 +1,12 @@
 package com.example.qwez.di;
 
-import com.example.qwez.repository.OpenTDBAPI;
+import com.example.qwez.repository.opentdb.OpenTDBAPI;
 import com.example.qwez.util.URL;
 import com.google.gson.Gson;
 
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -45,7 +44,7 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     HttpLoggingInterceptor httpLoggingInterceptor(){
-        return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
+        return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS);
     }
 
     @Provides
