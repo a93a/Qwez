@@ -1,9 +1,6 @@
 package com.example.qwez.repository.opentdb;
 
-import com.example.qwez.repository.entity.Question;
-import com.example.qwez.util.Category;
-import com.example.qwez.util.Difficulty;
-import com.example.qwez.util.QuestionType;
+import com.example.qwez.repository.opentdb.entity.Question;
 
 import java.util.List;
 

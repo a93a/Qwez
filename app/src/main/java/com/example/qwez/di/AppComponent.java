@@ -13,7 +13,9 @@ import dagger.android.AndroidInjectionModule;
         NetworkModule.class,
         StartModule.class,
         BinderModule.class,
-        OpenTDBModule.class})
+        OpenTDBModule.class,
+        ApplicationModule.class,
+        LocalDatabaseModule.class})
 public interface AppComponent {
 
     @Component.Builder

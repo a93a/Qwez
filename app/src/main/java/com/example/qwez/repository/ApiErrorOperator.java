@@ -1,7 +1,5 @@
 package com.example.qwez.repository;
 
-import com.example.qwez.repository.entity.ResponseBody;
-
 import io.reactivex.ObservableOperator;
 import io.reactivex.Observer;
 import io.reactivex.observers.DisposableObserver;

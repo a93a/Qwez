@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorProgressGreen">#D81B60</color>
+    <color name="colorProgressYellow">#D81B60</color>
+    <color name="colorProgressRed">#D81B60</color>
+
+
 </resources>

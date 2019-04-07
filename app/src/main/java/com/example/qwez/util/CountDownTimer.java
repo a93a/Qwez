@@ -2,6 +2,7 @@ package com.example.qwez.util;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -23,11 +24,12 @@ public abstract class CountDownTimer {
     public abstract void onFinish();
 
     public void start(){
-        io.reactivex.Observable.zip(
-                io.reactivex.Observable.range(0, startValue.intValue()), io.reactivex.Observable.interval(1, timeUnit), (integer, aLong) -> {
-                    return startValue-integer;
-                }
-        ).subscribeOn(Schedulers.io())
+        Observable
+                .zip(
+                        Observable.range(0, startValue.intValue()),
+                        Observable.interval(1, timeUnit),
+                        (integer, aLong) -> startValue - integer)
+                .subscribeOn(Schedulers.computation())  //compution rather than io?
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override

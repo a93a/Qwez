@@ -1,4 +1,4 @@
-package com.example.qwez.repository.entity;
+package com.example.qwez.repository.opentdb.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

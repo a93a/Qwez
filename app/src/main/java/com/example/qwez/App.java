@@ -5,6 +5,7 @@ import android.app.Application;
 
 
 import com.example.qwez.di.DaggerAppComponent;
+import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
@@ -26,6 +27,8 @@ public class App extends Application implements HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this);
+
+        LeakCanary.install(this);
 
     }
 

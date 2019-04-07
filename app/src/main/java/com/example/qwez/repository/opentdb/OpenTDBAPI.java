@@ -1,7 +1,7 @@
 package com.example.qwez.repository.opentdb;
 
 
-import com.example.qwez.repository.entity.ResponseBody;
+import com.example.qwez.repository.opentdb.entity.ResponseBody;
 
 import io.reactivex.Observable;
 import retrofit2.Response;

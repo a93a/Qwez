@@ -1,10 +1,8 @@
 package com.example.qwez.repository.opentdb;
 
-import android.util.Log;
-
 import com.example.qwez.repository.ApiErrorOperator;
-import com.example.qwez.repository.entity.Question;
-import com.example.qwez.repository.entity.ResponseBody;
+import com.example.qwez.repository.opentdb.entity.Question;
+import com.example.qwez.repository.opentdb.entity.ResponseBody;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.example.qwez.util.QuestionType;

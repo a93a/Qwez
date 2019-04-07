@@ -66,4 +66,88 @@ public enum  Category {
         return category;
     }
 
+    public static String getAsString(Category category){
+        String toReturn;
+        switch (category){
+            case GENERAL_KNOWLEDGE:
+                toReturn = "General Knowledge";
+                break;
+            case BOOKS:
+                toReturn = "Books";
+                break;
+            case FILMS:
+                toReturn = "Films";
+                break;
+            case MUSIC:
+                toReturn = "Music";
+                break;
+            case MUSICAL_AND_THEATRES:
+                toReturn = "Musical and Theatres";
+                break;
+            case TELEVISION:
+                toReturn = "Television";
+                break;
+            case VIDEOGAMES:
+                toReturn = "Videogames";
+                break;
+            case BOARDGAMES:
+                toReturn = "Boardgames";
+                break;
+            case SCIENCE_AND_NATURE:
+                toReturn = "Science and Nature";
+                break;
+            case COMPUTERS:
+                toReturn = "Computers";
+                break;
+            case MATHEMATICS:
+                toReturn = "Mathematics";
+                break;
+            case MYTHOLOGY:
+                toReturn = "Mythology";
+                break;
+            case SPORTS:
+                toReturn = "Sports";
+                break;
+            case GEOGRAPHY:
+                toReturn = "Geography";
+                break;
+            case HISTORY:
+                toReturn = "History";
+                break;
+            case POLITICS:
+                toReturn = "Politics";
+                break;
+            case ART:
+                toReturn = "Art";
+                break;
+            case CELEBRITIES:
+                toReturn = "Celebrities";
+                break;
+            case ANIMALS:
+                toReturn = "Animals";
+                break;
+            case VEHICLES:
+                toReturn = "Vehicles";
+                break;
+            case COMICS:
+                toReturn = "Comics";
+                break;
+            case GADGETS:
+                toReturn = "Gadgets";
+                break;
+            case ANIME_AND_MANGA:
+                toReturn = "Anime and Manga";
+                break;
+            case CARTOONS_AND_ANIMATIONS:
+                toReturn = "Cartoons and Animations";
+                break;
+                default:
+                    toReturn = "ERROR: UNKNOWN CATEGORY";
+                    break;
+        }
+        return toReturn;
+    }
+
+
+
 }
