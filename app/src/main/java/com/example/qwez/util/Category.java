@@ -4,33 +4,7 @@ package com.example.qwez.util;
  * Constants class for quiz constants
  */
 public enum  Category {
-
-    /*
-    public static final String GENERAL_KNOWLEDGE = "9";
-    public static final String BOOKS = "10";
-    public static final String FILMS = "11";
-    public static final String MUSIC = "12";
-    public static final String MUSICAL_AND_THEATRES = "13";
-    public static final String TELEVISION = "14";
-    public static final String VIDEOGAMES = "15";
-    public static final String BOARDGAMES = "16";
-    public static final String SCIENCE_AND_NATURE = "17";
-    public static final String COMPUTERS = "18";
-    public static final String MATHEMATICS = "19";
-    public static final String MYTHOLOGY = "20";
-    public static final String SPORTS = "21";
-    public static final String GEOGRAPHY = "22";
-    public static final String HISTORY = "23";
-    public static final String POLITICS = "24";
-    public static final String ART = "25";
-    public static final String CELEBRITIES = "26";
-    public static final String ANIMALS = "27";
-    public static final String VEHICLES = "28";
-    public static final String COMICS = "29";
-    public static final String GADGETS = "30";
-    public static final String ANIME_AND_MANGA = "31";
-    public static final String CARTOONS_AND_ANIMATIONS = "32";
-    */
+    
     GENERAL_KNOWLEDGE(9),
     BOOKS(10),
     FILMS(11),
@@ -148,6 +122,86 @@ public enum  Category {
         return toReturn;
     }
 
-
+    public static int getAsInt(Category category){
+        int toReturn;
+        switch (category){
+            case GENERAL_KNOWLEDGE:
+                toReturn = 9;
+                break;
+            case BOOKS:
+                toReturn = 10;
+                break;
+            case FILMS:
+                toReturn = 11;
+                break;
+            case MUSIC:
+                toReturn = 12;
+                break;
+            case MUSICAL_AND_THEATRES:
+                toReturn = 13;
+                break;
+            case TELEVISION:
+                toReturn = 14;
+                break;
+            case VIDEOGAMES:
+                toReturn = 15;
+                break;
+            case BOARDGAMES:
+                toReturn = 16;
+                break;
+            case SCIENCE_AND_NATURE:
+                toReturn = 17;
+                break;
+            case COMPUTERS:
+                toReturn = 18;
+                break;
+            case MATHEMATICS:
+                toReturn = 19;
+                break;
+            case MYTHOLOGY:
+                toReturn = 20;
+                break;
+            case SPORTS:
+                toReturn = 21;
+                break;
+            case GEOGRAPHY:
+                toReturn = 22;
+                break;
+            case HISTORY:
+                toReturn = 23;
+                break;
+            case POLITICS:
+                toReturn = 24;
+                break;
+            case ART:
+                toReturn = 25;
+                break;
+            case CELEBRITIES:
+                toReturn = 26;
+                break;
+            case ANIMALS:
+                toReturn = 27;
+                break;
+            case VEHICLES:
+                toReturn = 28;
+                break;
+            case COMICS:
+                toReturn = 29;
+                break;
+            case GADGETS:
+                toReturn = 30;
+                break;
+            case ANIME_AND_MANGA:
+                toReturn = 31;
+                break;
+            case CARTOONS_AND_ANIMATIONS:
+                toReturn = 32;
+                break;
+            default:
+                toReturn = -1;
+                break;
+        }
+        return toReturn;
+    }
 
 }
