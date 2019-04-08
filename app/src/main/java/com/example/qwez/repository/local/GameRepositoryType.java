@@ -22,6 +22,8 @@ public interface GameRepositoryType {
 
     Completable addQuestion(Question question);
 
+    Completable addQuestions(List<Question> questions);
+
     Completable deleteQuestion(Question question);
 
     Completable updateQuestion(Question question);

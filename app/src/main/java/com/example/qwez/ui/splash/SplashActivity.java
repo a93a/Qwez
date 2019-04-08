@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Insert;
+import dagger.android.AndroidInjection;
 
 public class SplashActivity extends BaseActivity {
 
@@ -26,6 +27,8 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AndroidInjection.inject(this);
 
         viewModel = ViewModelProviders.of(this, factory).get(SplashViewModel.class);
         viewModel.progress().observe(this, this::onProgress);

@@ -7,6 +7,7 @@ import com.example.qwez.repository.opentdb.entity.Question;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.example.qwez.util.QuestionC;
+import com.example.qwez.util.QuestionConverter;
 import com.example.qwez.util.QuestionType;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class GetQuestionsInteractor {
                         category.getCategory(),
                         difficulty.getDifficulty(),
                         QuestionType.MULTIPLE_CHOICE.getType())
-                .doOnSuccess(questions -> { gameRepositoryType.addGame(new Game(
+                .doOnSuccess(questions -> { gameRepositoryType.addGameReturnId(new Game(
                             questions.get(0).getCategory(),
                             questions.get(0).getDifficulty()));
                 })

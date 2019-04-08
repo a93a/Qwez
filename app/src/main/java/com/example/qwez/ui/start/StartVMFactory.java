@@ -17,6 +17,7 @@ public class StartVMFactory implements ViewModelProvider.Factory {
         this.getAllGamesInteractor = getAllGamesInteractor;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {

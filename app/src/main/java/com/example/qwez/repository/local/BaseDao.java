@@ -11,6 +11,9 @@ public interface BaseDao<T> {
     @Insert
     Completable insert(T t);
 
+    @Insert
+    Completable insert(T ...t);
+
     @Update
     Completable update(T t);
 
