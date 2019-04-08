@@ -1,5 +1,7 @@
 package com.example.qwez.di;
 
+import com.example.qwez.ui.splash.SplashActivity;
+import com.example.qwez.ui.splash.SplashModule;
 import com.example.qwez.ui.start.StartActivity;
 import com.example.qwez.ui.start.StartModule;
 
@@ -13,5 +15,8 @@ public abstract class BinderModule {
     @ContributesAndroidInjector(modules = StartModule.class)
     abstract StartActivity bindQuestionActivity();
 
+    @ActivityScope
+    @ContributesAndroidInjector(modules = SplashModule.class)
+    abstract SplashActivity bindSplashActivity();
 
 }

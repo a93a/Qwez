@@ -13,11 +13,13 @@ public class GameRepository implements GameRepositoryType {
 
     private GameDao gameDao;
     private QuestionDao questionDao;
+    private GameQuestionDao gameQuestionDao;
 
     @Inject
-    public GameRepository(GameDao gameDao, QuestionDao questionDao) {
+    public GameRepository(GameDao gameDao, QuestionDao questionDao, GameQuestionDao gameQuestionDao) {
         this.gameDao = gameDao;
         this.questionDao = questionDao;
+        this.gameQuestionDao = gameQuestionDao;
     }
 
     @Override
@@ -31,6 +33,13 @@ public class GameRepository implements GameRepositoryType {
     public Completable addGame(Game game) {
         return gameDao
                 .insert(game)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Single<Long> addGameReturnId(Game game) {
+        return Single
+                .just(gameDao.insertReturnId(game))
                 .subscribeOn(Schedulers.io());
     }
 
@@ -74,6 +83,13 @@ public class GameRepository implements GameRepositoryType {
     public Completable updateQuestion(Question question) {
         return questionDao
                 .update(question)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Flowable<List<GameQuestion>> getAllGamesAndQuestions() {
+        return gameQuestionDao
+                .getGameQuestions()
                 .subscribeOn(Schedulers.io());
     }
 

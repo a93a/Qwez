@@ -12,6 +12,8 @@ public interface GameRepositoryType {
 
     Completable addGame(Game game);
 
+    Single<Long> addGameReturnId(Game game);
+
     Completable deleteGame(Game game);
 
     Completable updateGame(Game game);
@@ -23,5 +25,7 @@ public interface GameRepositoryType {
     Completable deleteQuestion(Question question);
 
     Completable updateQuestion(Question question);
+
+    Flowable<List<GameQuestion>> getAllGamesAndQuestions();
 
 }

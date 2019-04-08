@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.qwez.repository.local.GameDao;
 import com.example.qwez.repository.local.GameDatabase;
+import com.example.qwez.repository.local.GameQuestionDao;
 import com.example.qwez.repository.local.GameRepository;
 import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.repository.local.Question;
@@ -18,8 +19,14 @@ public class LocalDatabaseModule {
 
     @Provides
     @ApplicationScope
-    GameRepositoryType gameRepositoryType(GameDao gameDao, QuestionDao questionDao){
-        return new GameRepository(gameDao, questionDao);
+    GameRepositoryType gameRepositoryType(GameDao gameDao, QuestionDao questionDao, GameQuestionDao gameQuestionDao){
+        return new GameRepository(gameDao, questionDao,gameQuestionDao);
+    }
+
+    @Provides
+    @ApplicationScope
+    GameQuestionDao gameQuestionDao(GameDatabase gameDatabase){
+        return gameDatabase.gameQuestionDao();
     }
 
     @Provides

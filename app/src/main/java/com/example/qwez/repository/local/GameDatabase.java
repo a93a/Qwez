@@ -12,4 +12,6 @@ public abstract class GameDatabase extends RoomDatabase {
 
     public abstract QuestionDao questionDao();
 
+    public abstract GameQuestionDao gameQuestionDao();
+
 }

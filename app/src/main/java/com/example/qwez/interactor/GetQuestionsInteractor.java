@@ -26,15 +26,14 @@ public class GetQuestionsInteractor {
 
     public Single<List<Question>> getQuestionByCategoryMultiple(Category category, Difficulty difficulty){
         return openTDBType
-                .getQuestionByCategory(
-                        QuestionC.AMOUNT_STANDARD,
+                .getQuestionByCategory(QuestionC.AMOUNT_STANDARD,
                         category.getCategory(),
                         difficulty.getDifficulty(),
                         QuestionType.MULTIPLE_CHOICE.getType())
-                .doOnSuccess(questions -> {
-                    gameRepositoryType.addGame(new Game(
+                .doOnSuccess(questions -> { gameRepositoryType.addGame(new Game(
                             questions.get(0).getCategory(),
-                            questions.get(0).getDifficulty())); })
+                            questions.get(0).getDifficulty()));
+                })
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

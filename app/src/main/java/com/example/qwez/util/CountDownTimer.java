@@ -8,30 +8,53 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * A RxJava implementation of a countdown timer.
+ * Using RxJava to handle this helps us to perform this task
+ * in the background thread easily.
+ */
 public abstract class CountDownTimer {
 
-    private TimeUnit timeUnit;
-    private Long startValue;
-    private Disposable disposable;
+    private TimeUnit timeUnit;  //unit to count in
+    private Long startValue;    //how many ticks
+    private Disposable disposable;  //disposable for the operation
 
+    /**
+     *
+     * @param startValue amount of intervals for the countdown
+     * @param timeUnit Timeunit to use as the interval for each countdown
+     */
     public CountDownTimer(Long startValue, TimeUnit timeUnit) {
         this.timeUnit = timeUnit;
         this.startValue = startValue;
     }
 
+    /**
+     * Gets called each time the countdown timer intervals
+     * @param tickValue the current tick interval
+     */
     public abstract void onTick(long tickValue);
 
+    /**
+     * Gets called once the countdown timer has finished. This means the object has
+     * completed the iteration (Objected iterated {@param startValue} times using
+     * {@param timeUnit as interval unit})
+     */
     public abstract void onFinish();
 
+    /**
+     * Start the countdown iteration.
+     */
     public void start(){
         Observable
-                .zip(
-                        Observable.range(0, startValue.intValue()),
-                        Observable.interval(1, timeUnit),
-                        (integer, aLong) -> startValue - integer)
-                .subscribeOn(Schedulers.computation())  //compution rather than io?
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Long>() {
+                .zip(   //zip Observable.range and Observable.interval.
+                        // Wait for 1 emission from each
+                        Observable.range(0, startValue.intValue()), //take 1
+                        Observable.interval(1, timeUnit),   //take 1
+                        (integer, aLong) -> startValue - integer)   //decrease startvalue by 1 interval unit
+                .subscribeOn(Schedulers.computation())  //Do the calculation on the computation scheduler
+                .observeOn(AndroidSchedulers.mainThread())  //standard
+                .subscribe(new Observer<Long>() {   //subscribe with a new observer
                     @Override
                     public void onSubscribe(Disposable d) {
                         disposable = d;
@@ -44,7 +67,7 @@ public abstract class CountDownTimer {
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+                        //idk what to do here?
                     }
 
                     @Override
@@ -54,7 +77,11 @@ public abstract class CountDownTimer {
                 });
     }
 
+    /**
+     * Cancel the countdown iteration
+     */
     public void cancel(){
-        if(disposable!=null) disposable.dispose();
+        if(disposable!=null)
+            disposable.dispose();
     }
 }

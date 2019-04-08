@@ -64,22 +64,6 @@ public class GameRepositoryTest {
     }
 
     @Test
-    public void getAllGames() {
-    }
-
-    @Test
-    public void addGame() {
-    }
-
-    @Test
-    public void deleteGame() {
-    }
-
-    @Test
-    public void updateGame() {
-    }
-
-    @Test
     public void addQuestion() {
 
         Game game = new Game("blah", "lah");
@@ -160,10 +144,78 @@ public class GameRepositoryTest {
     }
 
     @Test
-    public void deleteQuestion() {
+    public void addGameReturnIdAddQuestion(){
+
+        Game game = new Game("blah", "lah");
+        Game game2 = new Game("nah", "fah");
+
+        long id = gameRepositoryType
+                .addGameReturnId(game)
+                .test()
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(1)
+                .values()
+                .get(0);
+
+        long id2 = gameRepositoryType
+                .addGameReturnId(game2)
+                .test()
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(1)
+                .values()
+                .get(0);
+
+        int gameId = gameRepositoryType
+                .getAllGames()
+                .test()
+                .values()
+                .get(0)
+                .get(0)
+                .gameId;
+
+        int gameId2 = gameRepositoryType
+                .getAllGames()
+                .test()
+                .values()
+                .get(0)
+                .get(1)
+                .gameId;
+
+        Game game2before = gameRepositoryType
+                .getAllGames()
+                .test()
+                .values()
+                .get(0)
+                .get(1);
+
+        assertEquals(id, gameId);
+        assertEquals(id2, gameId2);
+
+        Game gameToDelete = gameRepositoryType
+                .getAllGames()
+                .test()
+                .values()
+                .get(0)
+                .get(0);
+
+        gameRepositoryType
+                .deleteGame(gameToDelete)
+                .test()
+                .assertNoErrors()
+                .assertComplete();
+
+        Game game2as1 = gameRepositoryType
+                .getAllGames()
+                .test()
+                .values()
+                .get(0)
+                .get(0);
+
+        assertEquals(gameId2, game2as1.gameId);
+        assertEquals(game2before.getCategory(), game2as1.getCategory());
+
     }
 
-    @Test
-    public void updateQuestion() {
-    }
 }

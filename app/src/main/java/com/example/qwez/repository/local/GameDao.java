@@ -9,9 +9,13 @@ import androidx.room.Query;
 import androidx.room.Update;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 @Dao
 public interface GameDao extends BaseDao<Game> {
+
+    @Insert
+    long insertReturnId(Game game);
 
     @Query("SELECT * FROM games")
     Flowable<List<Game>> getAll();

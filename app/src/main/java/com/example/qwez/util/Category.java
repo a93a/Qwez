@@ -4,7 +4,7 @@ package com.example.qwez.util;
  * Constants class for quiz constants
  */
 public enum  Category {
-    
+
     GENERAL_KNOWLEDGE(9),
     BOOKS(10),
     FILMS(11),
