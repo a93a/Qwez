@@ -31,6 +31,8 @@ public class SplashActivity extends BaseActivity {
         viewModel.progress().observe(this, this::onProgress);
         viewModel.error().observe(this, this::onError);
 
+        viewModel.openStart(this);
+
     }
 
     private void onError(ErrorCarrier errorCarrier) {

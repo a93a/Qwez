@@ -1,17 +1,20 @@
 package com.example.qwez.ui.splash;
 
+import android.content.Context;
+
 import com.example.qwez.base.BaseViewModel;
-import com.example.qwez.interactor.GetAllGamesAndQuestionsInteractor;
-import com.example.qwez.repository.local.GameQuestion;
-
-import java.util.List;
-
-import androidx.lifecycle.MutableLiveData;
+import com.example.qwez.router.StartRouter;
 
 public class SplashViewModel extends BaseViewModel {
 
-    public SplashViewModel() {
+    private final StartRouter startRouter;
 
+    public SplashViewModel(StartRouter startRouter) {
+        this.startRouter = startRouter;
+    }
+
+    public void openStart(Context context){
+        startRouter.open(context, true);
     }
 
 }

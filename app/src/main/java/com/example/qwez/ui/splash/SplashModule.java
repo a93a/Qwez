@@ -1,21 +1,22 @@
 package com.example.qwez.ui.splash;
 
-import com.example.qwez.di.ApplicationScope;
-import com.example.qwez.interactor.GetAllGamesAndQuestionsInteractor;
-import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.router.StartRouter;
 
 import dagger.Module;
 import dagger.Provides;
-import dagger.multibindings.Multibinds;
 
 @Module
 public class SplashModule {
 
     @Provides
-    SplashVMFactory splashVMFactory(){
-        return new SplashVMFactory();
+    SplashVMFactory splashVMFactory(StartRouter startRouter){
+        return new SplashVMFactory(startRouter);
     }
 
+    @Provides
+    StartRouter startRouter(){
+        return new StartRouter();
+    }
 
 }
 
