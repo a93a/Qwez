@@ -7,7 +7,6 @@ import retrofit2.Response;
 
 public class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
 
-
     @Override
     public Observer<? super Response<T>> apply(final Observer<? super T> observer) throws Exception {
         return new DisposableObserver<Response<T>>() {

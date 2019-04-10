@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5c33365e2ae589fe62f20ff476b34f97",
+    "identityHash": "a1f7ad73ad45d6486cc13608d599111d",
     "entities": [
       {
         "tableName": "games",
@@ -38,8 +38,14 @@
       },
       {
         "tableName": "questions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`question_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `question` TEXT, `correct_answer` TEXT, `wrong_answer_one` TEXT, `wrong_answer_two` TEXT, `wrong_answer_three` TEXT, FOREIGN KEY(`question_id`) REFERENCES `games`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `question_id` INTEGER NOT NULL, `question` TEXT, `correct_answer` TEXT, `wrong_answer_one` TEXT, `wrong_answer_two` TEXT, `wrong_answer_three` TEXT, FOREIGN KEY(`question_id`) REFERENCES `games`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "qId",
             "columnName": "question_id",
@@ -79,7 +85,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "question_id"
+            "id"
           ],
           "autoGenerate": true
         },
@@ -102,7 +108,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"5c33365e2ae589fe62f20ff476b34f97\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a1f7ad73ad45d6486cc13608d599111d\")"
     ]
   }
 }

@@ -13,6 +13,9 @@ import androidx.room.PrimaryKey;
 public class Question {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    public int id;
+
     @ColumnInfo(name = "question_id")
     public int qId;
 
@@ -31,8 +34,7 @@ public class Question {
     @ColumnInfo(name = "wrong_answer_three")
     public String wrongAnswer3;
 
-    public Question(int qId, String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
-        this.qId = qId;
+    public Question(String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.wrongAnswer1 = wrongAnswer1;

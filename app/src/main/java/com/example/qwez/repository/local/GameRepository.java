@@ -73,6 +73,13 @@ public class GameRepository implements GameRepositoryType {
     }
 
     @Override
+    public Completable addQuestions(List<Question> questions) {
+        return questionDao
+                .insert(questions.toArray(new Question[questions.size()]))
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
     public Completable deleteQuestion(Question question) {
         return questionDao
                 .delete(question)

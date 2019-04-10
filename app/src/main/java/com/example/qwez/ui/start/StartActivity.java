@@ -13,7 +13,7 @@ import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
-import com.example.qwez.repository.opentdb.entity.Question;
+import com.example.qwez.repository.local.Question;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class QuestionConverter {
 
-    public static List<com.example.qwez.repository.local.Question> toDatabase(List<com.example.qwez.repository.opentdb.entity.Question> toConvert, int id) {
+    public static List<com.example.qwez.repository.local.Question> toDatabase(List<com.example.qwez.repository.opentdb.entity.Question> toConvert) {
 
         List<com.example.qwez.repository.local.Question> converted = new ArrayList<>();
 
@@ -15,7 +15,6 @@ public class QuestionConverter {
             String wA3 = question.getIncorrectAnswers().get(2);
 
             converted.add(new com.example.qwez.repository.local.Question(
-                    id,
                     question.getQuestion(),
                     question.getCorrectAnswer(),
                     wA1,

@@ -4,7 +4,7 @@ import com.example.qwez.base.BaseViewModel;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.repository.local.Game;
-import com.example.qwez.repository.opentdb.entity.Question;
+import com.example.qwez.repository.local.Question;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 
