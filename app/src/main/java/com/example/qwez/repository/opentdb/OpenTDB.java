@@ -29,7 +29,7 @@ public class OpenTDB implements OpenTDBType {
         return Single.fromObservable(
                 api
                         .getQuestions(10, Category.FILMS.getCategory(), Difficulty.EASY.getDifficulty(), QuestionType.MULTIPLE_CHOICE.getType())
-                        .lift(new ApiErrorOperator<>())
+                        .lift(new ApiErrorOperator<>(   ))
                         .map(ResponseBody::getQuestions)
                         .subscribeOn(Schedulers.io())
         );

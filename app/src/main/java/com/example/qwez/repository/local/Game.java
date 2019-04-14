@@ -9,13 +9,13 @@ public class Game {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    public int gameId;
+    private int gameId;
 
     @ColumnInfo(name = "category")
-    public String category;
+    private String category;
 
     @ColumnInfo(name = "difficulty")
-    public String difficulty;
+    private String difficulty;
 
     public Game(String category, String difficulty) {
         this.category = category;

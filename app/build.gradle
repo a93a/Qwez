@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.qwez"
-        minSdkVersion 28
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -78,6 +78,7 @@ dependencies {
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
 
     //room
+    //DONT UPDATE TO 2.1.0-alpha06 !!! IT HAS A BUG WHICH IS A PAIN IN THE ASS !!!
     implementation "androidx.room:room-runtime:2.1.0-alpha04"
     annotationProcessor "androidx.room:room-compiler:2.1.0-alpha04"
     implementation "androidx.room:room-rxjava2:2.1.0-alpha04"

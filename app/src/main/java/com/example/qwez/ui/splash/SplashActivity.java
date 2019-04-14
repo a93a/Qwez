@@ -14,6 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Insert;
 import dagger.android.AndroidInjection;

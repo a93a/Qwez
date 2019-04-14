@@ -6,6 +6,9 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+/**
+ * Is it worth to index this entity?
+ */
 @Entity(foreignKeys = @ForeignKey(entity = Game.class,
         parentColumns = "id",childColumns = "question_id",
         onDelete = ForeignKey.CASCADE),
@@ -14,25 +17,25 @@ public class Question {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "question_id")
     public int qId;
 
     @ColumnInfo(name = "question")
-    public String question;
+    private String question;
 
     @ColumnInfo(name = "correct_answer")
-    public String correctAnswer;
+    private String correctAnswer;
 
     @ColumnInfo(name = "wrong_answer_one")
-    public String wrongAnswer1;
+    private String wrongAnswer1;
 
     @ColumnInfo(name = "wrong_answer_two")
-    public String wrongAnswer2;
+    private String wrongAnswer2;
 
     @ColumnInfo(name = "wrong_answer_three")
-    public String wrongAnswer3;
+    private String wrongAnswer3;
 
     public Question(String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
         this.question = question;
@@ -90,5 +93,13 @@ public class Question {
 
     public void setWrongAnswer3(String wrongAnswer3) {
         this.wrongAnswer3 = wrongAnswer3;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

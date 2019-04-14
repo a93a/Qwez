@@ -31,12 +31,6 @@ public class GetQuestionsInteractor {
 
     public Single<List<Question>> getQuestionByCategoryMultiple(Category category, Difficulty difficulty){
 
-        //openTDBType.getQuestionByCategory(QuestionC.AMOUNT_STANDARD, category.getCategory(), difficulty.getDifficulty(), QuestionType.MULTIPLE_CHOICE.getType())
-        //.map(QuestionConverter::toDatabase)
-        //gameRepositoryType.addGame(new Game(Category.getAsString(category),difficulty.getDifficulty()))
-        //.observeOn(AndroidSchedulers.mainThread());
-
-
         return openTDBType
                 .getQuestionByCategory(QuestionC.AMOUNT_STANDARD,
                         category.getCategory(),
@@ -50,26 +44,6 @@ public class GetQuestionsInteractor {
                     gameRepositoryType.addQuestions(questions);
                     return gameRepositoryType.getAllQuestions(); })
                 .observeOn(AndroidSchedulers.mainThread());
-
-
-        /*
-        return openTDBType
-                .getQuestionByCategory(QuestionC.AMOUNT_STANDARD,
-                        category.getCategory(),
-                        difficulty.getDifficulty(),
-                        QuestionType.MULTIPLE_CHOICE.getType())
-                .map(QuestionConverter::toDatabase)
-                .flatMap(questions -> {
-                    return gameRepositoryType.addGameReturnId(new Game(Category.getAsString(category),difficulty.getDifficulty()))
-                    .map(id -> {
-                        questions.forEach(question -> question.setqId((int)(long)id));  //interesting cast
-                        return questions;
-                    });   // returns Single<Long>
-                }) // returns Single<List<Question>> with the GameId attached
-                .flatMapCompletable(gameRepositoryType::addQuestions) // returns Completable
-                .andThen(gameRepositoryType.getAllQuestions()) // returns Single<>
-                .observeOn(AndroidSchedulers.mainThread());
-        */
 
     }
 

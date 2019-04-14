@@ -1,11 +1,19 @@
 package com.example.qwez.repository;
 
+import com.example.qwez.entity.ErrorCarrier;
+import com.example.qwez.util.Extras;
+import com.google.android.gms.common.api.ApiException;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
 import io.reactivex.ObservableOperator;
 import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.Response;
 
-public class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
+public final class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
 
     @Override
     public Observer<? super Response<T>> apply(final Observer<? super T> observer) throws Exception {
@@ -19,8 +27,12 @@ public class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
             @Override
             public void onNext(Response<T> tResponse) {
                 dispose();
-                observer.onNext(tResponse.body());
-                observer.onComplete();
+                if(!tResponse.isSuccessful()){
+                    observer.onError(new Exception(tResponse.message()));
+                }else{
+                    observer.onNext(tResponse.body());
+                    observer.onComplete();
+                }
             }
 
             @Override
