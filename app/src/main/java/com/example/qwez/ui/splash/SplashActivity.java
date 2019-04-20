@@ -8,6 +8,7 @@ import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.router.StartRouter;
 import com.example.qwez.ui.start.StartVMFactory;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -34,9 +35,16 @@ public class SplashActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(this, factory).get(SplashViewModel.class);
         viewModel.progress().observe(this, this::onProgress);
         viewModel.error().observe(this, this::onError);
+        viewModel.user().observe(this, this::onUser);
 
-        viewModel.openStart(this);
+        viewModel.getUser();
 
+    }
+
+    private void onUser(FirebaseUser firebaseUser) {
+        if(firebaseUser != null){
+            viewModel.openStart(this);
+        }
     }
 
     private void onError(ErrorCarrier errorCarrier) {
