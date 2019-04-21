@@ -1,5 +1,7 @@
 package com.example.qwez.repository.firebase.rxwrapper;
 
+import android.util.Log;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 

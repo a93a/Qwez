@@ -1,6 +1,5 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.interactor.rx.QuestionConverterOperator;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.repository.local.Question;

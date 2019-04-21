@@ -28,7 +28,7 @@ public class App extends Application implements HasActivityInjector {
                 .build()
                 .inject(this);
 
-        LeakCanary.install(this);
+        //LeakCanary.install(this);
 
     }
 
