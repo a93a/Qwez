@@ -5,4 +5,13 @@
     <string name="label_startactivity">My Games</string>
     <string name="loading">Loading...</string>
     <string name="label_loginactivity">Login/Signup</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="log_in_button">Log In</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_up_label">Don\'t have an account yet? Sign up!</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_nickname_hint">Enter Nickname</string>
+    <string name="enter_password_hint">Enter Password</string>
+    <string name="enter_password_again_hint">Enter Password Again</string>
 </resources>

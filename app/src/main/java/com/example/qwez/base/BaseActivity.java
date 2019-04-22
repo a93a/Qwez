@@ -4,6 +4,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.qwez.R;
+import com.example.qwez.bus.RxBus;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -99,4 +100,9 @@ public class BaseActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        RxBus.unregister(this);
+    }
 }
