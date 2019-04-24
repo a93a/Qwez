@@ -14,8 +14,8 @@ public class PatternValidate extends Validate {
         this.pattern = pattern;
     }
 
-    public boolean isValid(EditText editText) {
-        return pattern.matcher(editText.getText()).matches();
+    public boolean isValid(String textToCheck) {
+        return pattern.matcher(textToCheck).matches();
     }
 
 }

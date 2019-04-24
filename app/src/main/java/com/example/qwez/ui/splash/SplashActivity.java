@@ -24,6 +24,7 @@ import androidx.room.Insert;
 
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
+import timber.log.Timber;
 
 public class SplashActivity extends BaseActivity {
 
@@ -35,11 +36,12 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        hideSystemUI();
 
         AndroidInjection.inject(this);
 
         setContentView(R.layout.layout_splash);
+
+        hideToolbar();
 
         ButterKnife.bind(this);
 
@@ -52,6 +54,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void onUser(FirebaseUser firebaseUser) {
+        Timber.d("onUser");
         if(firebaseUser != null){
             viewModel.openStart(this);
         }else{
@@ -60,11 +63,9 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void onError(ErrorCarrier errorCarrier) {
-        Log.d("tagisho", "activity error on user: "+errorCarrier.message);
     }
 
     private void onProgress(Boolean aBoolean) {
-
     }
 
 }

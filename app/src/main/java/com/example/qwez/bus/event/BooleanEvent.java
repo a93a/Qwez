@@ -1,4 +1,4 @@
-package com.example.qwez.bus;
+package com.example.qwez.bus.event;
 
 public class BooleanEvent {
 

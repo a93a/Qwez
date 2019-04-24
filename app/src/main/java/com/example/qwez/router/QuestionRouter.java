@@ -12,9 +12,8 @@ import java.util.List;
 
 public class QuestionRouter {
 
-    public void open(Context context, List<Question> questions){
+    public void open(Context context){
         Intent intent = new Intent(context, QuestionActivity.class);
-        intent.putExtra(Extras.QUESTION_LIST, (Serializable) questions);
         context.startActivity(intent);
     }
 

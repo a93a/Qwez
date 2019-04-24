@@ -3,10 +3,12 @@ package com.example.qwez.ui.start;
 import com.example.qwez.base.BaseViewModel;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetQuestionsInteractor;
+import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.Question;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -16,13 +18,16 @@ public class StartViewModel extends BaseViewModel {
 
     private final MutableLiveData<List<Question>> questionData = new MutableLiveData<>();
     private final MutableLiveData<List<Game>> gameData = new MutableLiveData<>();
+    private final MutableLiveData<String> user = new MutableLiveData<>();
 
     private final GetQuestionsInteractor getQuestionsInteractor;
     private final GetAllGamesInteractor getAllGamesInteractor;
+    private final GetUserInteractor getUserInteractor;
 
-    public StartViewModel(GetQuestionsInteractor getQuestionsInteractor, GetAllGamesInteractor getAllGamesInteractor) {
+    public StartViewModel(GetQuestionsInteractor getQuestionsInteractor, GetAllGamesInteractor getAllGamesInteractor, GetUserInteractor getUserInteractor) {
         this.getQuestionsInteractor = getQuestionsInteractor;
         this.getAllGamesInteractor = getAllGamesInteractor;
+        this.getUserInteractor = getUserInteractor;
     }
 
     public void getQuestion(Category category, Difficulty difficulty){
@@ -38,6 +43,19 @@ public class StartViewModel extends BaseViewModel {
                 .subscribe(this::onGames,this::onError);
     }
 
+    public void getUser(){
+        progress.setValue(true);
+        disposable = getUserInteractor.getUser()
+                .subscribe(this::onUser,this::onError);
+    }
+
+    private void onUser(FirebaseUser firebaseUser) {
+        String username = firebaseUser.getDisplayName();
+        if(username != null && username.equals("")){
+            username = firebaseUser.getEmail();
+        }
+        user.setValue(username);
+    }
 
     private void onGames(List<Game> games) {
         gameData.setValue(games);
@@ -54,5 +72,9 @@ public class StartViewModel extends BaseViewModel {
 
     public MutableLiveData<List<Question>> questions() {
         return questionData;
+    }
+
+    public MutableLiveData<String> user(){
+        return user;
     }
 }

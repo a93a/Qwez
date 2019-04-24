@@ -27,9 +27,9 @@ public class MultiValidate extends Validate {
     }
 
     @Override
-    public boolean isValid(EditText editText) {
+    public boolean isValid(String textToCheck) {
         for (Validate validate : validators) {
-            if (!validate.isValid(editText)) {
+            if (!validate.isValid(textToCheck)) {
                 this.errorMessage = validate.getErrorMessage();
                 return false;
             }

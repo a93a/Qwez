@@ -12,8 +12,8 @@ public class EmptyValidate extends Validate {
     }
 
     @Override
-    public boolean isValid(EditText editText) {
-        return TextUtils.getTrimmedLength(editText.getText()) > 0;
+    public boolean isValid(String textToCheck) {
+        return textToCheck.length() > 0;
     }
 
 }

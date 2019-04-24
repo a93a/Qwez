@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import timber.log.Timber;
 
 public class App extends Application implements HasActivityInjector {
 
@@ -29,6 +30,10 @@ public class App extends Application implements HasActivityInjector {
                 .inject(this);
 
         //LeakCanary.install(this);
+
+        if(BuildConfig.DEBUG){
+            Timber.plant(new Timber.DebugTree());
+        }
 
     }
 

@@ -25,13 +25,11 @@ public class SplashViewModel extends BaseViewModel {
     }
 
     public void getUser(){
-        Log.d("tagisho", "vm get user");
         disposable = getUserInteractor.getUser()
                 .subscribe(this::onUser, this::onError);
     }
 
     private void onUser(FirebaseUser firebaseUser) {
-        Log.d("tagisho", "vm user gotten");
         user.setValue(firebaseUser);
     }
 
@@ -51,7 +49,6 @@ public class SplashViewModel extends BaseViewModel {
     protected void onError(Throwable throwable) {
         if(throwable instanceof NullPointerException){
             user.setValue(null);
-            Log.d("tagisho", "valie in vm set to null");
         }else{
             super.onError(throwable);
         }

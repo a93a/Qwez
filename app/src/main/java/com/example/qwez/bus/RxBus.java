@@ -1,6 +1,5 @@
 package com.example.qwez.bus;
 
-import android.annotation.SuppressLint;
 import android.util.SparseArray;
 
 import androidx.annotation.IntDef;
@@ -27,14 +26,18 @@ public final class RxBus {
     private static SparseArray<PublishSubject<Object>> subjectMap = new SparseArray<>();
     private static Map<Object, CompositeDisposable> subscriptionsMap = new HashMap<>();
 
-    public static final int LOGIN_EVENT = 0;
-    public static final int SIGNUP_EVENT = 1;
-    public static final int SIGNUP_ALREADY_ACCOUNT_EVENT = 2;
+    public static final int SHOW_LOGIN_FRAGMENT = 0;
+    public static final int SHOW_SIGN_UP_FRAGMENT = 1;
+    public static final int SHOW_QUESTION_ACTIVITY = 2;
+    public static final int TRY_LOG_IN = 3;
+    public static final int TRY_SIGN_UP = 4;
 
     @Retention(SOURCE)
-    @IntDef({LOGIN_EVENT,
-            SIGNUP_EVENT,
-            SIGNUP_ALREADY_ACCOUNT_EVENT})
+    @IntDef({SHOW_LOGIN_FRAGMENT,
+            SHOW_SIGN_UP_FRAGMENT,
+            SHOW_QUESTION_ACTIVITY,
+            TRY_LOG_IN,
+            TRY_SIGN_UP})
     @interface Subject {
     }
 

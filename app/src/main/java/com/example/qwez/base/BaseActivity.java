@@ -2,7 +2,9 @@ package com.example.qwez.base;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.bus.RxBus;
 
@@ -12,31 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 
 public class BaseActivity extends AppCompatActivity {
 
+    private MaterialDialog dialog;
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            hideSystemUI();
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-    }
-
-    protected void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
-
-    protected void showSystemUI() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     protected void toolbar() {
@@ -88,6 +73,13 @@ public class BaseActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.show();
         }
+    }
+
+    protected void showCustomDialog(MaterialDialog.Builder builder){
+        if(dialog != null && !dialog.isCancelled()){
+            dialog.dismiss();
+        }
+        dialog = builder.show();
     }
 
     @Override

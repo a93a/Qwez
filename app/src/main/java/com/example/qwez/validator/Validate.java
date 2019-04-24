@@ -6,10 +6,10 @@ public abstract class Validate {
     protected String errorMessage;
 
     public Validate(String errorMessage) {
-        errorMessage = errorMessage;
+        this.errorMessage = errorMessage;
     }
 
-    public abstract boolean isValid(EditText editText);
+    public abstract boolean isValid(String textToCheck);
 
     public boolean hasErrorMessage() {
         return errorMessage != null;

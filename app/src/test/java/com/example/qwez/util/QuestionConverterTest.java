@@ -31,8 +31,8 @@ public class QuestionConverterTest {
 
         assertEquals(converted.size(),1 );
         com.example.qwez.repository.local.Question questionConverted = converted.get(0);
-        assertEquals(questionConverted.correctAnswer, question.getCorrectAnswer());
-        assertEquals(questionConverted.wrongAnswer1, question.getIncorrectAnswers().get(0));
+        assertEquals(questionConverted.getCorrectAnswer(), question.getCorrectAnswer());
+        assertEquals(questionConverted.getWrongAnswer1(), question.getIncorrectAnswers().get(0));
 
     }
 }

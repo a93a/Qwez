@@ -16,6 +16,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class QuestionActivity extends BaseActivity implements View.OnClickListener{
 
@@ -34,6 +35,8 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Timber.d("onCreate");
+
         setContentView(R.layout.layout_question);
 
         ButterKnife.bind(this);
@@ -44,7 +47,7 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
         question4.setOnClickListener(this);
         button.setOnClickListener(this);
 
-        questions = (List<Question>) getIntent().getSerializableExtra(Extras.QUESTION_LIST);
+
 
     }
 

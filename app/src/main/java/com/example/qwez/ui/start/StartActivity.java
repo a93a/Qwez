@@ -3,7 +3,9 @@ package com.example.qwez.ui.start;
 import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.AndroidInjection;
+import timber.log.Timber;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +22,11 @@ import com.example.qwez.util.Difficulty;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Timer;
 
 import javax.inject.Inject;
 
-public class StartActivity extends BaseActivity implements View.OnClickListener{
+public class StartActivity extends BaseActivity{
 
     @Inject
     StartVMFactory factory;
@@ -40,8 +43,6 @@ public class StartActivity extends BaseActivity implements View.OnClickListener{
 
         ButterKnife.bind(this);
 
-        button.setOnClickListener(this);
-
         AndroidInjection.inject(this);
 
         viewModel = ViewModelProviders.of(this,factory).get(StartViewModel.class);
@@ -49,11 +50,18 @@ public class StartActivity extends BaseActivity implements View.OnClickListener{
         viewModel.error().observe(this, this::onError);
         viewModel.progress().observe(this, this::onProgess);
         viewModel.gameData().observe(this, this::onGames);
+        viewModel.user().observe(this, this::onUser);
+
+        viewModel.getUser();
 
     }
 
+    private void onUser(String s) {
+        setTitle(s);
+    }
+
     private void onGames(List<Game> games) {
-        Log.d("GAMES::::::::::::::::::::::::::::::::::::::::", "Total games: "+games.size());
+
     }
 
     private void onProgess(Boolean aBoolean) {
@@ -61,21 +69,15 @@ public class StartActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void onError(ErrorCarrier errorCarrier) {
-        Log.e(StartActivity.class.getName(), errorCarrier.message);
+
     }
 
     private void onQuestions(List<Question> questions) {
-        //new QuestionRouter().open(this, questions);
+
     }
 
+    @OnClick(R.id.button_add_question)
+    void onClick(){
 
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button_add_question:
-                viewModel.getQuestion(Category.FILMS, Difficulty.EASY);
-                break;
-        }
     }
 }

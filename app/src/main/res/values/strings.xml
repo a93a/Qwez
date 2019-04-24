@@ -14,4 +14,6 @@
     <string name="enter_nickname_hint">Enter Nickname</string>
     <string name="enter_password_hint">Enter Password</string>
     <string name="enter_password_again_hint">Enter Password Again</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="sign_up_to_continue">Sign up to continue</string>
 </resources>
