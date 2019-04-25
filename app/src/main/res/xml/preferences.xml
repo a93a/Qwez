@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Account">
+
+        <Preference
+            android:icon="@drawable/logout"
+            android:defaultValue="Default value"
+            android:key="log_out_preference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Log out" />
+
+        <PreferenceCategory/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

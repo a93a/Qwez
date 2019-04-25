@@ -3,6 +3,8 @@ package com.example.qwez.di;
 import com.example.qwez.ui.login.LoginActivity;
 import com.example.qwez.ui.login.LoginModule;
 import com.example.qwez.ui.login.LoginViewModel;
+import com.example.qwez.ui.settings.SettingsActivity;
+import com.example.qwez.ui.settings.SettingsModule;
 import com.example.qwez.ui.splash.SplashActivity;
 import com.example.qwez.ui.splash.SplashModule;
 import com.example.qwez.ui.start.StartActivity;
@@ -25,5 +27,9 @@ public abstract class BinderModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = LoginModule.class)
     abstract LoginActivity bindLoginActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = SettingsModule.class)
+    abstract SettingsActivity bindSettingsActivity();
 
 }

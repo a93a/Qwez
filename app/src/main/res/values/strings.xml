@@ -16,4 +16,5 @@
     <string name="enter_password_again_hint">Enter Password Again</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="sign_up_to_continue">Sign up to continue</string>
+    <string name="settings">Settings</string>
 </resources>

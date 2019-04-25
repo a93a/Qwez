@@ -12,10 +12,13 @@ import androidx.annotation.NonNull;
 
 import java.util.Optional;
 
+import butterknife.OnClick;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
@@ -43,10 +46,19 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
     @Override
     public Observable<FirebaseUser> getCurrentUser() {
         return FirebaseAuthWrapper.observeUserAuthState(firebaseAuth)
-                .map(firebaseAuth1 -> firebaseAuth1.getCurrentUser())
+                .map(FirebaseAuth::getCurrentUser)
                 .switchIfEmpty(observer -> {
                     observer.onError(new RxWrapperNullException(RxWrapperNullException.NO_CURRENT_USER));
                 })
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Completable logoutUser(){
+        return Completable.create(emitter -> {
+                    FirebaseAuth.getInstance().signOut();
+                    emitter.onComplete();
+        })
                 .subscribeOn(Schedulers.io());
     }
 

@@ -40,4 +40,11 @@ public class CustomMaterialDialog {
                 .positiveText(LABEL_OK);
     }
 
+    public static MaterialDialog.Builder sureLogOut(String title, Context context){
+        return new MaterialDialog.Builder(context)
+                .title(title)
+                .positiveText(LABEL_OK)
+                .negativeText(LABEL_CANCEL);
+    }
+
 }

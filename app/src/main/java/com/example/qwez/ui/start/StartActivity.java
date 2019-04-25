@@ -9,6 +9,8 @@ import timber.log.Timber;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.qwez.R;
@@ -43,7 +45,7 @@ public class StartActivity extends BaseActivity{
 
         ButterKnife.bind(this);
 
-        AndroidInjection.inject(this);
+        AndroidInjection.inject(this);;
 
         viewModel = ViewModelProviders.of(this,factory).get(StartViewModel.class);
         viewModel.questions().observe(this, this::onQuestions);
@@ -79,5 +81,22 @@ public class StartActivity extends BaseActivity{
     @OnClick(R.id.button_add_question)
     void onClick(){
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.start_meny, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.start_menu_settings:
+                viewModel.openSettings(this);
+                break;
+        }
+        return true;
     }
 }

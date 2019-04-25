@@ -1,11 +1,14 @@
 package com.example.qwez.ui.start;
 
+import android.content.Context;
+
 import com.example.qwez.base.BaseViewModel;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.Question;
+import com.example.qwez.router.SettingsRouter;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,10 +27,13 @@ public class StartViewModel extends BaseViewModel {
     private final GetAllGamesInteractor getAllGamesInteractor;
     private final GetUserInteractor getUserInteractor;
 
-    public StartViewModel(GetQuestionsInteractor getQuestionsInteractor, GetAllGamesInteractor getAllGamesInteractor, GetUserInteractor getUserInteractor) {
+    private final SettingsRouter settingsRouter;
+
+    public StartViewModel(GetQuestionsInteractor getQuestionsInteractor, GetAllGamesInteractor getAllGamesInteractor, GetUserInteractor getUserInteractor, SettingsRouter settingsRouter) {
         this.getQuestionsInteractor = getQuestionsInteractor;
         this.getAllGamesInteractor = getAllGamesInteractor;
         this.getUserInteractor = getUserInteractor;
+        this.settingsRouter = settingsRouter;
     }
 
     public void getQuestion(Category category, Difficulty difficulty){
@@ -55,6 +61,10 @@ public class StartViewModel extends BaseViewModel {
             username = firebaseUser.getEmail();
         }
         user.setValue(username);
+    }
+
+    public void openSettings(Context context){
+        settingsRouter.open(context,false);
     }
 
     private void onGames(List<Game> games) {

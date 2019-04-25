@@ -30,6 +30,9 @@
         <activity android:name=".ui.login.LoginActivity"
             android:label="@string/label_loginactivity" />
 
+        <activity android:name=".ui.settings.SettingsActivity"
+            android:label="Settings"/>
+
     </application>
 
 </manifest>

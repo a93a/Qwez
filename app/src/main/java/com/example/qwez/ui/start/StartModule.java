@@ -1,14 +1,12 @@
 package com.example.qwez.ui.start;
 
-import androidx.appcompat.app.ActionBar;
-
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
-import com.example.qwez.repository.firebase.FirebaseAuthRepository;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.repository.opentdb.OpenTDBType;
+import com.example.qwez.router.SettingsRouter;
 
 import javax.inject.Named;
 
@@ -21,8 +19,14 @@ public class StartModule {
     @Provides
     StartVMFactory questionVMFactory(GetQuestionsInteractor getQuestionsInteractor,
                                      GetAllGamesInteractor getAllGamesInteractor,
-                                     GetUserInteractor getUserInteractor){
-        return new StartVMFactory(getQuestionsInteractor, getAllGamesInteractor, getUserInteractor);
+                                     GetUserInteractor getUserInteractor,
+                                     SettingsRouter settingsRouter){
+        return new StartVMFactory(getQuestionsInteractor, getAllGamesInteractor, getUserInteractor, settingsRouter);
+    }
+
+    @Provides
+    SettingsRouter settingsRouter(){
+        return new SettingsRouter();
     }
 
     @Provides

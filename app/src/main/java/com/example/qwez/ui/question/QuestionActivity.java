@@ -1,6 +1,8 @@
 package com.example.qwez.ui.question;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class QuestionActivity extends BaseActivity implements View.OnClickListener{
+public class QuestionActivity extends BaseActivity{
 
     @BindView(R.id.textView_which_question) TextView whichQ;
     @BindView(R.id.textview_question) TextView questionView;
@@ -41,18 +43,6 @@ public class QuestionActivity extends BaseActivity implements View.OnClickListen
 
         ButterKnife.bind(this);
 
-        question1.setOnClickListener(this);
-        question2.setOnClickListener(this);
-        question3.setOnClickListener(this);
-        question4.setOnClickListener(this);
-        button.setOnClickListener(this);
-
-
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 
