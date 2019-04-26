@@ -15,7 +15,6 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
-import timber.log.Timber;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -42,11 +41,12 @@ public class SettingsActivity extends BaseActivity {
         viewModel.progress().observe(this, this::onProgress);
 
         RxBus.subscribe(RxBus.TRY_LOG_OUT, this, o -> {
-            MaterialDialog.Builder builder = CustomMaterialDialog.sureLogOut("Are you sure?", this)
+            MaterialDialog.Builder builder = CustomMaterialDialog.areYouSure("Are you sure?", this)
                     .onNegative((dialog, which) -> {
                         dialog.dismiss();
                     })
                     .onPositive((dialog, which) -> {
+                        dialog.dismiss();
                         viewModel.logoutUser();
                     });
             showCustomDialog(builder);

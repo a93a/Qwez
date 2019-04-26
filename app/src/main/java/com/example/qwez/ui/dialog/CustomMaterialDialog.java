@@ -1,6 +1,10 @@
 package com.example.qwez.ui.dialog;
 
 import android.content.Context;
+import android.widget.LinearLayout;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -40,11 +44,19 @@ public class CustomMaterialDialog {
                 .positiveText(LABEL_OK);
     }
 
-    public static MaterialDialog.Builder sureLogOut(String title, Context context){
+    public static MaterialDialog.Builder areYouSure(String title, Context context){
         return new MaterialDialog.Builder(context)
                 .title(title)
                 .positiveText(LABEL_OK)
                 .negativeText(LABEL_CANCEL);
+    }
+
+    public static MaterialDialog.Builder addQuestion(String title, Context context, LinearLayout layout){
+        return new MaterialDialog.Builder(context)
+                .title(title)
+                .customView(layout, true)
+                .negativeText(LABEL_CANCEL)
+                .positiveText(LABEL_OK);
     }
 
 }

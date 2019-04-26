@@ -5,6 +5,22 @@
         android:title="Account">
 
         <Preference
+            android:icon="@drawable/changeusername"
+            android:defaultValue="Default value"
+            android:key="change_username_preference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Change Username" />
+
+        <Preference
+            android:icon="@drawable/changepass"
+            android:defaultValue="Default value"
+            android:key="change_password_preference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Change password" />
+
+        <Preference
             android:icon="@drawable/logout"
             android:defaultValue="Default value"
             android:key="log_out_preference"

@@ -76,9 +76,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void showCustomDialog(MaterialDialog.Builder builder){
-        if(dialog != null && !dialog.isCancelled()){
-            dialog.dismiss();
-        }
+        dismissDialog();
         dialog = builder.show();
     }
 
@@ -92,9 +90,16 @@ public class BaseActivity extends AppCompatActivity {
         return true;
     }
 
+    private void dismissDialog(){
+        if(dialog != null && !dialog.isCancelled()){
+            dialog.dismiss();
+        }
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
         RxBus.unregister(this);
+        dismissDialog();
     }
 }

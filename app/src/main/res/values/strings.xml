@@ -17,4 +17,6 @@
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="sign_up_to_continue">Sign up to continue</string>
     <string name="settings">Settings</string>
+    <string name="choose_a_category">Choose a category:</string>
+    <string name="choose_difficulty">Choose difficulty</string>
 </resources>

@@ -32,6 +32,7 @@ public final class RxBus {
     public static final int TRY_LOG_IN = 3;
     public static final int TRY_SIGN_UP = 4;
     public static final int TRY_LOG_OUT = 5;
+    public static final int DELETE_GAME = 6;
 
     @Retention(SOURCE)
     @IntDef({SHOW_LOGIN_FRAGMENT,
@@ -39,7 +40,8 @@ public final class RxBus {
             SHOW_QUESTION_ACTIVITY,
             TRY_LOG_IN,
             TRY_SIGN_UP,
-            TRY_LOG_OUT})
+            TRY_LOG_OUT,
+            DELETE_GAME})
     @interface Subject {
     }
 

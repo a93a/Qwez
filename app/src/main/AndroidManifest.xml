@@ -14,8 +14,7 @@
         android:theme="@style/Theme.MaterialComponents.Light"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ui.start.StartActivity"
-            android:label="@string/label_startactivity"/>
+        <activity android:name=".ui.start.StartActivity" />
 
         <activity android:name=".ui.question.QuestionActivity" />
 

@@ -1,5 +1,15 @@
 package com.example.qwez.util;
 
+import android.graphics.ColorSpace;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.StreamSupport;
+
 /**
  * Constants class for quiz constants
  */
@@ -202,6 +212,18 @@ public enum  Category {
                 break;
         }
         return toReturn;
+    }
+
+    public static Map<String,Category> getMap(){
+        HashMap<String,Category> map = new HashMap<>();
+        Arrays.stream(Category.values()).forEach(category1 -> map.put(Category.getAsString(category1), category1));
+        return map;
+    }
+
+    public static List<String> getList(){
+        List<String> list = new ArrayList<>();
+        Arrays.stream(Category.values()).forEach(category1 -> list.add(Category.getAsString(category1)));
+        return list;
     }
 
 }

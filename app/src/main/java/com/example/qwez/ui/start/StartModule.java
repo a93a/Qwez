@@ -1,5 +1,6 @@
 package com.example.qwez.ui.start;
 
+import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
@@ -20,8 +21,18 @@ public class StartModule {
     StartVMFactory questionVMFactory(GetQuestionsInteractor getQuestionsInteractor,
                                      GetAllGamesInteractor getAllGamesInteractor,
                                      GetUserInteractor getUserInteractor,
-                                     SettingsRouter settingsRouter){
-        return new StartVMFactory(getQuestionsInteractor, getAllGamesInteractor, getUserInteractor, settingsRouter);
+                                     SettingsRouter settingsRouter,
+                                     DeleteGameInteractor deleteGameInteractor){
+        return new StartVMFactory(getQuestionsInteractor,
+                getAllGamesInteractor,
+                getUserInteractor,
+                settingsRouter,
+                deleteGameInteractor);
+    }
+
+    @Provides
+    DeleteGameInteractor deleteGameInteractor(GameRepositoryType gameRepositoryType){
+        return new DeleteGameInteractor(gameRepositoryType);
     }
 
     @Provides
