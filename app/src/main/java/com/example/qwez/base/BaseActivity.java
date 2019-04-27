@@ -1,5 +1,7 @@
 package com.example.qwez.base;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -8,14 +10,28 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.bus.RxBus;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class BaseActivity extends AppCompatActivity {
+import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
+
+public abstract class BaseActivity extends AppCompatActivity {
 
     //keep private instance for dismissing etc
     private MaterialDialog dialog;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        AndroidInjection.inject(this);
+        setContentView(getLayout());
+        ButterKnife.bind(this);
+    }
+
+    protected abstract int getLayout();
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

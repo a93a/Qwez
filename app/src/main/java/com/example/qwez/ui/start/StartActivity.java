@@ -56,12 +56,6 @@ public class StartActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AndroidInjection.inject(this);
-
-        setContentView(R.layout.layout_start);
-
-        ButterKnife.bind(this);
-
         adapter = new GameAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -163,6 +157,11 @@ public class StartActivity extends BaseActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.start_meny, menu);
         return true;
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.layout_start;
     }
 
     @Override

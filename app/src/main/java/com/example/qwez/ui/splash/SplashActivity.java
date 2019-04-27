@@ -36,14 +36,7 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        AndroidInjection.inject(this);
-
-        setContentView(R.layout.layout_splash);
-
         hideToolbar();
-
-        ButterKnife.bind(this);
 
         viewModel = ViewModelProviders.of(this, factory).get(SplashViewModel.class);
         viewModel.progress().observe(this, this::onProgress);
@@ -68,4 +61,8 @@ public class SplashActivity extends BaseActivity {
     private void onProgress(Boolean aBoolean) {
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.layout_splash;
+    }
 }

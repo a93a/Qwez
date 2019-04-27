@@ -45,11 +45,11 @@ public class QuestionActivity extends BaseActivity{
 
         Timber.d("game is: %s", qId);
 
-        setContentView(R.layout.layout_question);
-
-        ButterKnife.bind(this);
-
 
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.layout_question;
+    }
 }

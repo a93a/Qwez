@@ -38,11 +38,7 @@ public class LoginActivity extends BaseActivityFragment {
 
         AndroidInjection.inject(this);
 
-        setContentView(R.layout.layout_login);
-
         hideToolbar();
-
-        ButterKnife.bind(this);
 
         viewModel = ViewModelProviders.of(this,factory).get(LoginViewModel.class);
 
@@ -96,4 +92,8 @@ public class LoginActivity extends BaseActivityFragment {
         }
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.layout_login;
+    }
 }

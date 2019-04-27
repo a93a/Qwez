@@ -26,15 +26,9 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AndroidInjection.inject(this);
-
-        setContentView(R.layout.layout_settings);
-
         enableDisplayHomeAsUp();
 
         //setTitle(R.string.settings);
-
-        ButterKnife.bind(this);
 
         viewModel = ViewModelProviders.of(this,factory).get(SettingsViewModel.class);
         viewModel.logout().observe(this, this::onLogoutSuccess);
@@ -82,4 +76,8 @@ public class SettingsActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected int getLayout() {
+        return R.layout.layout_settings;
+    }
 }
