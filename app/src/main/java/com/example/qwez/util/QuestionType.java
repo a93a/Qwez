@@ -1,5 +1,8 @@
 package com.example.qwez.util;
 
+/**
+ * Question type ENUM
+ */
 public enum QuestionType {
 
     MULTIPLE_CHOICE("multiple"),

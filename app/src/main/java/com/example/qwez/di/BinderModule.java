@@ -13,6 +13,9 @@ import com.example.qwez.ui.start.StartModule;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
+/**
+ * Bind all Activity package Module(s) to their Activity-
+ */
 @Module
 public abstract class BinderModule {
 

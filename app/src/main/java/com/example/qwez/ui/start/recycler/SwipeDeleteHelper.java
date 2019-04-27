@@ -1,9 +1,11 @@
 package com.example.qwez.ui.start.recycler;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,19 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qwez.R;
 
+import org.jetbrains.annotations.NotNull;
+
 public class SwipeDeleteHelper extends ItemTouchHelper.SimpleCallback {
 
-    private QuestionAdapter adapter;
+    private GameAdapter adapter;
     private Drawable icon;
     private final ColorDrawable background;
+    private static final int LIMIT_SWIPE_LENGTH = 10;
 
 
-    public SwipeDeleteHelper(QuestionAdapter adapter) {
+    public SwipeDeleteHelper(GameAdapter adapter, Context context) {
         super(0, ItemTouchHelper.LEFT);
         this.adapter = adapter;
         icon = ContextCompat.getDrawable(adapter.getContext(),
                 R.drawable.delete);
-        background = new ColorDrawable(Color.RED);
+        background = new ColorDrawable(context.getColor(R.color.colorAccent));
     }
 
     @Override
@@ -40,9 +45,12 @@ public class SwipeDeleteHelper extends ItemTouchHelper.SimpleCallback {
     }
 
     @Override
-    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+    public void onChildDraw(@NotNull Canvas c, @NotNull RecyclerView recyclerView, @NotNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        dX = dX/LIMIT_SWIPE_LENGTH;
+
         super.onChildDraw(c, recyclerView, viewHolder, dX,
                 dY, actionState, isCurrentlyActive);
+
         View itemView = viewHolder.itemView;
         int backgroundCornerOffset = 20;
 
@@ -55,7 +63,7 @@ public class SwipeDeleteHelper extends ItemTouchHelper.SimpleCallback {
             int iconRight = itemView.getRight() - iconMargin;
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
 
-            background.setBounds(itemView.getRight() + ((int) dX/5) - backgroundCornerOffset,
+            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
                     itemView.getTop(), itemView.getRight(), itemView.getBottom());
         } else { //unswiped
             background.setBounds(0, 0, 0, 0);

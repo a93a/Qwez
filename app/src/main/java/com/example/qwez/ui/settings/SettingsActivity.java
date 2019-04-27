@@ -40,6 +40,16 @@ public class SettingsActivity extends BaseActivity {
         viewModel.logout().observe(this, this::onLogoutSuccess);
         viewModel.progress().observe(this, this::onProgress);
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.setting_container, new SettingsFragment())
+                .commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         RxBus.subscribe(RxBus.TRY_LOG_OUT, this, o -> {
             MaterialDialog.Builder builder = CustomMaterialDialog.areYouSure("Are you sure?", this)
                     .onNegative((dialog, which) -> {
@@ -52,10 +62,6 @@ public class SettingsActivity extends BaseActivity {
             showCustomDialog(builder);
         });
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.setting_container, new SettingsFragment())
-                .commit();
     }
 
     private void onProgress(Boolean progress) {

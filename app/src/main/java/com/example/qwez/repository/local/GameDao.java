@@ -11,6 +11,9 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
+/**
+ * Dao for @Entity Game
+ */
 @Dao
 public interface GameDao extends BaseDao<Game> {
 

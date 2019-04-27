@@ -7,6 +7,7 @@ import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.repository.opentdb.OpenTDBType;
+import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
 
 import javax.inject.Named;
@@ -22,12 +23,19 @@ public class StartModule {
                                      GetAllGamesInteractor getAllGamesInteractor,
                                      GetUserInteractor getUserInteractor,
                                      SettingsRouter settingsRouter,
-                                     DeleteGameInteractor deleteGameInteractor){
+                                     DeleteGameInteractor deleteGameInteractor,
+                                     QuestionRouter questionRouter){
         return new StartVMFactory(getQuestionsInteractor,
                 getAllGamesInteractor,
                 getUserInteractor,
                 settingsRouter,
-                deleteGameInteractor);
+                deleteGameInteractor,
+                questionRouter);
+    }
+
+    @Provides
+    QuestionRouter questionRouter(){
+        return new QuestionRouter();
     }
 
     @Provides

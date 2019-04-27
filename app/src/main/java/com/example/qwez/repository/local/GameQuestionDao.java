@@ -9,6 +9,9 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import io.reactivex.Flowable;
 
+/**
+ * Dao for GameQuestion objects
+ */
 @Dao
 public interface GameQuestionDao {
 

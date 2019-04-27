@@ -10,6 +10,11 @@ import dagger.Provides;
 @Module
 public class OpenTDBModule {
 
+    /**
+     * Get OpenTDB. Singleton
+     * @param openTDBAPI Dagger provided
+     * @return OpenTDB
+     */
     @Provides
     @ApplicationScope
     OpenTDBType openTDBType(OpenTDBAPI openTDBAPI){

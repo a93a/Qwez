@@ -9,6 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
+import timber.log.Timber;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.Question;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
-import com.example.qwez.ui.start.recycler.QuestionAdapter;
+import com.example.qwez.ui.start.recycler.GameAdapter;
 import com.example.qwez.ui.start.recycler.SwipeDeleteHelper;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
@@ -49,7 +50,7 @@ public class StartActivity extends BaseActivity{
     @BindView(R.id.recyclerview_questions)
     RecyclerView recyclerView;
 
-    QuestionAdapter adapter;
+    GameAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +62,14 @@ public class StartActivity extends BaseActivity{
 
         ButterKnife.bind(this);
 
-        adapter = new QuestionAdapter(this);
+        adapter = new GameAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new SwipeDeleteHelper(adapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeDeleteHelper(adapter, this));
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         viewModel = ViewModelProviders.of(this,factory).get(StartViewModel.class);
-        viewModel.questions().observe(this, this::onQuestions);
+        viewModel.questions().observe(this, this::onQuestion);
         viewModel.error().observe(this, this::onError);
         viewModel.progress().observe(this, this::onProgess);
         viewModel.gameData().observe(this, this::onGames);
@@ -77,16 +77,29 @@ public class StartActivity extends BaseActivity{
 
         viewModel.prepare();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         RxBus.subscribe(RxBus.DELETE_GAME, this, o -> {
             GameEvent gameEvent = (GameEvent) o;
-            Game game = gameEvent.getGame();
+            Game deleteGame = gameEvent.getGame();
             MaterialDialog.Builder builder = CustomMaterialDialog.areYouSure("Delete game?", this)
                     .onNegative((dialog, which) -> dialog.dismiss())
                     .onPositive((dialog, which) -> {
                         dialog.dismiss();
-                        viewModel.deleteGame(game);
+                        viewModel.deleteGame(deleteGame);
                     });
             showCustomDialog(builder);
+        });
+
+        RxBus.subscribe(RxBus.GAME_TOUCHED, this, o -> {
+            GameEvent gameEvent = (GameEvent) o;
+            Game gameTouched = gameEvent.getGame();
+            Timber.d("Game is %s", gameTouched.getGameId());
+            viewModel.openQuestion(this,gameTouched.getGameId());
         });
 
     }
@@ -107,10 +120,12 @@ public class StartActivity extends BaseActivity{
         showCustomDialog(CustomMaterialDialog.error("Error",this, "Something went wrong: "+error.message+". Please try again"));
     }
 
-    private void onQuestions(List<Question> questions) {
-        MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Question added", this)
-                .onPositive((dialog, which) -> dialog.dismiss());
-        showCustomDialog(builder);
+    private void onQuestion(Boolean addedQestion) {
+        if(addedQestion){
+            MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Question added", this)
+                    .onPositive((dialog, which) -> dialog.dismiss());
+            showCustomDialog(builder);
+        }
     }
 
     @OnClick(R.id.button_add_question)
@@ -160,4 +175,5 @@ public class StartActivity extends BaseActivity{
         }
         return true;
     }
+
 }

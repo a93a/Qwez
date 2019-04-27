@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.qwez.bus.RxBus;
 
+import org.jetbrains.annotations.NotNull;
+
 public class BaseFragment extends Fragment {
 
     //Keep a reference to Context.
@@ -14,14 +16,18 @@ public class BaseFragment extends Fragment {
     protected Context context;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
+
+        //setting context here to avoid null pointers
         this.context = context;
     }
 
     @Override
     public void onStop() {
         super.onStop();
+
+        //Stop this fragment from receiving events
         RxBus.unregister(this);
     }
 }

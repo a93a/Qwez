@@ -21,6 +21,9 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Firebase repository class to handle all Firebase operations
+ */
 public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
 
     public final FirebaseAuth firebaseAuth;
@@ -29,6 +32,12 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
         this.firebaseAuth = firebaseAuth;
     }
 
+    /**
+     * Sign in user with email and password, return Completable.
+     * @param email FirebaseUser email address
+     * @param password FirebaseUser password
+     * @return Completable that emits onComplete when success
+     */
     @Override
     public Completable signInUserEmailAndPassword(String email, String password) {
         return Completable.fromMaybe(FirebaseAuthWrapper
@@ -36,6 +45,12 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
                 .subscribeOn(Schedulers.io());
     }
 
+    /**
+     *  Create user with email and password, return Maybe that emits AuthResult
+     * @param email FirebaseUser email address
+     * @param password FirebaseUser password
+     * @return Completable that emits onComplete when user created successfully
+     */
     @Override
     public Maybe<AuthResult> createUserEmailAndPassword(String email, String password) {
         return FirebaseAuthWrapper.createUserEmailAndPassword(firebaseAuth, email, password)
@@ -43,6 +58,12 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
 
     }
 
+    /**
+     * Get Observable that emits current signed in user. Observable emits onError if
+     * no user currently authorized.
+     * @return Observable that emits onNext(FirebaseUser) on subscribe, and then emits onNext(FirebaseUser) on
+     * each Firebase database update on user
+     */
     @Override
     public Observable<FirebaseUser> getCurrentUser() {
         return FirebaseAuthWrapper.observeUserAuthState(firebaseAuth)
@@ -53,6 +74,10 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
                 .subscribeOn(Schedulers.io());
     }
 
+    /**
+     * Log out current authorized user. Returns Completable with operation result.
+     * @return Completable that emits onComplete on success
+     */
     @Override
     public Completable logoutUser(){
         return Completable.create(emitter -> {

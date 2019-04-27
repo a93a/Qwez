@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 
 import java.util.regex.Pattern;
 
+/**
+ * Validate extension Class that for Regex Matching
+ */
 public class PatternValidate extends Validate {
     private Pattern pattern;
 
@@ -14,6 +17,11 @@ public class PatternValidate extends Validate {
         this.pattern = pattern;
     }
 
+    /**
+     * Check if String is valid by matching to Regex Pattern
+     * @param textToCheck to check
+     * @return true if valid
+     */
     public boolean isValid(String textToCheck) {
         return pattern.matcher(textToCheck).matches();
     }

@@ -7,6 +7,8 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
+ * @Entity for Question
+ *
  * Is it worth to index this entity?
  */
 @Entity(foreignKeys = @ForeignKey(entity = Game.class,

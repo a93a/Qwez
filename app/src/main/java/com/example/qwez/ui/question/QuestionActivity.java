@@ -32,12 +32,18 @@ public class QuestionActivity extends BaseActivity{
     @BindView(R.id.progressBar) ProgressBar progressBar;
 
     private List<Question> questions;
+    int qId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Timber.d("onCreate");
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            qId = bundle.getInt(Extras.QUESTION_ID);
+        }
+
+        Timber.d("game is: %s", qId);
 
         setContentView(R.layout.layout_question);
 

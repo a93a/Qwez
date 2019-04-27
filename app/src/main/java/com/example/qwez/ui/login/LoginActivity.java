@@ -53,6 +53,12 @@ public class LoginActivity extends BaseActivityFragment {
 
         replaceFragment(new LoginFragment(), R.id.frag_container, false);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         RxBus.subscribe(RxBus.SHOW_SIGN_UP_FRAGMENT, this, object -> {
             replaceFragment(new SignupFragment(),R.id.frag_container,true);
         });

@@ -5,6 +5,10 @@ import java.util.List;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+/**
+ * Nested fields Class with {@link @Entity #Game} as @Embedded object and @Relation (as list)
+ * {@link @Entity #Question}
+ */
 public class GameQuestion {
 
     @Embedded

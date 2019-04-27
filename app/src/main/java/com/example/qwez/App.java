@@ -14,6 +14,9 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import timber.log.Timber;
 
+/**
+ * Application Class
+ */
 public class App extends Application implements HasActivityInjector {
 
     @Inject

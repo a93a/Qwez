@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 
 import java.util.regex.Pattern;
 
+/**
+ * Validate Class for checking String against email Regex Pattern
+ */
 public class EmailValidate extends PatternValidate {
 
     private static final String NOT_VALID_EMAIL = "Not a valid email address.";

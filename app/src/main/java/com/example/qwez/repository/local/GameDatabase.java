@@ -3,6 +3,11 @@ package com.example.qwez.repository.local;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+/**
+ * Application Database Class.
+ *
+ * Provides Dao(s)
+ */
 @Database(entities = {Game.class, Question.class}, version = 1)
 public abstract class GameDatabase extends RoomDatabase {
 

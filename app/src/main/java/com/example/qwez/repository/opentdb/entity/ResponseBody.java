@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * OPENTDB API Respone wrapper
+ */
 public class ResponseBody implements Serializable
 {
 

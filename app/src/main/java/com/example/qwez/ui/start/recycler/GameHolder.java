@@ -11,19 +11,22 @@ import androidx.annotation.Nullable;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseViewHolder;
+import com.example.qwez.bus.RxBus;
+import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.repository.local.Game;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
-public class QuestionHolder extends BaseViewHolder<Game> implements View.OnClickListener, View.OnLongClickListener{
+public class GameHolder extends BaseViewHolder<Game> implements View.OnLongClickListener{
 
     @BindView(R.id.tcq)
     TextView cat;
     @BindView(R.id.tdq)
     TextView diff;
 
-    public QuestionHolder(@LayoutRes int layoutRes, ViewGroup parent) {
+    public GameHolder(@LayoutRes int layoutRes, ViewGroup parent) {
         super(layoutRes,parent);
         ButterKnife.bind(this, itemView);
     }
@@ -31,14 +34,10 @@ public class QuestionHolder extends BaseViewHolder<Game> implements View.OnClick
     @Override
     public void bind(@Nullable Game data) {
         if(data != null){
+            this.data = data;
             cat.setText(data.getCategory());
             diff.setText(data.getDifficulty());
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override

@@ -13,7 +13,18 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.Response;
 
-public final class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
+/**
+ * Custom ObservableOperator that takes in Retrofit<T> Response.
+ *
+ * Disposes to not break operator chain, and subscribes observer to this.
+ *
+ * Parses T data from Response<T>
+ *
+ * Emits onError() if Retrofit response was not successful
+ *
+ * @param <T> Object type
+ */
+public final class ApiOperator<T> implements ObservableOperator<T, Response<T>> {
 
     @Override
     public Observer<? super Response<T>> apply(final Observer<? super T> observer) throws Exception {

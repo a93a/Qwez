@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Constants class for quiz constants
+ */
 public enum  Difficulty {
 
     EASY("easy"),
@@ -22,6 +25,12 @@ public enum  Difficulty {
         return difficulty;
     }
 
+
+    /**
+     * Get Difficulty ENUM(s) String value
+     * @param difficulty of which String value is wanted
+     * @return Difficulty String value
+     */
     public static String getAsString(Difficulty difficulty){
         String toReturn;
         switch (difficulty){
@@ -41,6 +50,9 @@ public enum  Difficulty {
         return toReturn;
     }
 
+    /**
+     * @return Map of Difficulty String Value as key, and Difficulty ENUM as value
+     */
     public static Map<String,Difficulty> getMap(){
         HashMap<String,Difficulty> map = new HashMap<>();
         map.put("Easy", Difficulty.EASY);
@@ -49,6 +61,9 @@ public enum  Difficulty {
         return map;
     }
 
+    /**
+     * @return List of Difficulty String Value(s)
+     */
     public static List<String> getList(){
         List<String> list = new ArrayList<>();
         list.add("Easy");

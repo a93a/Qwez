@@ -7,6 +7,9 @@ import com.example.qwez.repository.local.GameRepositoryType;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
+/**
+ * Interactor for deleting games.
+ */
 public class DeleteGameInteractor {
 
     private final GameRepositoryType gameRepositoryType;
@@ -15,6 +18,11 @@ public class DeleteGameInteractor {
         this.gameRepositoryType = gameRepositoryType;
     }
 
+    /**
+     * Delete {@code game} from local database
+     * @param game @Entity object to delete
+     * @return Completable
+     */
     public Completable deleteGame(Game game){
         return gameRepositoryType.deleteGame(game)
                 .observeOn(AndroidSchedulers.mainThread());

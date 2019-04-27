@@ -46,10 +46,18 @@ public enum  Category {
         this.category = category;
     }
 
+    /**
+     * @return category
+     */
     public int getCategory() {
         return category;
     }
 
+    /**
+     * Get Category ENUM(s) String value
+     * @param category of which String value is wanted
+     * @return Category String value
+     */
     public static String getAsString(Category category){
         String toReturn;
         switch (category){
@@ -132,6 +140,11 @@ public enum  Category {
         return toReturn;
     }
 
+    /**
+     * Get Category ENUM(s) int value
+     * @param category of which int value is wanted
+     * @return Category int value
+     */
     public static int getAsInt(Category category){
         int toReturn;
         switch (category){
@@ -214,12 +227,18 @@ public enum  Category {
         return toReturn;
     }
 
+    /**
+     * @return Map of Category String Value as key, and Category ENUM as value
+     */
     public static Map<String,Category> getMap(){
         HashMap<String,Category> map = new HashMap<>();
         Arrays.stream(Category.values()).forEach(category1 -> map.put(Category.getAsString(category1), category1));
         return map;
     }
 
+    /**
+     * @return List of Category String Value(s)
+     */
     public static List<String> getList(){
         List<String> list = new ArrayList<>();
         Arrays.stream(Category.values()).forEach(category1 -> list.add(Category.getAsString(category1)));

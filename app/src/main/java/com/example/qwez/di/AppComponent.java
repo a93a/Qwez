@@ -10,6 +10,9 @@ import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
+/**
+ * Dagger Component
+ */
 @ApplicationScope
 @Component(modules = {AndroidInjectionModule.class,
         FireBaseAuthModule.class,

@@ -14,25 +14,31 @@ import com.example.qwez.repository.local.Game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionAdapter extends RecyclerView.Adapter<QuestionHolder> {
+import timber.log.Timber;
+
+public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
 
     private final List<Game> games = new ArrayList<>();
     private final Context context;
 
-    public QuestionAdapter(Context context) {
+    public GameAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public QuestionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        QuestionHolder questionHolder = new QuestionHolder(R.layout.layout_item_question, parent);
-        return questionHolder;
+    public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new GameHolder(R.layout.layout_item_question, parent);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuestionHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GameHolder holder, int position) {
         holder.bind(games.get(position));
+        holder.getItemView().setOnClickListener(v -> {
+            Game game = holder.getData();
+            Timber.d("Game is %s", game.getGameId());
+            RxBus.publish(RxBus.GAME_TOUCHED, new GameEvent(game));
+        });
     }
 
     @Override
@@ -54,6 +60,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionHolder> {
     public Context getContext(){
         return context;
     }
+
+
 
 }
 

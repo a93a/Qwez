@@ -10,10 +10,19 @@ import com.example.qwez.util.Extras;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Opens QuestionActivity.class
+ */
 public class QuestionRouter {
 
-    public void open(Context context){
+    /**
+     * Open QuestionActivity.class
+     * @param context of current Activity
+     * @param qId clear Activity stack. true clears stack
+     */
+    public void open(Context context, int qId){
         Intent intent = new Intent(context, QuestionActivity.class);
+        intent.putExtra(Extras.QUESTION_ID, qId);
         context.startActivity(intent);
     }
 

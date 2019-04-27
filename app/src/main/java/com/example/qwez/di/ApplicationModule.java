@@ -10,6 +10,11 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
 
+    /**
+     * Get application context
+     * @param app
+     * @return
+     */
     @Provides
     @ApplicationScope
     Context context(App app){

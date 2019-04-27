@@ -6,8 +6,16 @@ import android.content.Intent;
 import com.example.qwez.ui.login.LoginActivity;
 import com.example.qwez.ui.start.StartActivity;
 
+/**
+ * Opens LoginActivity.class
+ */
 public class LoginRouter {
 
+    /**
+     * Open LoginActivity.class
+     * @param context of current Activity
+     * @param clearStack clear Activity stack. true clears stack
+     */
     public void open(Context context, boolean clearStack){
         Intent intent = new Intent(context, LoginActivity.class);
         if (clearStack) {

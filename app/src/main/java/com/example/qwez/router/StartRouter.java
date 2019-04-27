@@ -6,8 +6,16 @@ import android.util.Log;
 
 import com.example.qwez.ui.start.StartActivity;
 
+/**
+ * Opens StartActivity.class
+ */
 public class StartRouter {
 
+    /**
+     * Open StartActivity.class
+     * @param context of current Activity
+     * @param clearStack clear Activity stack. true clears stack
+     */
     public void open(Context context, boolean clearStack){
         Intent intent = new Intent(context, StartActivity.class);
         if (clearStack) {

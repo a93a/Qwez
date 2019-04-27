@@ -9,6 +9,7 @@ import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.Question;
+import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
@@ -18,11 +19,9 @@ import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 
-import timber.log.Timber;
-
 public class StartViewModel extends BaseViewModel {
 
-    private final MutableLiveData<List<Question>> questionData = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> questionData = new MutableLiveData<>();
     private final MutableLiveData<List<Game>> gameData = new MutableLiveData<>();
     private final MutableLiveData<String> user = new MutableLiveData<>();
 
@@ -32,24 +31,27 @@ public class StartViewModel extends BaseViewModel {
     private final DeleteGameInteractor deleteGameInteractor;
 
     private final SettingsRouter settingsRouter;
+    private final QuestionRouter questionRouter;
 
     public StartViewModel(GetQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,
-                          DeleteGameInteractor deleteGameInteractor) {
+                          DeleteGameInteractor deleteGameInteractor,
+                          QuestionRouter questionRouter) {
         this.getQuestionsInteractor = getQuestionsInteractor;
         this.getAllGamesInteractor = getAllGamesInteractor;
         this.getUserInteractor = getUserInteractor;
         this.settingsRouter = settingsRouter;
         this.deleteGameInteractor = deleteGameInteractor;
+        this.questionRouter = questionRouter;
     }
 
     public void getQuestion(Category category, Difficulty difficulty){
         progress.setValue(true);
         disposable = getQuestionsInteractor
                 .getQuestionByCategoryMultiple(category, difficulty)
-                .subscribe(this::onQuestions, this::onError);
+                .subscribe(this::onQuestion, this::onError);
     }
 
     public void getAllGames(){
@@ -62,6 +64,10 @@ public class StartViewModel extends BaseViewModel {
         progress.setValue(true);
         disposable = getUserInteractor.getUser()
                 .subscribe(this::onUser,this::onError);
+    }
+
+    public void openQuestion(Context context, int qId){
+        questionRouter.open(context, qId);
     }
 
     private void onUser(FirebaseUser firebaseUser) {
@@ -93,9 +99,9 @@ public class StartViewModel extends BaseViewModel {
         return gameData;
     }
 
-    private void onQuestions(List<Question> questions) {
+    private void onQuestion() {
         progress.setValue(false);
-        questionData.setValue(questions);
+        questionData.setValue(true);
     }
 
     public void prepare(){
@@ -104,7 +110,7 @@ public class StartViewModel extends BaseViewModel {
         getAllGames();
     }
 
-    public MutableLiveData<List<Question>> questions() {
+    public MutableLiveData<Boolean> questions() {
         return questionData;
     }
 

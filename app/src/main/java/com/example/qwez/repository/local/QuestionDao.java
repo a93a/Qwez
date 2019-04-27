@@ -8,6 +8,9 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
+/**
+ * Dao for Question
+ */
 @Dao
 public interface QuestionDao extends BaseDao<Question> {
 

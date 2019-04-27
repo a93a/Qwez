@@ -15,12 +15,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
+    /**
+     * Get OpenTDBAPI. Singleton
+     * @param retrofit Dagger provided
+     * @return OpenTDBAPI
+     */
     @Provides
     @ApplicationScope
     OpenTDBAPI openTDBAPI(Retrofit retrofit){
         return retrofit.create(OpenTDBAPI.class);
     }
 
+    /**
+     * Get Retrofit. Singleton
+     * @param okHttpClient Dagger provided
+     * @param gson Dagger provided
+     * @return Retrofit
+     */
     @Provides
     @ApplicationScope
     Retrofit retrofit(OkHttpClient okHttpClient, Gson gson){
@@ -32,7 +43,11 @@ public class NetworkModule {
                 .build();
     }
 
-
+    /**
+     *Get OkHttpClient. Singleton
+     * @param httpLoggingInterceptor Dagger provided
+     * @return OkHttpClient
+     */
     @Provides
     @ApplicationScope
     OkHttpClient okHttpClient(HttpLoggingInterceptor httpLoggingInterceptor){
@@ -41,12 +56,20 @@ public class NetworkModule {
         return new OkHttpClient();
     }
 
+    /**
+     * Get HttpLoggingInterceptor. Singleton
+     * @return HttpLoggingInterceptor
+     */
     @Provides
     @ApplicationScope
     HttpLoggingInterceptor httpLoggingInterceptor(){
         return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS);
     }
 
+    /**
+     * Get Gson. Singleton
+     * @return Gson
+     */
     @Provides
     @ApplicationScope
     Gson gson(){

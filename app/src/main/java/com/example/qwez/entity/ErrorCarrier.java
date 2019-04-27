@@ -1,5 +1,8 @@
 package com.example.qwez.entity;
 
+/**
+ * POJO class for carrying error(s) in application. Used in Viewmodel LiveData error
+ */
 public class ErrorCarrier {
 
     public final String message;
