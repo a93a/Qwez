@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <resources>
 
-    <color name="colorProgressGreen">#D81B60</color>
-    <color name="colorProgressYellow">#D81B60</color>
-    <color name="colorProgressRed">#D81B60</color>
-    <color name="colorDelete">#9F0000</color>
+        <color name="colorPrimary">#92D1C3</color>
+        <color name="colorPrimaryDark">#8BB8A8</color>
+        <color name="colorAccent">#FFD5FF</color>
+        <color name="colorAccentDark">#B47EB3</color>
+        <color name="colorThird">#FDF5BF</color>
 
+        <color name="colorProgressGreen">#C0FFE0</color>
+        <color name="colorProgressGreenDark">#00c262</color>
+        <color name="colorProgressYellow">#FF8400</color>
+        <color name="colorProgressRed">#E00000</color>
+
+        <color name="colorSwipeDelete">#D81B60</color>
+
+        <color name="colorDelete">#9F0000</color>
 
 </resources>

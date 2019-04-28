@@ -1,6 +1,7 @@
 package com.example.qwez.ui.start;
 
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,9 +14,12 @@ import timber.log.Timber;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.DragEvent;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -31,6 +35,7 @@ import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.Question;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.ui.start.recycler.GameAdapter;
+import com.example.qwez.ui.start.recycler.ItemDecorator;
 import com.example.qwez.ui.start.recycler.SwipeDeleteHelper;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
@@ -59,9 +64,11 @@ public class StartActivity extends BaseActivity{
 
         adapter = new GameAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new ItemDecorator(ItemDecorator.MARGIN));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeDeleteHelper(adapter, this));
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this,factory).get(StartViewModel.class);
         viewModel.questions().observe(this, this::onQuestion);
@@ -128,10 +135,10 @@ public class StartActivity extends BaseActivity{
 
         LayoutInflater factory = LayoutInflater.from(this);
         final View stdView = factory.inflate(R.layout.dialog_add_question, null);
-        LinearLayout layout = (LinearLayout) stdView.findViewById(R.id.add_question_layout);
+        LinearLayout layout = stdView.findViewById(R.id.add_question_layout);
 
-        Spinner cat = (Spinner) layout.findViewById(R.id.spinner_add_cat);
-        Spinner diff = (Spinner) layout.findViewById(R.id.spinner_add_diff);
+        Spinner cat = layout.findViewById(R.id.spinner_add_cat);
+        Spinner diff = layout.findViewById(R.id.spinner_add_diff);
 
         ArrayAdapter<String> catAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,Category.getList());
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

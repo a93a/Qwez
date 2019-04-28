@@ -17,12 +17,20 @@ import com.example.qwez.util.Extras;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class QuestionActivity extends BaseActivity{
+
+    @Inject
+    QuestionVMFactory factory;
+    QuestionViewModel viewModel;
 
     @BindView(R.id.textView_which_question) TextView whichQ;
     @BindView(R.id.textview_question) TextView questionView;
@@ -40,13 +48,14 @@ public class QuestionActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        viewModel = ViewModelProviders.of(this,factory).get(QuestionViewModel.class);
+
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
             qId = bundle.getInt(Extras.QUESTION_ID);
         }
 
         Timber.d("game is: %s", qId);
-
 
     }
 

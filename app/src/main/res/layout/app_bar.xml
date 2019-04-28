@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_bar"
-    android:theme="@style/Theme.AppCompat.Light"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp">
@@ -12,9 +11,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:elevation="0dp" />
 
 </com.google.android.material.appbar.AppBarLayout>

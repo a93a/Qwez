@@ -35,6 +35,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
         holder.bind(games.get(position));
         holder.getItemView().setOnClickListener(v -> {
+            Timber.d("Click detect");
             Game game = holder.getData();
             Timber.d("Game is %s", game.getGameId());
             RxBus.publish(RxBus.GAME_TOUCHED, new GameEvent(game));
@@ -60,8 +61,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
     public Context getContext(){
         return context;
     }
-
-
 
 }
 

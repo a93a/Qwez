@@ -5,10 +5,12 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
+import androidx.core.content.ContextCompat;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.Observable;
 
@@ -31,12 +33,10 @@ public class CustomMaterialDialog {
      * @return MaterialDialog.Builder of loading dialog
      */
     public static MaterialDialog.Builder loading(String title, Context context){
-        return new MaterialDialog.Builder(context)
+        return addNegBtn(context, LABEL_CANCEL)
                 .title(title)
                 .progress(true, 10)
-                .canceledOnTouchOutside(false)
-                .negativeText(LABEL_CANCEL)
-                .negativeColor(COLOR_RED);
+                .canceledOnTouchOutside(false);
     }
 
     /**
@@ -47,12 +47,10 @@ public class CustomMaterialDialog {
      * @return MaterialDialog.Builder of error dialog
      */
     public static MaterialDialog.Builder error(String title, Context context, String errorMessage){
-        return new MaterialDialog.Builder(context)
+        return addNegBtn(context, LABEL_OK)
                 .canceledOnTouchOutside(true)
                 .content(errorMessage)
                 .title(title)
-                .positiveText(LABEL_OK)
-                .negativeColor(COLOR_GREEN)
                 .onNegative((dialog, which) -> dialog.dismiss());
     }
 
@@ -63,9 +61,8 @@ public class CustomMaterialDialog {
      * @return MaterialDialog.Builder of ok dialog
      */
     public static MaterialDialog.Builder okDialog(String title, Context context){
-        return new MaterialDialog.Builder(context)
-                .title(title)
-                .positiveText(LABEL_OK);
+        return addPosBtn(context, LABEL_OK)
+                .title(title);
     }
 
     /**
@@ -75,10 +72,8 @@ public class CustomMaterialDialog {
      * @return MaterialDialog.Builder of areyousure dialog
      */
     public static MaterialDialog.Builder areYouSure(String title, Context context){
-        return new MaterialDialog.Builder(context)
-                .title(title)
-                .positiveText(LABEL_OK)
-                .negativeText(LABEL_CANCEL);
+        return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
+                .title(title);
     }
 
     /**
@@ -89,11 +84,38 @@ public class CustomMaterialDialog {
      * @return MaterialDialog.Builder of addquestion dialog
      */
     public static MaterialDialog.Builder addQuestion(String title, Context context, LinearLayout layout){
-        return new MaterialDialog.Builder(context)
+        return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
                 .title(title)
-                .customView(layout, true)
-                .negativeText(LABEL_CANCEL)
-                .positiveText(LABEL_OK);
+                .customView(layout, true);
+    }
+
+    /**
+     * private Class method to set positive text and color
+     */
+    private static MaterialDialog.Builder addPosBtn(Context context, String buttonLabel){
+        return new MaterialDialog.Builder(context)
+                .positiveText(buttonLabel)
+                .positiveColor(ContextCompat.getColor(context, R.color.colorProgressGreenDark));
+    }
+
+    /**
+     * private Class method that returns new MaterialDialog.Builder and sets negative text and color
+     */
+    private static MaterialDialog.Builder addNegBtn(Context context, String buttonLabel){
+        return new MaterialDialog.Builder(context)
+                .negativeText(buttonLabel)
+                .negativeColor(ContextCompat.getColor(context, R.color.colorProgressGreenDark));
+    }
+
+    /**
+     * private Class method that returns new MaterialDialog.Builder and sets both positive and negative text and color
+     */
+    private static MaterialDialog.Builder addNegPosBtn(Context context, String negBtnLabel, String posBtnLabel){
+        return new MaterialDialog.Builder(context)
+                .negativeText(negBtnLabel)
+                .negativeColor(ContextCompat.getColor(context, R.color.colorProgressRed))
+                .positiveText(posBtnLabel)
+                .positiveColor(ContextCompat.getColor(context, R.color.colorProgressGreenDark));
     }
 
 }

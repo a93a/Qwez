@@ -4,12 +4,15 @@ import com.example.qwez.base.BaseActivity;
 import com.example.qwez.ui.login.LoginActivity;
 import com.example.qwez.ui.login.LoginModule;
 import com.example.qwez.ui.login.LoginViewModel;
+import com.example.qwez.ui.question.QuestionActivity;
+import com.example.qwez.ui.question.QuestionModule;
 import com.example.qwez.ui.settings.SettingsActivity;
 import com.example.qwez.ui.settings.SettingsModule;
 import com.example.qwez.ui.splash.SplashActivity;
 import com.example.qwez.ui.splash.SplashModule;
 import com.example.qwez.ui.start.StartActivity;
 import com.example.qwez.ui.start.StartModule;
+import com.google.firebase.auth.ActionCodeResult;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -22,7 +25,7 @@ public abstract class BinderModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = StartModule.class)
-    abstract StartActivity bindQuestionActivity();
+    abstract StartActivity bindStartActivity();
 
     @ActivityScope
     @ContributesAndroidInjector(modules = SplashModule.class)
@@ -35,5 +38,9 @@ public abstract class BinderModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = SettingsModule.class)
     abstract SettingsActivity bindSettingsActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = QuestionModule.class)
+    abstract QuestionActivity bindQuestionActivity();
 
 }
