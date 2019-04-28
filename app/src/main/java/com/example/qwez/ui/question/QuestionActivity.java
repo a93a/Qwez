@@ -1,5 +1,6 @@
 package com.example.qwez.ui.question;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class QuestionActivity extends BaseActivity{
@@ -52,4 +54,5 @@ public class QuestionActivity extends BaseActivity{
     protected int getLayout() {
         return R.layout.layout_question;
     }
+
 }

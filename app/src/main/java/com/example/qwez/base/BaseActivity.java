@@ -1,7 +1,11 @@
 package com.example.qwez.base;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,11 +28,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     private MaterialDialog dialog;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         AndroidInjection.inject(this);
-        setContentView(getLayout());
-        ButterKnife.bind(this);
+        if(getLayout() != 0){
+            setContentView(getLayout());
+            ButterKnife.bind(this);
+        }
     }
 
     protected abstract int getLayout();
@@ -37,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        //force fullscreen on each Activity
+        //show fullscreen on each Activity
         if (hasFocus) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }

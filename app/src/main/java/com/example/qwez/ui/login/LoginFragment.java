@@ -51,17 +51,16 @@ public class LoginFragment extends BaseFragment {
     private Observable<CharSequence> passObservable;
     private DisposableObserver<Boolean> subscriber = null;
 
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_log_or_sign;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_log_or_sign, container, false);
-
-        ButterKnife.bind(this, view);
-
-        return view;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
-
 
     @OnClick(R.id.button_signup)
     void signupClick(){

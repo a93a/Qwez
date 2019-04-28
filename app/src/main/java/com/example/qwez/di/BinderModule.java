@@ -1,5 +1,6 @@
 package com.example.qwez.di;
 
+import com.example.qwez.base.BaseActivity;
 import com.example.qwez.ui.login.LoginActivity;
 import com.example.qwez.ui.login.LoginModule;
 import com.example.qwez.ui.login.LoginViewModel;

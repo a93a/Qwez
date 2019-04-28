@@ -28,7 +28,6 @@ public class GameHolder extends BaseViewHolder<Game> implements View.OnLongClick
 
     public GameHolder(@LayoutRes int layoutRes, ViewGroup parent) {
         super(layoutRes,parent);
-        ButterKnife.bind(this, itemView);
     }
 
     @Override

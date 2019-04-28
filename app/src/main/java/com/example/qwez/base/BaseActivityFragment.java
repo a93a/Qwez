@@ -1,9 +1,18 @@
 package com.example.qwez.base;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+
 import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public abstract class BaseActivityFragment extends BaseActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     /**
      * Replaces the current fragment in fragment container {@code id}. Also takes in

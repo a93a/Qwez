@@ -1,6 +1,7 @@
 package com.example.qwez.ui.settings;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -75,9 +76,9 @@ public class SettingsActivity extends BaseActivity {
         }
     }
 
-
     @Override
     protected int getLayout() {
         return R.layout.layout_settings;
     }
+
 }

@@ -11,6 +11,7 @@ import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,7 +54,7 @@ public class StartActivity extends BaseActivity{
     GameAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         adapter = new GameAdapter(this);

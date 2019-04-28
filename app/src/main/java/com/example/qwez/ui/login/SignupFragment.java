@@ -46,12 +46,15 @@ public class SignupFragment extends BaseFragment {
     @BindView(R.id.button_signup_signup)
     Button signin;
 
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_sign_up;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @OnClick(R.id.button_signup_signup)

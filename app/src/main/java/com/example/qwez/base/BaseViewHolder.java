@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qwez.R;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
     //data to bind to this viewholder
@@ -26,6 +28,7 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     public BaseViewHolder(@LayoutRes int layoutRes, ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
                 .inflate(layoutRes, parent, false));
+        ButterKnife.bind(this, itemView);
     }
 
     /**

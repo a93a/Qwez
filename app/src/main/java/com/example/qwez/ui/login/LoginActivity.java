@@ -1,5 +1,6 @@
 package com.example.qwez.ui.login;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.IdRes;
@@ -35,8 +36,6 @@ public class LoginActivity extends BaseActivityFragment {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        AndroidInjection.inject(this);
 
         hideToolbar();
 
@@ -96,4 +95,5 @@ public class LoginActivity extends BaseActivityFragment {
     protected int getLayout() {
         return R.layout.layout_login;
     }
+
 }
