@@ -1,25 +1,18 @@
 package com.example.qwez.ui.start;
 
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.DragEvent;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -32,7 +25,6 @@ import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
-import com.example.qwez.repository.local.Question;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.ui.start.recycler.GameAdapter;
 import com.example.qwez.ui.start.recycler.ItemDecorator;
@@ -148,7 +140,7 @@ public class StartActivity extends BaseActivity{
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         diff.setAdapter(diffAdapter);
 
-        MaterialDialog.Builder builder = CustomMaterialDialog.addQuestion("Add a question", this, layout)
+        MaterialDialog.Builder builder = CustomMaterialDialog.customDialog("Add a question", this, layout)
                 .onPositive((dialog, which) -> {
                     dialog.dismiss();
                     String categoryString = (String) cat.getSelectedItem();

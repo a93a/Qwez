@@ -1,5 +1,6 @@
 package com.example.qwez.ui.settings;
 
+import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.router.LoginRouter;
@@ -14,8 +15,14 @@ public class SettingsModule {
 
     @Provides
     SettingsVMFactory settingsVMFactory(LogoutUserInteractor logoutUserInteractor,
-                                        LoginRouter loginRouter){
-        return new SettingsVMFactory(logoutUserInteractor, loginRouter);
+                                        LoginRouter loginRouter,
+                                        ChangeUserPasswordInteractor changeUserPasswordInteractor){
+        return new SettingsVMFactory(logoutUserInteractor, changeUserPasswordInteractor, loginRouter);
+    }
+
+    @Provides
+    ChangeUserPasswordInteractor changeUserPasswordInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType){
+        return new ChangeUserPasswordInteractor(firebaseAuthRepositoryType);
     }
 
     @Provides

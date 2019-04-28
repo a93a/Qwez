@@ -61,6 +61,7 @@ public final class RxBus {
     public static final int TRY_LOG_OUT = 5;
     public static final int DELETE_GAME = 6;
     public static final int GAME_TOUCHED = 7;
+    public static final int TRY_CHANGE_PASSWORD = 8;
 
     //event type annotation
     @Retention(SOURCE)
@@ -71,7 +72,8 @@ public final class RxBus {
             TRY_SIGN_UP,
             TRY_LOG_OUT,
             DELETE_GAME,
-            GAME_TOUCHED})
+            GAME_TOUCHED,
+            TRY_CHANGE_PASSWORD})
     @interface Subject {
     }
 

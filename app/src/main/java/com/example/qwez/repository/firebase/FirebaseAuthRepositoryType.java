@@ -36,4 +36,11 @@ public interface FirebaseAuthRepositoryType {
      * Log out current authorized user. Returns Completable with operation result.
      */
     Completable logoutUser();
+
+    /**
+     * Change current user password. Returns Completable with operation result.
+     */
+    Completable changeUserPassword(FirebaseUser firebaseUser, String newPassword);
+
 }
+

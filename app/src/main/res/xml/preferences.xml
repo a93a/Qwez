@@ -13,6 +13,14 @@
             android:title="Change Username" />
 
         <Preference
+            android:icon="@drawable/email"
+            android:defaultValue="Default value"
+            android:key="change_email_preference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Change password" />
+
+        <Preference
             android:icon="@drawable/changepass"
             android:defaultValue="Default value"
             android:key="change_password_preference"

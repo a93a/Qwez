@@ -77,13 +77,13 @@ public class CustomMaterialDialog {
     }
 
     /**
-     * Get a "Add Question" dialog
+     * Get a custom dialog dialog with a positive button and a negative button
      * @param title dialog title
      * @param context of Activity/Fragment/Application
      * @param layout Custom layout to display in dialog
-     * @return MaterialDialog.Builder of addquestion dialog
+     * @return MaterialDialog.Builder of custom dialog
      */
-    public static MaterialDialog.Builder addQuestion(String title, Context context, LinearLayout layout){
+    public static MaterialDialog.Builder customDialog(String title, Context context, LinearLayout layout){
         return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
                 .title(title)
                 .customView(layout, true);

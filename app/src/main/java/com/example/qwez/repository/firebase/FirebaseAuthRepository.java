@@ -3,6 +3,7 @@ package com.example.qwez.repository.firebase;
 import android.util.Log;
 
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
+import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -84,6 +85,17 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
                     FirebaseAuth.getInstance().signOut();
                     emitter.onComplete();
         })
+                .subscribeOn(Schedulers.io());
+    }
+
+    /**
+     * Change current user password. Returns Completable with operation result.
+     * @param newPassword to set
+     * @return Completable that emits onComplete on success
+     */
+    @Override
+    public Completable changeUserPassword(FirebaseUser firebaseUser, String newPassword) {
+        return FirebaseUserWrapper.updateUserPassword(firebaseUser, newPassword)
                 .subscribeOn(Schedulers.io());
     }
 
