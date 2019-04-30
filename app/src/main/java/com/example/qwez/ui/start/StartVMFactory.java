@@ -1,8 +1,8 @@
 package com.example.qwez.ui.start;
 
 import com.example.qwez.interactor.DeleteGameInteractor;
+import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
-import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
@@ -13,14 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class StartVMFactory implements ViewModelProvider.Factory {
 
-    private final GetQuestionsInteractor getQuestionsInteractor;
+    private final FetchQuestionsInteractor getQuestionsInteractor;
     private final GetAllGamesInteractor getAllGamesInteractor;
     private final GetUserInteractor getUserInteractor;
     private final SettingsRouter settingsRouter;
     private final DeleteGameInteractor deleteGameInteractor;
     private final QuestionRouter questionRouter;
 
-    public StartVMFactory(GetQuestionsInteractor getQuestionsInteractor,
+    public StartVMFactory(FetchQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,

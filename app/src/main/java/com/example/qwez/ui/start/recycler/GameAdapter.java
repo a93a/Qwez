@@ -20,6 +20,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
 
     private final List<Game> games = new ArrayList<>();
     private final Context context;
+    private boolean isClickable;
 
     public GameAdapter(Context context) {
         this.context = context;
@@ -35,10 +36,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
         holder.bind(games.get(position));
         holder.getItemView().setOnClickListener(v -> {
-            Timber.d("Click detect");
-            Game game = holder.getData();
-            Timber.d("Game is %s", game.getGameId());
-            RxBus.publish(RxBus.GAME_TOUCHED, new GameEvent(game));
+            if(isClickable){
+                Game game = holder.getData();
+                RxBus.publish(RxBus.GAME_TOUCHED, new GameEvent(game));
+            }
         });
     }
 
@@ -62,6 +63,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
         return context;
     }
 
+    public void setClickable(boolean clickable) {
+        isClickable = clickable;
+    }
 }
 
 

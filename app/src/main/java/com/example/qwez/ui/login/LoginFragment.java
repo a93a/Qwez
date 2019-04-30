@@ -49,7 +49,7 @@ public class LoginFragment extends BaseFragment {
 
     private Observable<CharSequence> emailObservable;
     private Observable<CharSequence> passObservable;
-    private DisposableObserver<Boolean> subscriber = null;
+    private DisposableObserver<Boolean> subscriber;
 
     @Override
     protected int getLayout() {

@@ -4,11 +4,10 @@ import android.content.Context;
 
 import com.example.qwez.base.BaseViewModel;
 import com.example.qwez.interactor.DeleteGameInteractor;
+import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
-import com.example.qwez.interactor.GetQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.local.Game;
-import com.example.qwez.repository.local.Question;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
 import com.example.qwez.util.Category;
@@ -25,7 +24,7 @@ public class StartViewModel extends BaseViewModel {
     private final MutableLiveData<List<Game>> gameData = new MutableLiveData<>();
     private final MutableLiveData<String> user = new MutableLiveData<>();
 
-    private final GetQuestionsInteractor getQuestionsInteractor;
+    private final FetchQuestionsInteractor getQuestionsInteractor;
     private final GetAllGamesInteractor getAllGamesInteractor;
     private final GetUserInteractor getUserInteractor;
     private final DeleteGameInteractor deleteGameInteractor;
@@ -33,7 +32,7 @@ public class StartViewModel extends BaseViewModel {
     private final SettingsRouter settingsRouter;
     private final QuestionRouter questionRouter;
 
-    public StartViewModel(GetQuestionsInteractor getQuestionsInteractor,
+    public StartViewModel(FetchQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,

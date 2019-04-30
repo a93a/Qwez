@@ -8,15 +8,16 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Game database repository
  */
 public class GameRepository implements GameRepositoryType {
 
-    private GameDao gameDao;
-    private QuestionDao questionDao;
-    private GameQuestionDao gameQuestionDao;
+    private final GameDao gameDao;
+    private final QuestionDao questionDao;
+    private final GameQuestionDao gameQuestionDao;
 
     @Inject
     public GameRepository(GameDao gameDao, QuestionDao questionDao, GameQuestionDao gameQuestionDao) {
@@ -151,6 +152,17 @@ public class GameRepository implements GameRepositoryType {
     public Flowable<List<GameQuestion>> getAllGamesAndQuestions() {
         return gameQuestionDao
                 .getGameQuestions()
+                .subscribeOn(Schedulers.io());
+    }
+
+    /**
+     * * Get a Flowable that emits from a single GameQuestion
+     * @param id of game
+     * @return Flowable that emits GameQuestion object
+     */
+    @Override
+    public Flowable<GameQuestion> getGameQuestionBy(int id) {
+        return gameQuestionDao.getGameQuestionById(id)
                 .subscribeOn(Schedulers.io());
     }
 

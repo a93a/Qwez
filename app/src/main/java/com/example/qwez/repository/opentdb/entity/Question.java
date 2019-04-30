@@ -29,7 +29,7 @@ public class Question implements Serializable
     private String correctAnswer;
     @SerializedName("incorrect_answers")
     @Expose
-    private List<String> incorrectAnswers = null;
+    private List<String> incorrectAnswers;
 
     /**
      * No args constructor for use in serialization

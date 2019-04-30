@@ -2,12 +2,16 @@ package com.example.qwez.ui.splash;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.GameQuestion;
+import com.example.qwez.repository.sharedpref.SharedPreferencesRepository;
+import com.example.qwez.repository.sharedpref.rxwrapper.Preference;
+import com.example.qwez.repository.sharedpref.rxwrapper.SharedPrefsWrapper;
 import com.example.qwez.router.StartRouter;
 import com.example.qwez.ui.start.StartVMFactory;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,6 +49,7 @@ public class SplashActivity extends BaseActivity {
         viewModel.user().observe(this, this::onUser);
 
         viewModel.getUser();
+
     }
 
     private void onUser(FirebaseUser firebaseUser) {

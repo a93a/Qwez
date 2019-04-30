@@ -36,8 +36,6 @@
             android:singleLine="true"
             android:title="Log out" />
 
-        <PreferenceCategory/>
-
     </PreferenceCategory>
 
 </PreferenceScreen>

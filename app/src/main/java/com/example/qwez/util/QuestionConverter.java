@@ -1,12 +1,17 @@
 package com.example.qwez.util;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Helper Class for converting between {@link com.example.qwez.repository.opentdb.entity.Question} and {@link com.example.qwez.repository.local.Question}
  */
-public class QuestionConverter {
+public final class QuestionConverter {
+
+    private QuestionConverter(){
+        //private constructor to avoid instantiation
+    }
 
     /**
      * Convert a List of {@link com.example.qwez.repository.opentdb.entity.Question} to a List of{@link com.example.qwez.repository.local.Question}

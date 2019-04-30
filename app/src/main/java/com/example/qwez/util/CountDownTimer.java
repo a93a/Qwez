@@ -15,8 +15,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 public abstract class CountDownTimer {
 
-    private TimeUnit timeUnit;  //unit to count in
-    private Long startValue;    //how many ticks
+    private final TimeUnit timeUnit;  //unit to count in
+    private final Long startValue;    //how many ticks
     private Disposable disposable;  //disposable for the operation
 
     /**

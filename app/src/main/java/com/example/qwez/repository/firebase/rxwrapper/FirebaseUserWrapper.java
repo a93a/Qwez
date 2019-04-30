@@ -6,7 +6,12 @@ import com.google.firebase.auth.FirebaseUser;
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;
 
-public class FirebaseUserWrapper {
+public final class FirebaseUserWrapper {
+
+
+    private FirebaseUserWrapper(){
+        //private constructor to avoid instantiation
+    }
 
     /**
      * Change Firebase user password

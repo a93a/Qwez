@@ -1,18 +1,8 @@
 package com.example.qwez.repository.local;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.example.qwez.interactor.GetQuestionsInteractor;
-import com.example.qwez.repository.opentdb.OpenTDB;
-import com.example.qwez.repository.opentdb.OpenTDBAPI;
-import com.example.qwez.repository.opentdb.OpenTDBType;
-import com.example.qwez.util.Category;
-import com.example.qwez.util.Difficulty;
-import com.example.qwez.util.QuestionConverter;
-import com.example.qwez.util.QuestionType;
-import com.example.qwez.util.URL;
-import com.google.gson.Gson;
+import com.example.qwez.interactor.FetchQuestionsInteractor;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -20,27 +10,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.List;
-import java.util.concurrent.Callable;
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import io.reactivex.Scheduler;
+
 import io.reactivex.android.plugins.RxAndroidPlugins;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Function;
-import io.reactivex.observers.TestObserver;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.schedulers.TestScheduler;
-import io.reactivex.subscribers.TestSubscriber;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static org.junit.Assert.*;
 
@@ -52,7 +29,7 @@ public class GameRepositoryTest {
 
     private GameDatabase gameDatabase;
     private GameRepositoryType gameRepositoryType;
-    GetQuestionsInteractor getQuestionsInteractor;
+    FetchQuestionsInteractor getQuestionsInteractor;
 
     @BeforeClass
     public static void before(){
@@ -235,6 +212,11 @@ public class GameRepositoryTest {
 
         assertEquals(gameId2, game2as1.getGameId());
         assertEquals(game2before.getCategory(), game2as1.getCategory());
+
+    }
+
+    @Test
+    public void gameQuestionTest(){
 
     }
 

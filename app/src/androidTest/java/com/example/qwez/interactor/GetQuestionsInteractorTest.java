@@ -45,7 +45,7 @@ public class GetQuestionsInteractorTest {
 
     private GameRepositoryType gameRepositoryType;
     private OpenTDBType openTDBType;
-    private GetQuestionsInteractor getQuestionsInteractor;
+    private FetchQuestionsInteractor getQuestionsInteractor;
 
     @BeforeClass
     public static void before(){
@@ -87,7 +87,7 @@ public class GetQuestionsInteractorTest {
         openTDBType = new OpenTDB(openTDBAPI);
 
         //build interactor
-        getQuestionsInteractor = new GetQuestionsInteractor(openTDBType,gameRepositoryType);
+        getQuestionsInteractor = new FetchQuestionsInteractor(openTDBType,gameRepositoryType);
 
     }
 

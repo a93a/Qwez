@@ -19,7 +19,11 @@ import io.reactivex.functions.Cancellable;
 /**
  * RxJava2 wrapper class which wraps Firebase operations in RxJava Observables.
  */
-public class FirebaseAuthWrapper {
+public final class FirebaseAuthWrapper {
+
+    private FirebaseAuthWrapper(){
+        //private constructor to avoid instantiation
+    }
 
     /**
      * Sign in FirebaseUser with email address and password.

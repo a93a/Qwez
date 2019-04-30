@@ -17,7 +17,7 @@ public class ResponseBody implements Serializable
     private int responseCode;
     @SerializedName("results")
     @Expose
-    private List<Question> questions = null;
+    private List<Question> questions;
 
     /**
      * No args constructor for use in serialization

@@ -26,7 +26,8 @@ import dagger.android.AndroidInjectionModule;
         SplashModule.class,
         LoginModule.class,
         SettingsModule.class,
-        QuestionModule.class})
+        QuestionModule.class,
+        SharedPreferencesModule.class})
 public interface AppComponent {
 
     @Component.Builder

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import java.lang.annotation.Retention;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -50,7 +51,7 @@ public final class RxBus {
     private static SparseArray<PublishSubject<Object>> subjectMap = new SparseArray<>();
 
     //map of all Subscribers and their subscribtions (<LifeCycleOwner, Subscriptions>)
-    private static Map<Object, CompositeDisposable> subscriptionsMap = new HashMap<>();
+    private static Map<Object, CompositeDisposable> subscriptionsMap = new ConcurrentHashMap<>();
 
     //event type constants
     public static final int SHOW_LOGIN_FRAGMENT = 0;
@@ -82,11 +83,13 @@ public final class RxBus {
     }
 
     //atomic getter of singleton RxBus variable
-    public static synchronized RxBus get() {
-        if (INSTANCE == null) {
-            INSTANCE = new RxBus();
+    public static RxBus get() {
+        synchronized (RxBus.class){
+            if (INSTANCE == null) {
+                INSTANCE = new RxBus();
+            }
+            return INSTANCE;
         }
-        return INSTANCE;
     }
 
     /**

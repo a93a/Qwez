@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Validate extension Class that for Regex Matching
  */
 public class PatternValidate extends Validate {
-    private Pattern pattern;
+    private final Pattern pattern;
 
     public PatternValidate(String errorMessage, @NonNull Pattern pattern) {
         super(errorMessage);

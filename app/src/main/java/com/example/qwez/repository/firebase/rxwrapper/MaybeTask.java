@@ -11,7 +11,7 @@ import io.reactivex.MaybeEmitter;
 /**
  * Wraps Task<T> into a MaybeEmitter<? super T>
  */
-public class MaybeTask<T> implements OnSuccessListener<T>, OnFailureListener, OnCompleteListener<T> {
+public final class MaybeTask<T> implements OnSuccessListener<T>, OnFailureListener, OnCompleteListener<T> {
 
     private final MaybeEmitter<? super T> emitter;
 

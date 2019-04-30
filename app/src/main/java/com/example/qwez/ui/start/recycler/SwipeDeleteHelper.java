@@ -21,8 +21,8 @@ import timber.log.Timber;
 
 public class SwipeDeleteHelper extends ItemTouchHelper.SimpleCallback {
 
-    private GameAdapter adapter;
-    private Drawable icon;
+    private final GameAdapter adapter;
+    private final Drawable icon;
     private final ColorDrawable background;
     private static final int LIMIT_SWIPE_LENGTH = 10;
 

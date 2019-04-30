@@ -9,11 +9,6 @@ import androidx.fragment.app.Fragment;
 
 public abstract class BaseActivityFragment extends BaseActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     /**
      * Replaces the current fragment in fragment container {@code id}. Also takes in
      * parameter to decide whether to add fragment to stack over the old.

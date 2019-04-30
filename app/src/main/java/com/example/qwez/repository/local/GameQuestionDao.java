@@ -19,4 +19,8 @@ public interface GameQuestionDao {
     @Query("SELECT * FROM GAMES")
     Flowable<List<GameQuestion>> getGameQuestions();
 
+    @Transaction
+    @Query("SELECT * FROM GAMES WHERE id=:id")
+    Flowable<GameQuestion> getGameQuestionById(int id);
+
 }

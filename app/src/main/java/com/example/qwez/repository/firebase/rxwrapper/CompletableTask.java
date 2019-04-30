@@ -11,7 +11,7 @@ import io.reactivex.CompletableEmitter;
 /**
  * Wraps Task<T> into a CompletableEmitter.
  */
-public class CompletableTask implements OnSuccessListener, OnFailureListener, OnCompleteListener {
+public final class CompletableTask implements OnSuccessListener, OnFailureListener, OnCompleteListener {
 
     private final CompletableEmitter emitter;
 

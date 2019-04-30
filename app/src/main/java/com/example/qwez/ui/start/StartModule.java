@@ -2,7 +2,7 @@ package com.example.qwez.ui.start;
 
 import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
-import com.example.qwez.interactor.GetQuestionsInteractor;
+import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.local.GameRepositoryType;
@@ -19,7 +19,7 @@ import dagger.Provides;
 public class StartModule {
 
     @Provides
-    StartVMFactory questionVMFactory(GetQuestionsInteractor getQuestionsInteractor,
+    StartVMFactory questionVMFactory(FetchQuestionsInteractor getQuestionsInteractor,
                                      GetAllGamesInteractor getAllGamesInteractor,
                                      GetUserInteractor getUserInteractor,
                                      SettingsRouter settingsRouter,
@@ -55,8 +55,8 @@ public class StartModule {
     }
 
     @Provides
-    GetQuestionsInteractor getQuestionsInteractor(OpenTDBType openTDBType, GameRepositoryType gameRepositoryType){
-        return new GetQuestionsInteractor(openTDBType, gameRepositoryType);
+    FetchQuestionsInteractor getQuestionsInteractor(OpenTDBType openTDBType, GameRepositoryType gameRepositoryType){
+        return new FetchQuestionsInteractor(openTDBType, gameRepositoryType);
     }
 
     @Provides

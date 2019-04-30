@@ -9,14 +9,18 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import timber.log.Timber;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
@@ -26,6 +30,7 @@ import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
+import com.example.qwez.ui.start.recycler.CustomAdapter;
 import com.example.qwez.ui.start.recycler.GameAdapter;
 import com.example.qwez.ui.start.recycler.ItemDecorator;
 import com.example.qwez.ui.start.recycler.SwipeDeleteHelper;
@@ -33,6 +38,8 @@ import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -48,7 +55,7 @@ public class StartActivity extends BaseActivity{
     @BindView(R.id.recyclerview_questions)
     RecyclerView recyclerView;
 
-    GameAdapter adapter;
+    private GameAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,7 +99,7 @@ public class StartActivity extends BaseActivity{
         RxBus.subscribe(RxBus.GAME_TOUCHED, this, o -> {
             GameEvent gameEvent = (GameEvent) o;
             Game gameTouched = gameEvent.getGame();
-            Timber.d("Game is %s", gameTouched.getGameId());
+            adapter.setClickable(false);
             viewModel.openQuestion(this,gameTouched.getGameId());
         });
 
@@ -127,17 +134,21 @@ public class StartActivity extends BaseActivity{
 
         LayoutInflater factory = LayoutInflater.from(this);
         final View stdView = factory.inflate(R.layout.dialog_add_question, null);
-        LinearLayout layout = stdView.findViewById(R.id.add_question_layout);
+        final LinearLayout layout = stdView.findViewById(R.id.add_question_layout);
 
-        Spinner cat = layout.findViewById(R.id.spinner_add_cat);
-        Spinner diff = layout.findViewById(R.id.spinner_add_diff);
+        final Spinner cat = layout.findViewById(R.id.spinner_add_cat);
+        final Spinner diff = layout.findViewById(R.id.spinner_add_diff);
 
-        ArrayAdapter<String> catAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,Category.getList());
+        final List<String> cats = Category.getList();
+        cats.add(0,"Category");
+        final CustomAdapter<String> catAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,cats);
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(catAdapter);
 
-        ArrayAdapter<String> diffAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,Difficulty.getList());
-        catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final List<String> diffs = Difficulty.getList();
+        diffs.add(0,"Difficulty");
+        final CustomAdapter<String> diffAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,diffs);
+        diffAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         diff.setAdapter(diffAdapter);
 
         MaterialDialog.Builder builder = CustomMaterialDialog.customDialog("Add a question", this, layout)
@@ -157,6 +168,12 @@ public class StartActivity extends BaseActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.start_meny, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.setClickable(true);
     }
 
     @Override

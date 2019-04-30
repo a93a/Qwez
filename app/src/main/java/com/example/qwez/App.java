@@ -5,6 +5,7 @@ import android.app.Application;
 
 
 import com.example.qwez.di.DaggerAppComponent;
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
@@ -33,6 +34,8 @@ public class App extends Application implements HasActivityInjector {
                 .inject(this);
 
         //LeakCanary.install(this);
+
+        Stetho.initializeWithDefaults(this);
 
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());

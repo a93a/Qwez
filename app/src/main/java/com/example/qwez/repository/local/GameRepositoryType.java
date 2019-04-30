@@ -1,5 +1,7 @@
 package com.example.qwez.repository.local;
 
+import org.intellij.lang.annotations.Flow;
+
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -65,5 +67,10 @@ public interface GameRepositoryType {
      * Get a Flowable that emits all GameQuestion(s) at subscribe(), and on each update in database
      */
     Flowable<List<GameQuestion>> getAllGamesAndQuestions();
+
+    /**
+     * Get a Flowable that emits from a single GameQuestion
+     */
+    Flowable<GameQuestion> getGameQuestionBy(int id);
 
 }

@@ -10,6 +10,8 @@ import com.example.qwez.util.Extras;
 import java.io.Serializable;
 import java.util.List;
 
+import timber.log.Timber;
+
 /**
  * Opens QuestionActivity.class
  */
@@ -21,6 +23,7 @@ public class QuestionRouter {
      * @param qId clear Activity stack. true clears stack
      */
     public void open(Context context, int qId){
+        Timber.d("Game is %s", qId);
         Intent intent = new Intent(context, QuestionActivity.class);
         intent.putExtra(Extras.QUESTION_ID, qId);
         context.startActivity(intent);

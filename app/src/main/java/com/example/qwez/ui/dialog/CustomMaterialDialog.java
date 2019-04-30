@@ -19,12 +19,17 @@ import java.util.Observable;
  *
  * Builds MaterialDialogs
  */
-public class CustomMaterialDialog {
+public final class CustomMaterialDialog {
 
     private static final int COLOR_RED = -500015;
     private static final String LABEL_CANCEL = "cancel";
     private static final int COLOR_GREEN = -500060;
     private static final String LABEL_OK = "ok";
+
+
+    private CustomMaterialDialog(){
+        //private constructor to avoid instantiation
+    }
 
     /**
      * Get a loading dialog
