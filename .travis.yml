@@ -1,4 +1,7 @@
 language: android
+sudo: required
+jdk:
+    - oraclejdk8
 android:
   components:
     - tools # to get the new `repository-11.xml`
@@ -22,8 +25,6 @@ before_script:
 script:
     - ./gradlew build connectedCheck
     - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
-jdk:
-    - oraclejdk8
 before_cache:
     -rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
     -rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -35,7 +36,7 @@ cache:
     global:
         - ANDROID_API=28
         - EMULATOR_API=24
-        - ANDROID_BUILD_TOOLS=24.0.2
+        - ANDROID_BUILD_TOOLS=28.0.3
         - ADB_INSTALL_TIMEOUT=5 # minutes
  licenses:
     - android-sdk-preview-license-.+
