@@ -47,7 +47,6 @@ public class ChangeUserPasswordInteractorTest {
         Mockito.when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
         Mockito.when(firebaseAuthRepositoryType.changeUserPassword(firebaseUser, "test123")).thenReturn(Completable.complete());
         changeUserPasswordInteractor.changeUserPassword("test123")
-                .observeOn(Schedulers.trampoline())
                 .test()
                 .assertSubscribed()
                 .assertNoErrors()
