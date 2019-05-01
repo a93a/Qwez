@@ -21,4 +21,5 @@
     <string name="choose_difficulty">Choose difficulty</string>
     <string name="enter_new_password">Enter new password</string>
     <string name="repeat_new_password">Repeat new password</string>
+    <string name="err_text_dialog">Please choose a category and a difficulty</string>
 </resources>

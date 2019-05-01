@@ -132,6 +132,9 @@ dependencies {
     //stetho
     implementation 'com.facebook.stetho:stetho:1.5.1'
 
+    //apache commons language
+    implementation 'org.apache.commons:commons-text:1.6'
+
 
 
 }

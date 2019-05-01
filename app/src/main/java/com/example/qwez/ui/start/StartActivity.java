@@ -57,6 +57,9 @@ public class StartActivity extends BaseActivity{
 
     private GameAdapter adapter;
 
+    private static final String NO_CAT_SELECTION = "Category";
+    private static final String NO_DIFF_SELECTION = "Difficulty";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,6 +142,8 @@ public class StartActivity extends BaseActivity{
         final Spinner cat = layout.findViewById(R.id.spinner_add_cat);
         final Spinner diff = layout.findViewById(R.id.spinner_add_diff);
 
+        final TextView err = layout.findViewById(R.id.err_text);
+
         final List<String> cats = Category.getList();
         cats.add(0,"Category");
         final CustomAdapter<String> catAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,cats);
@@ -152,13 +157,21 @@ public class StartActivity extends BaseActivity{
         diff.setAdapter(diffAdapter);
 
         MaterialDialog.Builder builder = CustomMaterialDialog.customDialog("Add a question", this, layout)
+                .autoDismiss(false)
                 .onPositive((dialog, which) -> {
-                    dialog.dismiss();
+
                     String categoryString = (String) cat.getSelectedItem();
-                    Category category = Category.getMap().get(categoryString);
                     String difficultyString = (String) diff.getSelectedItem();
-                    Difficulty difficulty = Difficulty.getMap().get(difficultyString);
-                    viewModel.getQuestion(category, difficulty);
+
+                    if(!categoryString.equals(NO_CAT_SELECTION) && !difficultyString.equals(NO_DIFF_SELECTION)){
+                        dialog.dismiss();
+                        Category category = Category.getMap().get(categoryString);
+                        Difficulty difficulty = Difficulty.getMap().get(difficultyString);
+                        viewModel.getQuestion(category, difficulty);
+                    }else{
+                        err.setText(getResources().getText(R.string.err_text_dialog));
+                        err.setVisibility(View.VISIBLE);
+                    }
                 })
                 .onNegative((dialog, which) -> dialog.dismiss());
         showCustomDialog(builder);

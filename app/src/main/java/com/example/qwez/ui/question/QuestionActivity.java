@@ -1,13 +1,17 @@
 package com.example.qwez.ui.question;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
@@ -50,6 +54,8 @@ public class QuestionActivity extends BaseActivity{
     private List<Question> questions = new ArrayList<>();
     private int qId;
     private int count = 0;
+    private boolean nextQuestion = false;
+    private Question current = null;
 
 
     @Override
@@ -70,37 +76,72 @@ public class QuestionActivity extends BaseActivity{
     private void onQuestions(GameQuestion gameQuestion) {
         questions.clear();
         questions.addAll(gameQuestion.questions);
-        showQuestion();
+        runQuiz();
     }
 
-    private void showQuestion(){
-        if(questions.size() > count){
-            Question current = questions.get(count);
-            questionView.setText(current.getQuestion());
-
-            List<String> qlist = new ArrayList<>();
-            qlist.add(current.getWrongAnswer1());
-            qlist.add(current.getWrongAnswer2());
-            qlist.add(current.getWrongAnswer3());
-            qlist.add(current.getCorrectAnswer());
-            Collections.shuffle(qlist);
-            question1.setText(qlist.get(0));
-            question2.setText(qlist.get(1));
-            question3.setText(qlist.get(2));
-            question4.setText(qlist.get(3));
-
-            progressBar.setProgress(100);
-
-
+    private void runQuiz(){
+        if(questions.size() > count) {
+            question1.setBackgroundColor(Color.WHITE);
+            question2.setBackgroundColor(Color.WHITE);
+            question3.setBackgroundColor(Color.WHITE);
+            question4.setBackgroundColor(Color.WHITE);
+            current = questions.get(count);
+            displayQ();
             count++;
         }else{
             finish();
         }
     }
 
-    @OnClick(R.id.textview_question)
-    public void onClick(){
-        showQuestion();
+    private void displayQ(){
+        questionView.setText(current.getQuestion());
+
+        List<String> qlist = new ArrayList<>();
+        qlist.add(current.getWrongAnswer1());
+        qlist.add(current.getWrongAnswer2());
+        qlist.add(current.getWrongAnswer3());
+        qlist.add(current.getCorrectAnswer());
+        Collections.shuffle(qlist);
+        question1.setText(qlist.get(0));
+        question2.setText(qlist.get(1));
+        question3.setText(qlist.get(2));
+        question4.setText(qlist.get(3));
+    }
+
+    private void checkResults(String chosen){
+        new Handler().postDelayed(() -> { }, 3000);
+        String corr = current.getCorrectAnswer();
+        if(chosen.equals(corr)){
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show();
+        }
+        new Handler().postDelayed(() -> { }, 1000);
+        runQuiz();
+    }
+
+    @OnClick(R.id.textview_answer_one)
+    public void onA1(){
+        question1.setBackgroundColor(getColor(R.color.colorThird));
+        checkResults(question1.getText().toString());
+    }
+
+    @OnClick(R.id.textview_answer_two)
+    public void onA2(){
+        question2.setBackgroundColor(getColor(R.color.colorThird));
+        checkResults(question2.getText().toString());
+    }
+
+    @OnClick(R.id.textview_answer_three)
+    public void onA3(){
+        question3.setBackgroundColor(getColor(R.color.colorThird));
+        checkResults(question3.getText().toString());
+    }
+
+    @OnClick(R.id.textview_answer_four)
+    public void onA4(){
+        question4.setBackgroundColor(getColor(R.color.colorThird));
+        checkResults(question4.getText().toString());
     }
 
     @Override

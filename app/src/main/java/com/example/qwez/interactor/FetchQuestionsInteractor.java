@@ -19,6 +19,7 @@ import io.reactivex.ObservableConverter;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 /**
  * Interactor to get Questions from API, and store them in local database
