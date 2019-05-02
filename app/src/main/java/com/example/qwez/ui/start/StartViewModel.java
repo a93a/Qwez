@@ -13,6 +13,7 @@ import com.example.qwez.router.SettingsRouter;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.List;
 
