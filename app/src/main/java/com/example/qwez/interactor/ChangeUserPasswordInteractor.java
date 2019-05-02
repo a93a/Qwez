@@ -25,10 +25,7 @@ public class ChangeUserPasswordInteractor {
      */
     public Completable changeUserPassword(String newPassword){
         return firebaseAuthRepositoryType.getCurrentUser()
-                .flatMapCompletable(firebaseUser -> {
-                        firebaseAuthRepositoryType.changeUserPassword(firebaseUser, newPassword);
-                        return Completable.complete();
-                })
+                .flatMapCompletable(firebaseUser -> firebaseAuthRepositoryType.changeUserPassword(firebaseUser, newPassword))
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

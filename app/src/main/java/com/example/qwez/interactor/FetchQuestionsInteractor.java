@@ -54,7 +54,7 @@ public class FetchQuestionsInteractor {
                             questions.forEach(question -> question.setqId((int) (long)aLong));
                             return questions;
                         }))
-                .flatMapCompletable(questions -> gameRepositoryType.addQuestions(questions))
+                .flatMapCompletable(gameRepositoryType::addQuestions)
                 .observeOn(AndroidSchedulers.mainThread());
 
     }

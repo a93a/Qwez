@@ -1,11 +1,15 @@
 package com.example.qwez.di;
 
+import com.example.qwez.App;
+import com.example.qwez.repository.ConnectivityInterceptor;
+import com.example.qwez.repository.NoConnectivityException;
 import com.example.qwez.repository.opentdb.OpenTDBAPI;
 import com.example.qwez.util.URL;
 import com.google.gson.Gson;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.Reusable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -52,8 +56,9 @@ public class NetworkModule {
     @ApplicationScope
     OkHttpClient okHttpClient(HttpLoggingInterceptor httpLoggingInterceptor){
         OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.newBuilder().addInterceptor(httpLoggingInterceptor);
-        return new OkHttpClient();
+        okHttpClient.newBuilder()
+                .addInterceptor(httpLoggingInterceptor);
+        return okHttpClient;
     }
 
     /**

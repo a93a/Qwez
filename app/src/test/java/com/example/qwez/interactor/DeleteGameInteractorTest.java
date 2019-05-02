@@ -14,18 +14,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import io.reactivex.Completable;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(JUnit4.class)
 public class DeleteGameInteractorTest {
 
     @ClassRule
-    public static final RxResources rxres = new RxResources();
+    public static RxResources rxres = new RxResources();
 
     @Mock
     GameRepositoryType gameRepositoryType;
@@ -41,10 +44,12 @@ public class DeleteGameInteractorTest {
     @Test
     public void deleteGame() {
         Game game = new Game("cat", "diff");
-        Mockito.when(gameRepositoryType.deleteGame(game)).thenReturn(Completable.complete());
+        when(gameRepositoryType.deleteGame(game)).thenReturn(Completable.complete());
         deleteGameInteractor.deleteGame(game)
                 .test()
                 .assertNoErrors()
                 .assertComplete();
+
+        verify(gameRepositoryType).deleteGame(game);
     }
 }

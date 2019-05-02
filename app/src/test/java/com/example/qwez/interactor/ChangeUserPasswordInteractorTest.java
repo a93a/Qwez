@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import javax.inject.Inject;
 
@@ -24,6 +25,8 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.schedulers.TestScheduler;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(JUnit4.class)
 public class ChangeUserPasswordInteractorTest {
@@ -47,11 +50,15 @@ public class ChangeUserPasswordInteractorTest {
 
     @Test
     public void changeUserPassword() {
-        Mockito.when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
-        Mockito.when(firebaseAuthRepositoryType.changeUserPassword(firebaseUser, "test123")).thenReturn(Completable.complete());
+        when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
+        when(firebaseAuthRepositoryType.changeUserPassword(firebaseUser, "test123")).thenReturn(Completable.complete());
         changeUserPasswordInteractor.changeUserPassword("test123")
                 .test()
                 .assertNoErrors()
                 .assertComplete();
+
+        verify(firebaseAuthRepositoryType).getCurrentUser();
+        verify(firebaseAuthRepositoryType).changeUserPassword(firebaseUser, "test123");
+
     }
 }

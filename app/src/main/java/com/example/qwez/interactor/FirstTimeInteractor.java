@@ -14,7 +14,7 @@ public class FirstTimeInteractor {
         this.sharedPreferencesRepositoryType = sharedPreferencesRepositoryType;
     }
 
-    public Single<Boolean> checkFirstTime(){
+    public Single<Boolean> checkNotFirstTime(){
         return sharedPreferencesRepositoryType.getNotFirstTime()
                 .observeOn(AndroidSchedulers.mainThread());
     }

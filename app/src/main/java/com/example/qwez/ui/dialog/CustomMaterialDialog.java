@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -121,6 +122,11 @@ public final class CustomMaterialDialog {
                 .negativeColor(ContextCompat.getColor(context, R.color.colorProgressRed))
                 .positiveText(posBtnLabel)
                 .positiveColor(ContextCompat.getColor(context, R.color.colorProgressGreenDark));
+    }
+
+    public static MaterialDialog.Builder addDiff(Context context, RecyclerView.Adapter adapter, RecyclerView.LayoutManager manager){
+        return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
+                .adapter(adapter,manager);
     }
 
 }
