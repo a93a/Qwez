@@ -27,6 +27,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.NoConnectivityException;
@@ -138,6 +139,7 @@ public class StartActivity extends BaseActivity{
 
     @OnClick(R.id.button_add_question)
     void onClick(){
+        button.setClickable(false);
 
         LayoutInflater factory = LayoutInflater.from(this);
         final View stdView = factory.inflate(R.layout.dialog_add_question, null);
@@ -192,6 +194,7 @@ public class StartActivity extends BaseActivity{
     protected void onResume() {
         super.onResume();
         adapter.setClickable(true);
+        button.setClickable(true);
     }
 
     @Override

@@ -124,9 +124,28 @@ public final class CustomMaterialDialog {
                 .positiveColor(ContextCompat.getColor(context, R.color.colorProgressGreenDark));
     }
 
-    public static MaterialDialog.Builder addDiff(Context context, RecyclerView.Adapter adapter, RecyclerView.LayoutManager manager){
+    /**
+     * Get a dialog with a custom adapter
+     * @param title to set
+     * @param context of Activity/Fragment/Application
+     * @param adapter listadapter
+     * @param manager layoutmanager
+     * @return MaterialDialog.Builder of custom adapter dialog
+     */
+    public static MaterialDialog.Builder addDiff(String title, Context context, RecyclerView.Adapter adapter, RecyclerView.LayoutManager manager){
         return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
                 .adapter(adapter,manager);
     }
 
+
+    /**
+     * Empty dialog with title, positive button and negative button
+     * @param title to set
+     * @param context of Activity/Fragment/Application
+     * @return MaterialDialog.Builder of empty dialog
+     */
+    public static MaterialDialog.Builder emptyDialog(String title, Context context){
+        return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
+                .title(title);
+    }
 }

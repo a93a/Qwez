@@ -8,6 +8,7 @@ import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import androidx.annotation.NonNull;
 
@@ -21,6 +22,7 @@ import io.reactivex.Observer;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Firebase repository class to handle all Firebase operations
@@ -98,5 +100,21 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
         return FirebaseUserWrapper.updateUserPassword(firebaseUser, newPassword)
                 .subscribeOn(Schedulers.io());
     }
+
+    /**
+     * Change current user nickname. Return Completable with operation results
+     * @param firebaseUser current user
+     * @param newNick to set
+     * @return Completable that emits onComplete on success
+     */
+    @Override
+    public Completable changeUserNick(FirebaseUser firebaseUser, String newNick) {
+        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                .setDisplayName(newNick)
+                .build();
+        return FirebaseUserWrapper.updateUserProfile(firebaseUser, request)
+                .subscribeOn(Schedulers.io());
+    }
+
 
 }

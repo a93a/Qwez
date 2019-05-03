@@ -10,7 +10,7 @@
             android:key="change_username_preference"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Change Username" />
+            android:title="Change username" />
 
         <Preference
             android:icon="@drawable/email"
@@ -18,7 +18,7 @@
             android:key="change_email_preference"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Change password" />
+            android:title="Change email address" />
 
         <Preference
             android:icon="@drawable/changepass"

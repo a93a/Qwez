@@ -3,6 +3,8 @@ package com.example.qwez.ui.start;
 import android.content.Context;
 
 import com.example.qwez.base.BaseViewModel;
+import com.example.qwez.interactor.ChangeUserNickInteractor;
+import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;

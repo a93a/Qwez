@@ -1,5 +1,6 @@
 package com.example.qwez.ui.start;
 
+import com.example.qwez.interactor.ChangeUserNickInteractor;
 import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
@@ -38,7 +39,12 @@ public class StartVMFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new StartViewModel(getQuestionsInteractor, getAllGamesInteractor, getUserInteractor, settingsRouter, deleteGameInteractor, questionRouter);
+        return (T) new StartViewModel(getQuestionsInteractor,
+                getAllGamesInteractor,
+                getUserInteractor,
+                settingsRouter,
+                deleteGameInteractor,
+                questionRouter);
     }
 
 }

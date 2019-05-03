@@ -42,5 +42,10 @@ public interface FirebaseAuthRepositoryType {
      */
     Completable changeUserPassword(FirebaseUser firebaseUser, String newPassword);
 
+    /**
+     * Change current user nickname. Return Completable with operation results
+     */
+    Completable changeUserNick(FirebaseUser firebaseUser, String newNick);
+
 }
 

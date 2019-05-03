@@ -5,23 +5,32 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.qwez.base.BaseViewModel;
+import com.example.qwez.interactor.ChangeUserNickInteractor;
 import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.router.LoginRouter;
+
+import timber.log.Timber;
 
 public class SettingsViewModel extends BaseViewModel {
 
     private final MutableLiveData<Boolean> logout = new MutableLiveData<>();
     private final MutableLiveData<Boolean> passChanged = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> nickChange = new MutableLiveData<>();
 
     private final LogoutUserInteractor logoutUserInteractor;
     private final ChangeUserPasswordInteractor changeUserPasswordInteractor;
     private final LoginRouter loginRouter;
+    private final ChangeUserNickInteractor changeUserNickInteractor;
 
-    public SettingsViewModel(LogoutUserInteractor logoutUserInteractor, ChangeUserPasswordInteractor changeUserPasswordInteractor, LoginRouter loginRouter) {
+    public SettingsViewModel(LogoutUserInteractor logoutUserInteractor,
+                             ChangeUserPasswordInteractor changeUserPasswordInteractor,
+                             LoginRouter loginRouter,
+                             ChangeUserNickInteractor changeUserNickInteractor) {
         this.logoutUserInteractor = logoutUserInteractor;
         this.changeUserPasswordInteractor = changeUserPasswordInteractor;
         this.loginRouter = loginRouter;
+        this.changeUserNickInteractor = changeUserNickInteractor;
     }
 
     public void logoutUser(){
@@ -33,6 +42,15 @@ public class SettingsViewModel extends BaseViewModel {
     public void changePassword(String newPass){
         disposable = changeUserPasswordInteractor.changeUserPassword(newPass)
                 .subscribe(this::onPassChange,this::onError);
+    }
+
+    public void changeNick(String newNick){
+        disposable = changeUserNickInteractor.ChangeNick(newNick)
+                .subscribe(this::onNick,this::onError);
+    }
+
+    private void onNick() {
+        nickChange.setValue(true);
     }
 
     private void onPassChange() {
@@ -55,5 +73,9 @@ public class SettingsViewModel extends BaseViewModel {
 
     public MutableLiveData<Boolean> passChange(){
         return passChanged;
+    }
+
+    public MutableLiveData<Boolean> nickChange(){
+        return nickChange;
     }
 }

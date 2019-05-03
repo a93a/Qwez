@@ -14,7 +14,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePassowordEvent;
+import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.validator.PasswordValidate;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
+import timber.log.Timber;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -40,13 +43,26 @@ public class SettingsActivity extends BaseActivity {
 
         viewModel = ViewModelProviders.of(this,factory).get(SettingsViewModel.class);
         viewModel.logout().observe(this, this::onLogoutSuccess);
+        viewModel.error().observe(this, this::onError);
         viewModel.progress().observe(this, this::onProgress);
         viewModel.passChange().observe(this, this::onPasswordChange);
+        viewModel.nickChange().observe(this, this::onNickChanged);
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.setting_container, new SettingsFragment())
                 .commit();
+    }
+
+    private void onError(ErrorCarrier errorCarrier) {
+        MaterialDialog.Builder builder = CustomMaterialDialog.error("Error", this, errorCarrier.message);
+        showCustomDialog(builder);
+    }
+
+    private void onNickChanged(Boolean changed) {
+        Timber.d("WOAH");
+        MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Nickname changed.", this);
+        showCustomDialog(builder);
     }
 
     private void onPasswordChange(Boolean changed) {
@@ -102,6 +118,20 @@ public class SettingsActivity extends BaseActivity {
                         }
                     });
             showCustomDialog(builder);
+        });
+
+        RxBus.subscribe(RxBus.TRY_CHANGE_NICK, this, o -> {
+            ChangeNickEvent changeNickEvent = (ChangeNickEvent) o;
+            MaterialDialog.Builder builder = CustomMaterialDialog.emptyDialog("Change nickname", this)
+                    .input("new nickname", null, (dialog, input) -> {})
+                    .onNegative((dialog, which) -> dialog.dismiss())
+                    .onPositive((dialog, which) -> {
+                        String nick = dialog.getInputEditText().getText().toString();
+                        viewModel.changeNick(nick);
+                        dialog.dismiss();
+                    });
+            showCustomDialog(builder);
+
         });
 
     }
