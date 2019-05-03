@@ -15,7 +15,7 @@ public class SettingsViewModel extends BaseViewModel {
     private final MutableLiveData<Boolean> logout = new MutableLiveData<>();
     private final MutableLiveData<Boolean> passChanged = new MutableLiveData<>();
     private final MutableLiveData<Boolean> nickChange = new MutableLiveData<>();
-
+    
     private final LogoutUserInteractor logoutUserInteractor;
     private final ChangeUserPasswordInteractor changeUserPasswordInteractor;
     private final LoginRouter loginRouter;
