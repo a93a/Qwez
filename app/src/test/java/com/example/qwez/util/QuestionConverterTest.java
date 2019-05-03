@@ -2,16 +2,12 @@ package com.example.qwez.util;
 
 import com.example.qwez.repository.opentdb.entity.Question;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.room.Transaction;
-import io.reactivex.subscribers.TestSubscriber;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class QuestionConverterTest {
 

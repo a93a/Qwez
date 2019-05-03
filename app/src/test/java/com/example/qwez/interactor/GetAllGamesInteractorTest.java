@@ -18,7 +18,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

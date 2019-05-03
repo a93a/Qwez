@@ -1,16 +1,15 @@
 package com.example.qwez.ui.start;
 
-import com.example.qwez.interactor.ChangeUserNickInteractor;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 public class StartVMFactory implements ViewModelProvider.Factory {
 

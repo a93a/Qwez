@@ -7,10 +7,6 @@ import androidx.annotation.Nullable;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseViewHolder;
-import com.example.qwez.util.Difficulty;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 

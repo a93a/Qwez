@@ -2,35 +2,21 @@ package com.example.qwez.ui.settings;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePassowordEvent;
 import com.example.qwez.bus.event.LogoutEvent;
-import com.example.qwez.ui.dialog.CustomMaterialDialog;
-import com.example.qwez.util.RxOperators;
-import com.example.qwez.validator.PasswordValidate;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
-import timber.log.Timber;
 
 public class SettingsFragment extends PreferenceFragmentCompat{
 

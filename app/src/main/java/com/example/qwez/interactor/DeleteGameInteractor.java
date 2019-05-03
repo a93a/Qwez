@@ -1,6 +1,5 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
 

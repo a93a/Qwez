@@ -1,39 +1,27 @@
 package com.example.qwez.ui.start;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-import timber.log.Timber;
-
-import android.graphics.Color;
-import android.os.Bundle;
-import android.text.Layout;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
-import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
-import com.example.qwez.repository.NoConnectivityException;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
-import com.example.qwez.ui.dialog.DifficultyAdapter;
 import com.example.qwez.ui.start.recycler.CustomAdapter;
 import com.example.qwez.ui.start.recycler.GameAdapter;
 import com.example.qwez.ui.start.recycler.ItemDecorator;
@@ -41,13 +29,13 @@ import com.example.qwez.ui.start.recycler.SwipeDeleteHelper;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 public class StartActivity extends BaseActivity{
 

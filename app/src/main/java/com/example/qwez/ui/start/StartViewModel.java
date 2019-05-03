@@ -2,9 +2,9 @@ package com.example.qwez.ui.start;
 
 import android.content.Context;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.qwez.base.BaseViewModel;
-import com.example.qwez.interactor.ChangeUserNickInteractor;
-import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
@@ -15,11 +15,8 @@ import com.example.qwez.router.SettingsRouter;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.List;
-
-import androidx.lifecycle.MutableLiveData;
 
 public class StartViewModel extends BaseViewModel {
 

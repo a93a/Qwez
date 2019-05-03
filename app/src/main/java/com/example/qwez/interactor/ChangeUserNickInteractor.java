@@ -1,12 +1,9 @@
 package com.example.qwez.interactor;
 
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.auth.User;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 public class ChangeUserNickInteractor {
 

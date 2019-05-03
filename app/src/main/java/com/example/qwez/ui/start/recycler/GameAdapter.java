@@ -14,8 +14,6 @@ import com.example.qwez.repository.local.Game;
 import java.util.ArrayList;
 import java.util.List;
 
-import timber.log.Timber;
-
 public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
 
     private final List<Game> games = new ArrayList<>();

@@ -1,34 +1,17 @@
 package com.example.qwez.ui.splash;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.entity.ErrorCarrier;
-import com.example.qwez.repository.local.GameQuestion;
-import com.example.qwez.repository.sharedpref.SharedPreferencesRepository;
-import com.example.qwez.repository.sharedpref.rxwrapper.Preference;
-import com.example.qwez.repository.sharedpref.rxwrapper.SharedPrefsWrapper;
-import com.example.qwez.router.StartRouter;
-import com.example.qwez.ui.start.StartVMFactory;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.room.Insert;
-
-import butterknife.ButterKnife;
-import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class SplashActivity extends BaseActivity {

@@ -2,10 +2,8 @@ package com.example.qwez.ui.start.recycler;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;

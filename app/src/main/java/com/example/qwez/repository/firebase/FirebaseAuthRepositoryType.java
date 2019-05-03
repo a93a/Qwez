@@ -1,15 +1,11 @@
 package com.example.qwez.repository.firebase;
 
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Optional;
 
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 /**
  * FirebaseAuthRepository interface

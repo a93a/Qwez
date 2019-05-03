@@ -2,15 +2,15 @@ package com.example.qwez.di;
 
 import android.content.Context;
 
+import androidx.room.Room;
+
 import com.example.qwez.repository.local.GameDao;
 import com.example.qwez.repository.local.GameDatabase;
 import com.example.qwez.repository.local.GameQuestionDao;
 import com.example.qwez.repository.local.GameRepository;
 import com.example.qwez.repository.local.GameRepositoryType;
-import com.example.qwez.repository.local.Question;
 import com.example.qwez.repository.local.QuestionDao;
 
-import androidx.room.Room;
 import dagger.Module;
 import dagger.Provides;
 

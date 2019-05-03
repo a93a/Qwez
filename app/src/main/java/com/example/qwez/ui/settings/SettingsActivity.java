@@ -1,7 +1,6 @@
 package com.example.qwez.ui.settings;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.ChangeNickEvent;
-import com.example.qwez.bus.event.ChangePassowordEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.validator.PasswordValidate;
@@ -23,8 +21,6 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 public class SettingsActivity extends BaseActivity {

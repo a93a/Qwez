@@ -1,7 +1,6 @@
 package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
-import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.repository.local.GameRepositoryType;
 
@@ -14,12 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.reactivex.Flowable;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

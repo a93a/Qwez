@@ -1,17 +1,9 @@
 package com.example.qwez.util;
 
-import androidx.appcompat.app.WindowDecorActionBar;
-
-import com.example.qwez.repository.sharedpref.rxwrapper.StringPreference;
-
 import org.apache.commons.text.StringEscapeUtils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
-
-import timber.log.Timber;
 
 /**
  * Helper Class for converting between {@link com.example.qwez.repository.opentdb.entity.Question} and {@link com.example.qwez.repository.local.Question}

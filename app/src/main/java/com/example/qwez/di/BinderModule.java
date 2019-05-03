@@ -1,9 +1,7 @@
 package com.example.qwez.di;
 
-import com.example.qwez.base.BaseActivity;
 import com.example.qwez.ui.login.LoginActivity;
 import com.example.qwez.ui.login.LoginModule;
-import com.example.qwez.ui.login.LoginViewModel;
 import com.example.qwez.ui.question.QuestionActivity;
 import com.example.qwez.ui.question.QuestionModule;
 import com.example.qwez.ui.settings.SettingsActivity;
@@ -12,7 +10,6 @@ import com.example.qwez.ui.splash.SplashActivity;
 import com.example.qwez.ui.splash.SplashModule;
 import com.example.qwez.ui.start.StartActivity;
 import com.example.qwez.ui.start.StartModule;
-import com.google.firebase.auth.ActionCodeResult;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

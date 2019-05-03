@@ -13,14 +13,13 @@ import androidx.annotation.Nullable;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseFragment;
+import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.BooleanEvent;
 import com.example.qwez.bus.event.LoginEvent;
-import com.example.qwez.bus.RxBus;
 import com.example.qwez.validator.EmailValidate;
 import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;

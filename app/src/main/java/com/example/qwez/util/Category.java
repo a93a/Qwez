@@ -1,14 +1,10 @@
 package com.example.qwez.util;
 
-import android.graphics.ColorSpace;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.StreamSupport;
 
 /**
  * Constants class for quiz constants

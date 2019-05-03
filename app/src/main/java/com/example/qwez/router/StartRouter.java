@@ -2,7 +2,6 @@ package com.example.qwez.router;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.example.qwez.ui.start.StartActivity;
 

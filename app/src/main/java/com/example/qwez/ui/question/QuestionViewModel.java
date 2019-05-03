@@ -6,8 +6,6 @@ import com.example.qwez.base.BaseViewModel;
 import com.example.qwez.interactor.GetSingleGameAndQuestionsInteractor;
 import com.example.qwez.repository.local.GameQuestion;
 
-import java.util.List;
-
 public class QuestionViewModel extends BaseViewModel {
 
     private final MutableLiveData<GameQuestion> questions = new MutableLiveData<>();

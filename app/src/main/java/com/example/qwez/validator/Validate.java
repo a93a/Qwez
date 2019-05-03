@@ -1,7 +1,5 @@
 package com.example.qwez.validator;
 
-import android.widget.EditText;
-
 /**
  * Abstract Class for Validation
  */

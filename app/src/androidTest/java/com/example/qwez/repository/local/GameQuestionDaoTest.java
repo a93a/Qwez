@@ -15,9 +15,7 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
-import io.reactivex.Flowable;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 public class GameQuestionDaoTest {

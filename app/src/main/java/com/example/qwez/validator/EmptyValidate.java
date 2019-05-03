@@ -1,8 +1,5 @@
 package com.example.qwez.validator;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-
 /**
  * Validate Class for checking if String is empty
  */

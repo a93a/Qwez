@@ -1,20 +1,10 @@
 package com.example.qwez.repository.firebase.rxwrapper;
 
-import android.util.Log;
-
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import androidx.annotation.NonNull;
-
-import io.reactivex.Completable;
 import io.reactivex.Maybe;
-import io.reactivex.MaybeEmitter;
-import io.reactivex.MaybeOnSubscribe;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Cancellable;
 
 /**
  * RxJava2 wrapper class which wraps Firebase operations in RxJava Observables.

@@ -3,17 +3,11 @@ package com.example.qwez.ui.dialog;
 import android.content.Context;
 import android.widget.LinearLayout;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
-import com.google.android.material.button.MaterialButton;
-
-import java.util.Observable;
 
 /**
  * Wrapper class for https://github.com/afollestad/material-dialogs

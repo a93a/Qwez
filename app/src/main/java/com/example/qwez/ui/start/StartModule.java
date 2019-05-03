@@ -1,12 +1,10 @@
 package com.example.qwez.ui.start;
 
-import com.example.qwez.interactor.ChangeUserNickInteractor;
 import com.example.qwez.interactor.DeleteGameInteractor;
-import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
+import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
-import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.repository.opentdb.OpenTDBType;
 import com.example.qwez.router.QuestionRouter;

@@ -1,12 +1,12 @@
 package com.example.qwez.ui.splash;
 
-import com.example.qwez.interactor.GetUserInteractor;
-import com.example.qwez.router.LoginRouter;
-import com.example.qwez.router.StartRouter;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.qwez.interactor.GetUserInteractor;
+import com.example.qwez.router.LoginRouter;
+import com.example.qwez.router.StartRouter;
 
 public class SplashVMFactory implements ViewModelProvider.Factory {
 

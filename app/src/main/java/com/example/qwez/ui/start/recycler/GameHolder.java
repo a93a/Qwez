@@ -6,22 +6,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseViewHolder;
-import com.example.qwez.bus.RxBus;
-import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.util.Category;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class GameHolder extends BaseViewHolder<Game> implements View.OnLongClickListener{
 

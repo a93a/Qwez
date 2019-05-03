@@ -3,10 +3,8 @@ package com.example.qwez;
 import android.app.Activity;
 import android.app.Application;
 
-
 import com.example.qwez.di.DaggerAppComponent;
 import com.facebook.stetho.Stetho;
-import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 

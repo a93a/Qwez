@@ -3,7 +3,6 @@ package com.example.qwez.interactor;
 import com.example.qwez.RxResources;
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -12,15 +11,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import io.reactivex.Completable;
-import io.reactivex.android.plugins.RxAndroidPlugins;
-import io.reactivex.schedulers.Schedulers;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

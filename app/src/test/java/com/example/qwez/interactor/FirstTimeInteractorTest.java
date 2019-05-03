@@ -2,7 +2,6 @@ package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
 import com.example.qwez.repository.sharedpref.SharedPreferencesRepositoryType;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -11,14 +10,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

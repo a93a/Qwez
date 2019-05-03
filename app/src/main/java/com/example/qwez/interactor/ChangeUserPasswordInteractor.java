@@ -1,7 +1,5 @@
 package com.example.qwez.interactor;
 
-import android.icu.text.SymbolTable;
-
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 
 import io.reactivex.Completable;

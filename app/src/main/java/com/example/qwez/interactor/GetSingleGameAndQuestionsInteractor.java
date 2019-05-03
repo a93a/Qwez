@@ -3,11 +3,8 @@ package com.example.qwez.interactor;
 import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.repository.local.GameRepositoryType;
 
-import java.util.List;
-
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 public class GetSingleGameAndQuestionsInteractor {
 

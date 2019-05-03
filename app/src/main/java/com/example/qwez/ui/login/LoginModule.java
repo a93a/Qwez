@@ -3,7 +3,6 @@ package com.example.qwez.ui.login;
 import com.example.qwez.interactor.LoginUserInteractor;
 import com.example.qwez.interactor.SignupInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
-import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.StartRouter;
 
 import javax.inject.Named;

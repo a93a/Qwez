@@ -1,13 +1,11 @@
 package com.example.qwez.base;
 
 
-import com.example.qwez.entity.ErrorCarrier;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.Objects;
+import com.example.qwez.entity.ErrorCarrier;
 
 import io.reactivex.disposables.Disposable;
 

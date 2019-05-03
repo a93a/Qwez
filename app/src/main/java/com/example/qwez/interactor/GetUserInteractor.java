@@ -1,11 +1,7 @@
 package com.example.qwez.interactor;
 
-import android.util.Log;
-
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Optional;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

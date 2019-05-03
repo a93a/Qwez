@@ -1,7 +1,5 @@
 package com.example.qwez.repository.local;
 
-import org.intellij.lang.annotations.Flow;
-
 import java.util.List;
 
 import io.reactivex.Completable;

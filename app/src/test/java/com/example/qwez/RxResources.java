@@ -1,6 +1,5 @@
 package com.example.qwez;
 
-import org.junit.Before;
 import org.junit.rules.ExternalResource;
 
 import io.reactivex.android.plugins.RxAndroidPlugins;

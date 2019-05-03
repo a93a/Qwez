@@ -1,15 +1,10 @@
 package com.example.qwez.ui.start.recycler;
 
-import android.content.Context;
 import android.graphics.Rect;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import timber.log.Timber;
 
 /**
  * Custom ItemDecorator class for Recyclerview

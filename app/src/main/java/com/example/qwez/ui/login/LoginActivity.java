@@ -1,31 +1,20 @@
 package com.example.qwez.ui.login;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
-import com.example.qwez.base.BaseActivity;
 import com.example.qwez.base.BaseActivityFragment;
-import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.bus.event.SignupEvent;
 import com.example.qwez.entity.ErrorCarrier;
-import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import dagger.android.AndroidInjection;
-import timber.log.Timber;
-
-import static com.example.qwez.ui.dialog.CustomMaterialDialog.loading;
 
 public class LoginActivity extends BaseActivityFragment {
 

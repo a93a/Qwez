@@ -1,11 +1,11 @@
 package com.example.qwez.repository.local;
 
-import java.util.List;
-
 import androidx.room.Dao;
 import androidx.room.Query;
+
+import java.util.List;
+
 import io.reactivex.Completable;
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 /**

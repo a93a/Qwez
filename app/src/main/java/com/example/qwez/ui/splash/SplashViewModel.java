@@ -5,9 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.qwez.base.BaseViewModel;
-import com.example.qwez.interactor.FirstTimeInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
-import com.example.qwez.repository.sharedpref.rxwrapper.SharedPrefsWrapper;
 import com.example.qwez.router.LoginRouter;
 import com.example.qwez.router.StartRouter;
 import com.google.firebase.auth.FirebaseUser;

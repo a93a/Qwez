@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.qwez.R;
 import com.example.qwez.bus.RxBus;
 
 import org.jetbrains.annotations.NotNull;

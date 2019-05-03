@@ -2,7 +2,6 @@ package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
 import com.example.qwez.repository.local.Game;
-import com.example.qwez.repository.local.GameRepository;
 import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.repository.opentdb.OpenTDBType;
 import com.example.qwez.repository.opentdb.entity.Question;
@@ -11,7 +10,6 @@ import com.example.qwez.util.Difficulty;
 import com.example.qwez.util.QuestionC;
 import com.example.qwez.util.QuestionConverter;
 import com.example.qwez.util.QuestionType;
-import com.facebook.stetho.common.ArrayListAccumulator;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -22,11 +20,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +27,6 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;

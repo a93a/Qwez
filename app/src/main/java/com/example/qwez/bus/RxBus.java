@@ -7,7 +7,6 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
 import java.lang.annotation.Retention;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,9 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
-import timber.log.Timber;
 
-import static java.lang.Enum.valueOf;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**

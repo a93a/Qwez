@@ -2,6 +2,10 @@ package com.example.qwez.interactor;
 
 import android.content.Context;
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameDatabase;
 import com.example.qwez.repository.local.GameRepository;
@@ -24,9 +28,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-import androidx.room.Room;
-import androidx.test.core.app.ApplicationProvider;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.plugins.RxJavaPlugins;
@@ -36,7 +37,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GetQuestionsInteractorTest {
 

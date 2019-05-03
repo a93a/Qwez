@@ -1,40 +1,30 @@
 package com.example.qwez.ui.question;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Layout;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.repository.local.Question;
-import com.example.qwez.util.CountDownTimer;
 import com.example.qwez.util.Extras;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import dagger.android.AndroidInjection;
-import timber.log.Timber;
 
 public class QuestionActivity extends BaseActivity{
 

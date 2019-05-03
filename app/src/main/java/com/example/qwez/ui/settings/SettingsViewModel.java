@@ -10,8 +10,6 @@ import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.router.LoginRouter;
 
-import timber.log.Timber;
-
 public class SettingsViewModel extends BaseViewModel {
 
     private final MutableLiveData<Boolean> logout = new MutableLiveData<>();

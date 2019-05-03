@@ -1,11 +1,9 @@
 package com.example.qwez.repository.firebase.rxwrapper;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import io.reactivex.Completable;
-import io.reactivex.schedulers.Schedulers;
 
 public final class FirebaseUserWrapper {
 

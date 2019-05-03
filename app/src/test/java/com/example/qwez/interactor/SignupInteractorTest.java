@@ -1,12 +1,8 @@
 package com.example.qwez.interactor;
 
-import androidx.appcompat.widget.LinearLayoutCompat;
-
 import com.example.qwez.RxResources;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -17,10 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import io.reactivex.Completable;
 import io.reactivex.Maybe;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

@@ -1,7 +1,5 @@
 package com.example.qwez.repository.firebase;
 
-import android.util.Log;
-
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
@@ -10,19 +8,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import androidx.annotation.NonNull;
-
-import java.util.Optional;
-
-import butterknife.OnClick;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
-import timber.log.Timber;
 
 /**
  * Firebase repository class to handle all Firebase operations

@@ -1,9 +1,5 @@
 package com.example.qwez.validator;
 
-import android.util.Patterns;
-
-import androidx.annotation.NonNull;
-
 import java.util.regex.Pattern;
 
 /**

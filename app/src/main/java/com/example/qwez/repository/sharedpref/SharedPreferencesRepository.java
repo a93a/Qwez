@@ -1,7 +1,6 @@
 package com.example.qwez.repository.sharedpref;
 
 import com.example.qwez.repository.sharedpref.rxwrapper.SharedPrefsWrapper;
-import com.example.qwez.repository.sharedpref.rxwrapper.StringPreference;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;

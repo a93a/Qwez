@@ -2,12 +2,9 @@ package com.example.qwez.repository;
 
 import java.io.IOException;
 
-import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
-import timber.log.Timber;
 
 public abstract class ConnectivityInterceptor implements Interceptor {
 

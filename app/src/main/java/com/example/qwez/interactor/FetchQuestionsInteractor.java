@@ -2,7 +2,6 @@ package com.example.qwez.interactor;
 
 import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
-import com.example.qwez.repository.local.Question;
 import com.example.qwez.repository.opentdb.OpenTDBType;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
@@ -10,16 +9,8 @@ import com.example.qwez.util.QuestionC;
 import com.example.qwez.util.QuestionConverter;
 import com.example.qwez.util.QuestionType;
 
-import java.util.List;
-
 import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
-import io.reactivex.Observable;
-import io.reactivex.ObservableConverter;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 /**
  * Interactor to get Questions from API, and store them in local database

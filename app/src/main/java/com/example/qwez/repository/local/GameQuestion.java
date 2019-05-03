@@ -1,9 +1,9 @@
 package com.example.qwez.repository.local;
 
-import java.util.List;
-
 import androidx.room.Embedded;
 import androidx.room.Relation;
+
+import java.util.List;
 
 /**
  * Nested fields Class with {@link @Entity #Game} as @Embedded object and @Relation (as list)

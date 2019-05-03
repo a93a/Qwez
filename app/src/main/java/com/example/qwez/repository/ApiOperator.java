@@ -1,15 +1,7 @@
 package com.example.qwez.repository;
 
-import com.example.qwez.entity.ErrorCarrier;
-import com.example.qwez.util.Extras;
-import com.google.android.gms.common.api.ApiException;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
 import io.reactivex.ObservableOperator;
 import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.Response;
 
