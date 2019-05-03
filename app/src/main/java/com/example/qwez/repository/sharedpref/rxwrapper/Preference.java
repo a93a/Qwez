@@ -5,8 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
 
 public final class Preference<T> implements PreferenceType<T> {
 

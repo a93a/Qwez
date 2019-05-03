@@ -1,10 +1,9 @@
 package com.example.qwez.repository.sharedpref.rxwrapper;
 
-import androidx.annotation.NonNull;
-
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
+import androidx.annotation.NonNull;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
