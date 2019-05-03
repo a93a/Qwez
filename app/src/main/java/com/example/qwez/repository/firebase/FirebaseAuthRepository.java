@@ -105,5 +105,11 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
                 .subscribeOn(Schedulers.io());
     }
 
+    @Override
+    public Completable reAuthenticateUser(FirebaseUser firebaseUser, String email, String password) {
+        return FirebaseUserWrapper.reAuthenticateEmail(firebaseUser,email,password)
+                .subscribeOn(Schedulers.io());
+    }
+
 
 }

@@ -22,4 +22,5 @@
     <string name="enter_new_password">Enter new password</string>
     <string name="repeat_new_password">Repeat new password</string>
     <string name="err_text_dialog">Please choose a category and a difficulty</string>
+    <string name="enter_old_pass">Enter old pass</string>
 </resources>

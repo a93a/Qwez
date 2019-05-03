@@ -20,34 +20,36 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SettingsFragment extends PreferenceFragmentCompat{
 
-    private Preference logout;
-    private Preference changePass;
-    private Preference changenick;
-
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
 
-        logout = findPreference("log_out_preference");
-        logout.setOnPreferenceClickListener(preference -> {
-            disable(logout);
-            RxBus.publish(RxBus.TRY_LOG_OUT, new LogoutEvent());
-            return true;
-        });
+        final Preference logout = findPreference("log_out_preference");
+        if (logout != null) {
+            logout.setOnPreferenceClickListener(preference -> {
+                disable(logout);
+                RxBus.publish(RxBus.TRY_LOG_OUT, new LogoutEvent());
+                return true;
+            });
+        }
 
-        changePass = findPreference("change_password_preference");
-        changePass.setOnPreferenceClickListener(preference -> {
-            disable(changePass);
-            RxBus.publish(RxBus.TRY_CHANGE_PASSWORD, new ChangePassowordEvent(null));
-            return true;
-        });
+        final Preference changePass = findPreference("change_password_preference");
+        if (changePass != null) {
+            changePass.setOnPreferenceClickListener(preference -> {
+                disable(changePass);
+                RxBus.publish(RxBus.TRY_CHANGE_PASSWORD, new ChangePassowordEvent(null));
+                return true;
+            });
+        }
 
-        changenick = findPreference("change_username_preference");
-        changenick.setOnPreferenceClickListener(preference -> {
-            disable(changenick);
-            RxBus.publish(RxBus.TRY_CHANGE_NICK, new ChangeNickEvent());
-            return true;
-        });
+        final Preference changenick = findPreference("change_username_preference");
+        if (changenick != null) {
+            changenick.setOnPreferenceClickListener(preference -> {
+                disable(changenick);
+                RxBus.publish(RxBus.TRY_CHANGE_NICK, new ChangeNickEvent());
+                return true;
+            });
+        }
 
     }
 

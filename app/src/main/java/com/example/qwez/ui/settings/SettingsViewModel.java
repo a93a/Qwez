@@ -10,12 +10,14 @@ import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.router.LoginRouter;
 
+import timber.log.Timber;
+
 public class SettingsViewModel extends BaseViewModel {
 
     private final MutableLiveData<Boolean> logout = new MutableLiveData<>();
     private final MutableLiveData<Boolean> passChanged = new MutableLiveData<>();
     private final MutableLiveData<Boolean> nickChange = new MutableLiveData<>();
-    
+
     private final LogoutUserInteractor logoutUserInteractor;
     private final ChangeUserPasswordInteractor changeUserPasswordInteractor;
     private final LoginRouter loginRouter;
@@ -37,17 +39,20 @@ public class SettingsViewModel extends BaseViewModel {
                 .subscribe(this::onLogout,this::onError);
     }
 
-    public void changePassword(String newPass){
-        disposable = changeUserPasswordInteractor.changeUserPassword(newPass)
+    public void changePassword(String oldPass, String newPass){
+        progress.setValue(true);
+        disposable = changeUserPasswordInteractor.changeUserPassword(oldPass,newPass)
                 .subscribe(this::onPassChange,this::onError);
     }
 
     public void changeNick(String newNick){
+        progress.setValue(true);
         disposable = changeUserNickInteractor.ChangeNick(newNick)
                 .subscribe(this::onNick,this::onError);
     }
 
     private void onNick() {
+        progress.setValue(false);
         nickChange.setValue(true);
     }
 
@@ -76,4 +81,7 @@ public class SettingsViewModel extends BaseViewModel {
     public MutableLiveData<Boolean> nickChange(){
         return nickChange;
     }
+
 }
+
+

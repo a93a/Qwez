@@ -43,5 +43,10 @@ public interface FirebaseAuthRepositoryType {
      */
     Completable changeUserNick(FirebaseUser firebaseUser, String newNick);
 
+    /**
+     * Re-authenticate current logged in user
+     */
+    Completable reAuthenticateUser(FirebaseUser firebaseUser, String email, String password);
+
 }
 

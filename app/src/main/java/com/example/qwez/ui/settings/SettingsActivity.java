@@ -51,20 +51,23 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void onError(ErrorCarrier errorCarrier) {
+        Timber.d("here here %s",errorCarrier.message);
         MaterialDialog.Builder builder = CustomMaterialDialog.error("Error", this, errorCarrier.message);
         showCustomDialog(builder);
     }
 
     private void onNickChanged(Boolean changed) {
-        Timber.d("WOAH");
+        Timber.d("here here %s",changed);
         MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Nickname changed.", this);
         showCustomDialog(builder);
     }
 
     private void onPasswordChange(Boolean changed) {
+        Timber.d("here here %s",changed);
         if(changed){
             MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Password changed successful!", this)
                     .onPositive((dialog, which) -> dialog.dismiss());
+            showCustomDialog(builder);
         }
     }
 
@@ -89,6 +92,7 @@ public class SettingsActivity extends BaseActivity {
             final View stdView = factory.inflate(R.layout.dialog_change_pass, null);
             LinearLayout layout = stdView.findViewById(R.id.change_pass_linear);
 
+            TextView oldpass = layout.findViewById(R.id.dialog_cp_pass_old);
             TextView pass1 = layout.findViewById(R.id.dialog_cp_pass_one);
             TextView pass2 = layout.findViewById(R.id.dialog_cp_pass_two);
             TextInputLayout input1 = layout.findViewById(R.id.dialog_cp_input_one);
@@ -96,14 +100,17 @@ public class SettingsActivity extends BaseActivity {
 
             MaterialDialog.Builder builder = CustomMaterialDialog.customDialog("Change your password", this, layout)
                     .onNegative((dialog, which) -> dialog.dismiss())
-                    .onNegative((dialog, which) -> {
+                    .onPositive((dialog, which) -> {
+                        Timber.d("In stream");
+
                         dialog.dismiss();
+                        String oldPass = oldpass.getText().toString();
                         String pass1text = pass1.getText().toString();
                         String pass2text = pass2.getText().toString();
                         PasswordValidate passwordValidate = new PasswordValidate();
                         if(passwordValidate.isValid(pass1text)){
                             if(pass1text.equals(pass2text)){
-                                viewModel.changePassword(pass1text);
+                                viewModel.changePassword(oldPass,pass1text);
                             }else{
                                 input1.setError("Passwords does not equal");
                                 input2.setError("Passwords does not equal");

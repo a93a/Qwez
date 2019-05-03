@@ -8,6 +8,23 @@
     android:id="@+id/change_pass_linear">
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dialog_cp_input_old"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true"
+        android:hint="@string/enter_old_pass">
+
+    <EditText
+        android:id="@+id/dialog_cp_pass_old"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        tools:ignore="Autofill,LabelFor"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dialog_cp_input_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
