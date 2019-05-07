@@ -22,7 +22,7 @@ public final class FirebaseDBWrapper {
 
     public static Flowable<DocumentSnapshot> observeDocumentReference(@NonNull final DocumentReference reference,
                                                                       @NonNull BackpressureStrategy strategy,
-                                                                      @NonNull final Activity activity){
+                                                                          @NonNull final Activity activity){
         return observeDocumentReference(reference, MetadataChanges.EXCLUDE,strategy, activity);
     }
 

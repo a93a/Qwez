@@ -1,15 +1,10 @@
 package com.example.qwez.repository.firebase.rxwrapper;
 
-import androidx.annotation.NonNull;
-
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.internal.operators.parallel.ParallelFromPublisher;
 
 public final class FirebaseUserWrapper {
 
@@ -25,9 +20,7 @@ public final class FirebaseUserWrapper {
      * @return Completable emitter
      */
     public static Completable updateUserPassword(FirebaseUser firebaseUser, String newPassord){
-        return Completable.create(emitter -> {
-            CompletableTask.assign(emitter, firebaseUser.updatePassword(newPassord));
-        });
+        return Completable.create(emitter -> CompletableTask.assign(emitter, firebaseUser.updatePassword(newPassord)));
     }
 
     /**
@@ -37,9 +30,7 @@ public final class FirebaseUserWrapper {
      * @return Completable Emitter
      */
     public static Completable updateUserProfile(FirebaseUser firebaseUser, UserProfileChangeRequest request){
-        return Completable.create(emitter -> {
-            CompletableTask.assign(emitter, firebaseUser.updateProfile(request));
-        });
+        return Completable.create(emitter -> CompletableTask.assign(emitter, firebaseUser.updateProfile(request)));
     }
 
     /**
@@ -49,14 +40,10 @@ public final class FirebaseUserWrapper {
      * when trying one of these aforementioned operations. (Re-authentication is needed after certain time passed since
      * last authenticated)
      * @param firebaseUser user to re-authenticate
-     * @param email user email address
-     * @param password user password
+     * @param authCredential AuthCredential of email&password
      * @return Completable Emitter
      */
-    public static Completable reAuthenticateEmail(FirebaseUser firebaseUser, String email, String password){
-        AuthCredential credential = EmailAuthProvider.getCredential(email,password);
-        return Completable.create(emitter -> {
-            CompletableTask.assign(emitter, firebaseUser.reauthenticate(credential));
-        });
+    public static Completable reAuth(FirebaseUser firebaseUser, AuthCredential authCredential){
+        return Completable.create(emitter -> CompletableTask.assign(emitter, firebaseUser.reauthenticate(authCredential)));
     }
 }

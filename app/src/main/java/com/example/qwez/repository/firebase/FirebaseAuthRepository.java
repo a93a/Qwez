@@ -3,7 +3,9 @@ package com.example.qwez.repository.firebase;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -107,9 +109,14 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
 
     @Override
     public Completable reAuthenticateUser(FirebaseUser firebaseUser, String email, String password) {
-        return FirebaseUserWrapper.reAuthenticateEmail(firebaseUser,email,password)
+        AuthCredential authCredential = EmailAuthProvider.getCredential(email, password);
+        return FirebaseUserWrapper.reAuth(firebaseUser,authCredential)
                 .subscribeOn(Schedulers.io());
     }
 
+    @Override
+    public Observable<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password) {
+        return null;
+    }
 
 }

@@ -22,6 +22,10 @@ import static org.mockito.Mockito.when;
 @RunWith(JUnit4.class)
 public class ChangeUserPasswordInteractorTest {
 
+    private static final String EMAIL = "test@test.se";
+    private static final String PASS = "test123";
+    private static final String NEW_PASS = "test1234";
+
     @ClassRule
     public static final RxResources rxres = new RxResources();
 
@@ -42,14 +46,17 @@ public class ChangeUserPasswordInteractorTest {
     @Test
     public void changeUserPassword() {
         when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
-        when(firebaseAuthRepositoryType.changeUserPassword(firebaseUser, "test123")).thenReturn(Completable.complete());
-        changeUserPasswordInteractor.changeUserPassword("test123")
+        when(firebaseAuthRepositoryType.changeUserPassword(firebaseUser, NEW_PASS)).thenReturn(Completable.complete());
+        when(firebaseUser.getEmail()).thenReturn(EMAIL);
+        when(firebaseAuthRepositoryType.reAuthenticateUser(firebaseUser, EMAIL, PASS)).thenReturn(Completable.complete());
+
+        changeUserPasswordInteractor.changeUserPassword(PASS,NEW_PASS)
                 .test()
                 .assertNoErrors()
                 .assertComplete();
 
         verify(firebaseAuthRepositoryType).getCurrentUser();
-        verify(firebaseAuthRepositoryType).changeUserPassword(firebaseUser, "test123");
+        verify(firebaseAuthRepositoryType).changeUserPassword(firebaseUser, NEW_PASS);
 
     }
 }

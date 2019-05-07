@@ -29,7 +29,7 @@ public final class CompletableTask implements OnSuccessListener, OnFailureListen
     public static <T> void assign(CompletableEmitter emitter, Task<T> task){
         CompletableTask completeTask = new CompletableTask(emitter);
         task.addOnCompleteListener(completeTask);
-        task.addOnCompleteListener(completeTask);
+        task.addOnSuccessListener(completeTask);
         task.addOnFailureListener(completeTask);
     }
 

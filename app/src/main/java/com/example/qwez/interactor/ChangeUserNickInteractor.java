@@ -4,6 +4,7 @@ import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 public class ChangeUserNickInteractor {
 
@@ -15,7 +16,10 @@ public class ChangeUserNickInteractor {
 
     public Completable ChangeNick(String nick){
         return firebaseAuthRepositoryType.getCurrentUser()
-                .flatMapCompletable(firebaseUser -> firebaseAuthRepositoryType.changeUserNick(firebaseUser, nick))
+                .doOnNext(firebaseUser -> Timber.d("shak 1"))
+                .flatMapCompletable(firebaseUser -> firebaseAuthRepositoryType.changeUserNick(firebaseUser, nick)
+                .doOnComplete(() -> Timber.d("shak2")))
+                .doOnComplete(() -> Timber.d("3"))
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

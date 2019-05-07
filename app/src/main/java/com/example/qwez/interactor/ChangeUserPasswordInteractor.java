@@ -3,9 +3,7 @@ package com.example.qwez.interactor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 
 import io.reactivex.Completable;
-import io.reactivex.CompletableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 /**
  * Interactor to change user password
@@ -25,13 +23,12 @@ public class ChangeUserPasswordInteractor {
      * @return Completable that emits operation result
      */
     public Completable changeUserPassword(String oldPass, String newPass){
-        Timber.d("In stream");
         //version force re auth directly. No checking
-        return firebaseAuthRepositoryType.getCurrentUser()
-                .doOnNext(firebaseUser -> Timber.d("In stream %s", firebaseUser.getDisplayName()))
+        return firebaseAuthRepositoryType.getCurrentUser().take(1)  //limit to 1 firebaseuser to complete stream
                 .flatMapCompletable(fu -> firebaseAuthRepositoryType.reAuthenticateUser(fu,fu.getEmail(),oldPass)
-                        .andThen((CompletableSource) co -> firebaseAuthRepositoryType.changeUserPassword(fu, newPass)))
+                        .andThen(firebaseAuthRepositoryType.changeUserPassword(fu, newPass)))
                 .observeOn(AndroidSchedulers.mainThread());
+
 
         /*
         //version checking if need to auth first

@@ -21,8 +21,6 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 public class SettingsActivity extends BaseActivity {
 
     @Inject
@@ -51,19 +49,16 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void onError(ErrorCarrier errorCarrier) {
-        Timber.d("here here %s",errorCarrier.message);
         MaterialDialog.Builder builder = CustomMaterialDialog.error("Error", this, errorCarrier.message);
         showCustomDialog(builder);
     }
 
     private void onNickChanged(Boolean changed) {
-        Timber.d("here here %s",changed);
         MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Nickname changed.", this);
         showCustomDialog(builder);
     }
 
     private void onPasswordChange(Boolean changed) {
-        Timber.d("here here %s",changed);
         if(changed){
             MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Password changed successful!", this)
                     .onPositive((dialog, which) -> dialog.dismiss());
@@ -101,7 +96,6 @@ public class SettingsActivity extends BaseActivity {
             MaterialDialog.Builder builder = CustomMaterialDialog.customDialog("Change your password", this, layout)
                     .onNegative((dialog, which) -> dialog.dismiss())
                     .onPositive((dialog, which) -> {
-                        Timber.d("In stream");
 
                         dialog.dismiss();
                         String oldPass = oldpass.getText().toString();

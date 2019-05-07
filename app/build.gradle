@@ -72,6 +72,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.2.1'
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-firestore:18.2.0'
+    testImplementation 'com.google.firebase:firebase-auth:16.2.1'
+    testImplementation 'com.google.firebase:firebase-core:16.0.8'
+    testImplementation 'com.google.firebase:firebase-firestore:18.2.0'
 
     //rxjava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
@@ -138,6 +141,8 @@ dependencies {
 
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //cardview
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //glide
@@ -147,9 +152,8 @@ dependencies {
     //stetho
     implementation 'com.facebook.stetho:stetho:1.5.1'
 
-    //apache commons language
+    //apache commons language.
     implementation 'org.apache.commons:commons-text:1.6'
-
 
 
 }

@@ -181,6 +181,9 @@ public class StartActivity extends BaseActivity{
     @Override
     protected void onResume() {
         super.onResume();
+
+        viewModel.getUser();
+
         adapter.setClickable(true);
         button.setClickable(true);
     }

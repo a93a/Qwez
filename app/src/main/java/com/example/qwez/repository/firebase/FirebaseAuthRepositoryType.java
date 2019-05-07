@@ -48,5 +48,10 @@ public interface FirebaseAuthRepositoryType {
      */
     Completable reAuthenticateUser(FirebaseUser firebaseUser, String email, String password);
 
+    /**
+     * Re-authenticate current logged in user
+     */
+    Observable<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password);
+
 }
 
