@@ -51,10 +51,10 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     OkHttpClient okHttpClient(HttpLoggingInterceptor httpLoggingInterceptor){
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.newBuilder()
-                .addInterceptor(httpLoggingInterceptor);
-        return okHttpClient;
+        return new OkHttpClient()
+                .newBuilder()
+                .addInterceptor(httpLoggingInterceptor)
+                .build();
     }
 
     /**

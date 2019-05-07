@@ -11,12 +11,7 @@ import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePassowordEvent;
 import com.example.qwez.bus.event.LogoutEvent;
-
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import com.example.qwez.util.ViewUtil;
 
 public class SettingsFragment extends PreferenceFragmentCompat{
 
@@ -60,11 +55,7 @@ public class SettingsFragment extends PreferenceFragmentCompat{
 
     @SuppressLint("CheckResult")
     private void disable(Preference preference){
-        preference.setEnabled(false);
-        Observable.timer(500, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> preference.setEnabled(true));
+        ViewUtil.disablePreferenceShort(preference);
     }
 
 }

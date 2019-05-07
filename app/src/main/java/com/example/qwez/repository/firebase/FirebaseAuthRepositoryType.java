@@ -51,7 +51,7 @@ public interface FirebaseAuthRepositoryType {
     /**
      * Re-authenticate current logged in user
      */
-    Observable<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password);
+    Maybe<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password);
 
 }
 

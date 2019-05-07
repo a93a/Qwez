@@ -1,5 +1,6 @@
 package com.example.qwez.repository.firebase;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
@@ -107,16 +108,20 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
                 .subscribeOn(Schedulers.io());
     }
 
+    private AuthCredential getAuthCredentialForEmail(String email, String password){
+        return EmailAuthProvider.getCredential(email, password);
+    }
+
     @Override
     public Completable reAuthenticateUser(FirebaseUser firebaseUser, String email, String password) {
-        AuthCredential authCredential = EmailAuthProvider.getCredential(email, password);
-        return FirebaseUserWrapper.reAuth(firebaseUser,authCredential)
+        return FirebaseUserWrapper.reAuth(firebaseUser,getAuthCredentialForEmail(email, password))
                 .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public Observable<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password) {
-        return null;
+    public Maybe<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password) {
+        return FirebaseUserWrapper.reAuthAndGetUser(firebaseUser,getAuthCredentialForEmail(email, password))
+                .subscribeOn(Schedulers.io());
     }
 
 }

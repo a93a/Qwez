@@ -26,7 +26,7 @@ public final class MaybeTask<T> implements OnSuccessListener<T>, OnFailureListen
      * @param task Task to be wrapped
      * @param <T> Task type
      */
-    public static <T> void assignOnTask(MaybeEmitter<? super T> emitter, Task<T> task) {
+    public static <T> void assign(MaybeEmitter<? super T> emitter, Task<T> task) {
         MaybeTask<T> handler = new MaybeTask<T>(emitter);
         task.addOnSuccessListener(handler);
         task.addOnFailureListener(handler);

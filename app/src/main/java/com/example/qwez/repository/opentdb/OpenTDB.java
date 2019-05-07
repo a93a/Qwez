@@ -9,6 +9,7 @@ import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * OPENTDB API Repository
@@ -35,11 +36,11 @@ public class OpenTDB implements OpenTDBType {
                                                         int category,
                                                         String difficulty,
                                                         String type) {
-        return Single.fromObservable(
-                api
+        return Single.fromObservable(api
                         .getQuestions(amount, category, difficulty, QuestionType.MULTIPLE_CHOICE.getType())
-                        .lift(new ApiOperator<>())
-                        .map(ResponseBody::getQuestions)
+                .lift(new ApiOperator<>())
+                .doOnNext(body -> Timber.d("Q ERROR IS: %s", body.getQuestions().size()))
+                .map(ResponseBody::getQuestions)
                         .subscribeOn(Schedulers.io())
         );
     }

@@ -1,10 +1,13 @@
 package com.example.qwez.repository.firebase.rxwrapper;
 
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import io.reactivex.Completable;
+import io.reactivex.Maybe;
+import io.reactivex.Observable;
 
 public final class FirebaseUserWrapper {
 
@@ -45,5 +48,21 @@ public final class FirebaseUserWrapper {
      */
     public static Completable reAuth(FirebaseUser firebaseUser, AuthCredential authCredential){
         return Completable.create(emitter -> CompletableTask.assign(emitter, firebaseUser.reauthenticate(authCredential)));
+    }
+
+    /**
+     * Re-authenticate User.
+     *
+     * If trying to either change user primary email address or password, you need to reauthenticate user
+     * when trying one of these aforementioned operations. (Re-authentication is needed after certain time passed since
+     * last authenticated)
+     * @param firebaseUser user to re-authenticate
+     * @param authCredential AuthCredential of email&password
+     * @return Completable Emitter
+     */
+    public static Maybe<AuthResult> reAuthAndGetUser(FirebaseUser firebaseUser, AuthCredential authCredential){
+        return Maybe.create(emitter -> {
+            MaybeTask.assign(emitter, firebaseUser.reauthenticateAndRetrieveData(authCredential));
+        });
     }
 }

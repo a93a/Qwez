@@ -24,7 +24,7 @@ public final class FirebaseAuthWrapper {
      * @return Maybe emitter
      */
     public static Maybe<AuthResult> signInUserWithEmailAndPassword(FirebaseAuth firebaseAuth, String email, String password){
-        return Maybe.create(emitter -> MaybeTask.assignOnTask(emitter, firebaseAuth.signInWithEmailAndPassword(email, password)));
+        return Maybe.create(emitter -> MaybeTask.assign(emitter, firebaseAuth.signInWithEmailAndPassword(email, password)));
     }
 
     /**
@@ -36,7 +36,7 @@ public final class FirebaseAuthWrapper {
      * @return Maybe emitter
      */
     public static Maybe<AuthResult> createUserEmailAndPassword(FirebaseAuth firebaseAuth, String email, String password){
-        return Maybe.create(emitter -> MaybeTask.assignOnTask(emitter, firebaseAuth.createUserWithEmailAndPassword(email, password)));
+        return Maybe.create(emitter -> MaybeTask.assign(emitter, firebaseAuth.createUserWithEmailAndPassword(email, password)));
     }
 
     /**

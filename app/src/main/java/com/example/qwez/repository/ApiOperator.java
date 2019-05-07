@@ -31,7 +31,7 @@ public final class ApiOperator<T> implements ObservableOperator<T, Response<T>> 
             public void onNext(Response<T> tResponse) {
                 dispose();
                 if(!tResponse.isSuccessful()){
-                    observer.onError(new Exception(tResponse.message()));
+                    observer.onError(new Exception("ApiOperator "+tResponse.message()));
                 }else{
                     observer.onNext(tResponse.body());
                     observer.onComplete();
@@ -41,7 +41,7 @@ public final class ApiOperator<T> implements ObservableOperator<T, Response<T>> 
             @Override
             public void onError(Throwable e) {
                 if (!isDisposed()) {
-                    observer.onError(e);
+                    observer.onError(new Throwable("ApiOperator: "+e.getMessage()));
                 }
             }
 

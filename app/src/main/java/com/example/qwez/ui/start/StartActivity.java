@@ -21,6 +21,7 @@ import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
+import com.example.qwez.util.ViewUtil;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.ui.start.recycler.CustomAdapter;
 import com.example.qwez.ui.start.recycler.GameAdapter;
@@ -127,7 +128,7 @@ public class StartActivity extends BaseActivity{
 
     @OnClick(R.id.button_add_question)
     void onClick(){
-        button.setClickable(false);
+        ViewUtil.disableViewShort(button);
 
         LayoutInflater factory = LayoutInflater.from(this);
         final View stdView = factory.inflate(R.layout.dialog_add_question, null);
@@ -181,11 +182,7 @@ public class StartActivity extends BaseActivity{
     @Override
     protected void onResume() {
         super.onResume();
-
         viewModel.getUser();
-
-        adapter.setClickable(true);
-        button.setClickable(true);
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.example.qwez.util.QuestionType;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 /**
  * Interactor to get Questions from API, and store them in local database
@@ -40,6 +41,7 @@ public class FetchQuestionsInteractor {
                         difficulty.getDifficulty(),
                         QuestionType.MULTIPLE_CHOICE.getType())
                 .map(QuestionConverter::toDatabase)
+                .doOnError(throwable -> Timber.d("Q ERROR IS: %s", throwable.getMessage()))
                 .flatMap(questions -> gameRepositoryType.addGameReturnId(new Game(Category.getAsString(category),Difficulty.getAsString(difficulty)))
                         .map(aLong -> {
                             questions.forEach(question -> question.setqId((int) (long)aLong));
