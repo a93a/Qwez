@@ -2,10 +2,7 @@ sudo: required
 language: android
 jdk: oraclejdk8
 android:
-    licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+' 
+    
   components:
     - tools
     - tools
