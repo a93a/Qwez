@@ -2,6 +2,8 @@ package com.example.qwez.interactor;
 
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
@@ -15,11 +17,9 @@ public class ChangeUserNickInteractor {
     }
 
     public Completable ChangeNick(String nick){
-        return firebaseAuthRepositoryType.getCurrentUser()
-                .doOnNext(firebaseUser -> Timber.d("shak 1"))
-                .flatMapCompletable(firebaseUser -> firebaseAuthRepositoryType.changeUserNick(firebaseUser, nick)
-                .doOnComplete(() -> Timber.d("shak2")))
-                .doOnComplete(() -> Timber.d("3"))
+        return firebaseAuthRepositoryType.getCurrentUser().take(1)
+                .flatMapCompletable(firebaseUser -> firebaseAuthRepositoryType.changeUserNick(firebaseUser, nick))
+                .doOnComplete(() -> Timber.d("this complete"))
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

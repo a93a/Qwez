@@ -54,8 +54,10 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void onNickChanged(Boolean changed) {
-        MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Nickname changed.", this);
-        showCustomDialog(builder);
+        if(changed){
+            MaterialDialog.Builder builder = CustomMaterialDialog.okDialog("Nickname changed.", this);
+            showCustomDialog(builder);
+        }
     }
 
     private void onPasswordChange(Boolean changed) {
