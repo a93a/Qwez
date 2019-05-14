@@ -71,23 +71,23 @@ public class SignupFragment extends BaseFragment {
         boolean validEmail = emailValidate.isValid(e);
         if (!validEmail){
             layoutEmail.setError(emailValidate.getErrorMessage());
+            return false;
         }
         EmptyValidate emptyValidate = new EmptyValidate();
         boolean validNick = emptyValidate.isValid(n);
         if(!validNick){
             layoutNick.setError(emptyValidate.getErrorMessage());
+            return false;
         }
         PasswordValidate passwordValidate = new PasswordValidate();
         boolean pass1valid = passwordValidate.isValid(p1);
         boolean passEqual = p1.equals(p2);
         if(pass1valid){
             if(!passEqual){
-                layoutPass.setError(PASS_NOT_EQUAL);
                 layoutPassAgain.setError(PASS_NOT_EQUAL);
             }
         }else{
             layoutPass.setError(passwordValidate.getErrorMessage());
-            layoutPassAgain.setError(passwordValidate.getErrorMessage());
         }
         return validEmail && validNick && pass1valid && passEqual;
     }

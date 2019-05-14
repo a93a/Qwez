@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.qwez.interactor.LoginUserInteractor;
+import com.example.qwez.interactor.RememberUserInteractor;
 import com.example.qwez.interactor.SignupInteractor;
 import com.example.qwez.router.StartRouter;
 
@@ -14,7 +15,9 @@ public class LoginVMFactory implements ViewModelProvider.Factory {
     private final SignupInteractor signupInteractor;
     private final StartRouter startRouter;
 
-    public LoginVMFactory(LoginUserInteractor loginUserInteractor, SignupInteractor signupInteractor, StartRouter startRouter) {
+    public LoginVMFactory(LoginUserInteractor loginUserInteractor,
+                          SignupInteractor signupInteractor,
+                          StartRouter startRouter) {
         this.loginUserInteractor = loginUserInteractor;
         this.signupInteractor = signupInteractor;
         this.startRouter = startRouter;

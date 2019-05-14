@@ -3,18 +3,24 @@ package com.example.qwez.ui.login;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivityFragment;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.bus.event.LoginAttached;
 import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.bus.event.SignupEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 
 import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
 public class LoginActivity extends BaseActivityFragment {
 
@@ -46,10 +52,12 @@ public class LoginActivity extends BaseActivityFragment {
         RxBus.subscribe(RxBus.SHOW_SIGN_UP_FRAGMENT, this, object -> {
             replaceFragment(new SignupFragment(),R.id.frag_container,true);
         });
+
         RxBus.subscribe(RxBus.TRY_LOG_IN, this, o -> {
             LoginEvent loginEvent = (LoginEvent) o;
             viewModel.logInUser(loginEvent.getEmail(), loginEvent.getPassword());
         });
+
         RxBus.subscribe(RxBus.TRY_SIGN_UP, this, o -> {
             SignupEvent signupEvent = (SignupEvent) o;
             viewModel.signupUser(signupEvent.getEmail(),signupEvent.getNick(),signupEvent.getPassword());

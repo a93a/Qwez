@@ -8,10 +8,12 @@ public class LoginEvent {
 
     private final String email;
     private final String password;
+    private final boolean rememberMe;
 
-    public LoginEvent(String email, String password) {
+    public LoginEvent(String email, String password, boolean rememberMe) {
         this.email = email;
         this.password = password;
+        this.rememberMe = rememberMe;
     }
 
     public String getEmail() {
@@ -20,5 +22,9 @@ public class LoginEvent {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isRememberMe() {
+        return rememberMe;
     }
 }

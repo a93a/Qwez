@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,19 +16,30 @@ import com.example.qwez.R;
 import com.example.qwez.base.BaseFragment;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.BooleanEvent;
+import com.example.qwez.bus.event.LoginAttached;
 import com.example.qwez.bus.event.LoginEvent;
+import com.example.qwez.interactor.RememberUserInteractor;
 import com.example.qwez.validator.EmailValidate;
 import com.google.android.material.textfield.TextInputLayout;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.observers.DisposableObserver;
+import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjection;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import timber.log.Timber;
 
 
 public class LoginFragment extends BaseFragment {
 
-    private static final int SHORTEST_ALLOWED_PASSWORD_LENGTH = 8;
+    @Inject
+    RememberUserInteractor interactor;
+
+    private Disposable disposable;
 
     @BindView(R.id.editText_email)
     EditText email;
@@ -45,10 +57,8 @@ public class LoginFragment extends BaseFragment {
     View line;
     @BindView(R.id.textView_signup)
     TextView bottomText;
-
-    private Observable<CharSequence> emailObservable;
-    private Observable<CharSequence> passObservable;
-    private DisposableObserver<Boolean> subscriber;
+    @BindView(R.id.checkBox)
+    CheckBox checkBox;
 
     @Override
     protected int getLayout() {
@@ -61,6 +71,30 @@ public class LoginFragment extends BaseFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AndroidSupportInjection.inject(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        disposable = interactor.getRememberIfExists()
+                .subscribe(this::onRemembered, this::onError);
+
+    }
+
+    private void onError(Throwable error){
+
+    }
+
+    private void onRemembered(String remembered){
+        email.setText(remembered);
+        checkBox.setChecked(true);
+    }
+
     @OnClick(R.id.button_signup)
     void signupClick(){
         RxBus.publish(RxBus.SHOW_SIGN_UP_FRAGMENT, new BooleanEvent(true));
@@ -70,8 +104,16 @@ public class LoginFragment extends BaseFragment {
     void loginClick(){
         String sEmail = email.getText().toString().trim();
         String sPass = password.getText().toString();
+        boolean rememberMe = checkBox.isChecked();
         if(validateForm(sEmail,sPass)){
-            RxBus.publish(RxBus.TRY_LOG_IN, new LoginEvent(sEmail,sPass));
+            Action action = () -> RxBus.publish(RxBus.TRY_LOG_IN, new LoginEvent(sEmail, sPass, rememberMe));
+            if(rememberMe){
+                disposable = interactor.setRemembered(sEmail)
+                        .subscribe(action);
+            }else{
+                disposable = interactor.dontRemember()
+                        .subscribe(action);
+            }
         }
     }
 
@@ -92,4 +134,11 @@ public class LoginFragment extends BaseFragment {
         return emailValid&&passValid;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(disposable != null && !disposable.isDisposed()){
+            disposable.dispose();
+        }
+    }
 }

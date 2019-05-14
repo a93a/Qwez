@@ -1,6 +1,8 @@
 package com.example.qwez.di;
 
 import com.example.qwez.ui.login.LoginActivity;
+import com.example.qwez.ui.login.LoginFragment;
+import com.example.qwez.ui.login.LoginFragmentModule;
 import com.example.qwez.ui.login.LoginModule;
 import com.example.qwez.ui.question.QuestionActivity;
 import com.example.qwez.ui.question.QuestionModule;
@@ -39,5 +41,9 @@ public abstract class BinderModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = QuestionModule.class)
     abstract QuestionActivity bindQuestionActivity();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = LoginFragmentModule.class)
+    abstract LoginFragment bindLoginFragment();
 
 }

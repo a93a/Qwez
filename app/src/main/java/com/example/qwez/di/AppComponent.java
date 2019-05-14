@@ -1,6 +1,7 @@
 package com.example.qwez.di;
 
 import com.example.qwez.App;
+import com.example.qwez.ui.login.LoginFragmentModule;
 import com.example.qwez.ui.login.LoginModule;
 import com.example.qwez.ui.question.QuestionModule;
 import com.example.qwez.ui.settings.SettingsModule;
@@ -27,7 +28,8 @@ import dagger.android.AndroidInjectionModule;
         LoginModule.class,
         SettingsModule.class,
         QuestionModule.class,
-        SharedPreferencesModule.class})
+        SharedPreferencesModule.class,
+        LoginFragmentModule.class})
 public interface AppComponent {
 
     @Component.Builder

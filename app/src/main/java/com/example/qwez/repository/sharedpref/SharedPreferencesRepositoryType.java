@@ -12,4 +12,14 @@ public interface SharedPreferencesRepositoryType {
 
     Completable setNotFirstTime(boolean setTo);
 
+    Single<Boolean> isRemembered();
+
+    Single<String> getRemembered();
+
+    Completable setRemembered(String toRemember);
+
+    Completable setNotRemember();
+
+    Completable setIsRemember(boolean remember);
+
 }

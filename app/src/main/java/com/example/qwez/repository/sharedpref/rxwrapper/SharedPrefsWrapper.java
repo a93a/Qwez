@@ -24,23 +24,10 @@ public final class SharedPrefsWrapper {
 
     private SharedPrefsWrapper(final SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
-        this.sharedPrefsChanges = Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
-                final OnSharedPreferenceChangeListener listener = new OnSharedPreferenceChangeListener() {
-                    @Override
-                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                        emitter.onNext(key);
-                    }
-                };
-                emitter.setCancellable(new Cancellable() {
-                    @Override
-                    public void cancel() throws Exception {
-                        sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener);
-                    }
-                });
-                sharedPreferences.registerOnSharedPreferenceChangeListener(listener);
-            }
+        this.sharedPrefsChanges = Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            final OnSharedPreferenceChangeListener listener = (sharedPreferences1, key) -> emitter.onNext(key);
+            emitter.setCancellable(() -> sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener));
+            sharedPreferences.registerOnSharedPreferenceChangeListener(listener);
         }).share(); //share() is a shorthand for publish().refcount(), making share() an RxJava Subject. This means
         // you can have multiple subscribers for the same Observable.
     }
