@@ -1,6 +1,7 @@
 package com.example.qwez.ui.start;
 
 import android.content.Context;
+import android.net.Uri;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -23,6 +24,7 @@ public class StartViewModel extends BaseViewModel {
     private final MutableLiveData<Boolean> questionData = new MutableLiveData<>();
     private final MutableLiveData<List<Game>> gameData = new MutableLiveData<>();
     private final MutableLiveData<String> user = new MutableLiveData<>();
+    private final MutableLiveData<Uri> userPhotoUrl = new MutableLiveData<>();
 
     private final FetchQuestionsInteractor getQuestionsInteractor;
     private final GetAllGamesInteractor getAllGamesInteractor;
@@ -75,6 +77,11 @@ public class StartViewModel extends BaseViewModel {
             username = firebaseUser.getEmail();
         }
         user.setValue(username);
+
+        Uri uri = firebaseUser.getPhotoUrl();
+        if(uri != null){
+            userPhotoUrl.setValue(uri);
+        }
     }
 
     public void deleteGame(Game game){
@@ -115,5 +122,9 @@ public class StartViewModel extends BaseViewModel {
 
     public MutableLiveData<String> user(){
         return user;
+    }
+
+    public MutableLiveData<Uri> userPhotoUrl(){
+        return userPhotoUrl;
     }
 }

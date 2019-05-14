@@ -1,10 +1,12 @@
 package com.example.qwez.ui.start;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
@@ -48,6 +52,10 @@ public class StartActivity extends BaseActivity{
     FloatingActionButton button;
     @BindView(R.id.recyclerview_questions)
     RecyclerView recyclerView;
+    @BindView(R.id.username_display)
+    TextView username;
+    @BindView(R.id.user_image)
+    ImageView userImage;
 
     private GameAdapter adapter;
 
@@ -72,6 +80,7 @@ public class StartActivity extends BaseActivity{
         viewModel.progress().observe(this, this::onProgess);
         viewModel.gameData().observe(this, this::onGames);
         viewModel.user().observe(this, this::onUser);
+        viewModel.userPhotoUrl().observe(this, this::onPhoto);
 
         viewModel.prepare();
 
@@ -102,8 +111,21 @@ public class StartActivity extends BaseActivity{
 
     }
 
+    private void setUserPhoto(Uri uri){
+        Glide.with(this)
+                .asBitmap()
+                .load(uri)
+                .apply(RequestOptions.circleCropTransform())    //do i really need this?? Cardview takes care of this?
+                .into(userImage);
+    }
+
+    private void onPhoto(Uri uri){
+        setUserPhoto(uri);
+    }
+
     private void onUser(String s) {
-        setTitle(s);
+        username.setText(s);
+        setUserPhoto(Uri.parse("file:///android_asset/user.png"));
     }
 
     private void onGames(List<Game> games) {
