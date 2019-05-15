@@ -6,9 +6,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import androidx.annotation.NonNull;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Cancellable;
 
 /**
  * Class that adds a RxJava wrapper to SharedPreferences

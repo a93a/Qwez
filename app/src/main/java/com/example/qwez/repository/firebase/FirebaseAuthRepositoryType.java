@@ -1,5 +1,7 @@
 package com.example.qwez.repository.firebase;
 
+import android.net.Uri;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -52,6 +54,11 @@ public interface FirebaseAuthRepositoryType {
      * Re-authenticate current logged in user
      */
     Maybe<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password);
+
+    /**
+     *
+     */
+    Completable changeUserPhoto(FirebaseUser firebaseUser, Uri uri);
 
 }
 

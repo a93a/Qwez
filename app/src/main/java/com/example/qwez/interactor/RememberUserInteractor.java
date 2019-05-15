@@ -4,10 +4,7 @@ import com.example.qwez.repository.sharedpref.SharedPreferencesRepositoryType;
 
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
-import io.reactivex.MaybeObserver;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 public class RememberUserInteractor {
 

@@ -1,6 +1,7 @@
 package com.example.qwez.repository.firebase;
 
-import com.afollestad.materialdialogs.MaterialDialog;
+import android.net.Uri;
+
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
@@ -15,7 +16,6 @@ import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
-import timber.log.Timber;
 
 /**
  * Firebase repository class to handle all Firebase operations
@@ -123,6 +123,14 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
     public Maybe<AuthResult> reAuthenticateUserAndReturnUser(FirebaseUser firebaseUser, String email, String password) {
         return FirebaseUserWrapper.reAuthAndGetUser(firebaseUser,getAuthCredentialForEmail(email, password))
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Completable changeUserPhoto(FirebaseUser firebaseUser, Uri uri){
+        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                .setPhotoUri(uri)
+                .build();
+        return FirebaseUserWrapper.updateUserProfile(firebaseUser,request);
     }
 
 }

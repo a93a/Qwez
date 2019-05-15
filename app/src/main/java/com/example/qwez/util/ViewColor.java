@@ -4,5 +4,5 @@ public enum ViewColor {
     RED,
     YELLOW,
     GREEN,
-    WHITE;
+    WHITE
 }

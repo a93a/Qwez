@@ -29,12 +29,21 @@
             android:title="Change password" />
 
         <Preference
+            android:icon="@drawable/image"
+            android:defaultValue="Default Value"
+            android:key="change_user_photo"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Change profile photo" />
+
+        <Preference
             android:icon="@drawable/logout"
             android:defaultValue="Default value"
             android:key="log_out_preference"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Log out" />
+
 
     </PreferenceCategory>
 

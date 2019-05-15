@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.qwez.base.BaseViewModel;
 import com.example.qwez.interactor.LoginUserInteractor;
-import com.example.qwez.interactor.RememberUserInteractor;
 import com.example.qwez.interactor.SignupInteractor;
 import com.example.qwez.router.StartRouter;
 

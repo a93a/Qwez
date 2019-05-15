@@ -3,7 +3,6 @@ package com.example.qwez.ui.dialog;
 import android.content.Context;
 import android.widget.LinearLayout;
 
-import androidx.annotation.LayoutRes;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -148,7 +147,11 @@ public final class CustomMaterialDialog {
         return null;
     }
 
-
+    public static MaterialDialog.Builder okWithText(String title, Context context, String text){
+        return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
+                .title(title)
+                .content(text);
+    }
 
 
 }

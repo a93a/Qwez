@@ -81,6 +81,8 @@ public class StartViewModel extends BaseViewModel {
         Uri uri = firebaseUser.getPhotoUrl();
         if(uri != null){
             userPhotoUrl.setValue(uri);
+        }else{
+            userPhotoUrl.setValue(Uri.parse("file:///android_asset/user.png"));
         }
     }
 

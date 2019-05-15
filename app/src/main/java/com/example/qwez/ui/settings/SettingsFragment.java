@@ -1,6 +1,5 @@
 package com.example.qwez.ui.settings;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
@@ -10,6 +9,7 @@ import com.example.qwez.R;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePassowordEvent;
+import com.example.qwez.bus.event.ChangePhotoEvent;
 import com.example.qwez.bus.event.LogoutEvent;
 import com.example.qwez.util.ViewUtil;
 
@@ -42,6 +42,15 @@ public class SettingsFragment extends PreferenceFragmentCompat{
             changenick.setOnPreferenceClickListener(preference -> {
                ViewUtil.disablePreferenceShort(changenick);
                 RxBus.publish(RxBus.TRY_CHANGE_NICK, new ChangeNickEvent());
+                return true;
+            });
+        }
+
+        final Preference changePhoto = findPreference("change_user_photo");
+        if(changePhoto != null ) {
+            changePhoto.setOnPreferenceClickListener(preference -> {
+                ViewUtil.disablePreferenceShort(changePhoto);
+                RxBus.publish(RxBus.TRY_CHANGE_PHOTO, new ChangePhotoEvent());
                 return true;
             });
         }

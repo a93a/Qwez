@@ -1,9 +1,11 @@
 package com.example.qwez.ui.settings;
 
+import com.example.qwez.interactor.ChangeProfilePhotoInteractor;
 import com.example.qwez.interactor.ChangeUserNickInteractor;
 import com.example.qwez.interactor.ChangeUserPasswordInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
+import com.example.qwez.repository.firebase.FirebaseStorageRepositoryType;
 import com.example.qwez.router.LoginRouter;
 
 import javax.inject.Named;
@@ -18,11 +20,18 @@ public class SettingsModule {
     SettingsVMFactory settingsVMFactory(LogoutUserInteractor logoutUserInteractor,
                                         LoginRouter loginRouter,
                                         ChangeUserPasswordInteractor changeUserPasswordInteractor,
-                                        ChangeUserNickInteractor changeUserNickInteractor){
+                                        ChangeUserNickInteractor changeUserNickInteractor,
+                                        ChangeProfilePhotoInteractor changeProfilePhotoInteractor){
         return new SettingsVMFactory(logoutUserInteractor,
                 changeUserPasswordInteractor,
                 loginRouter,
-                changeUserNickInteractor);
+                changeUserNickInteractor,
+                changeProfilePhotoInteractor);
+    }
+
+    @Provides
+    ChangeProfilePhotoInteractor changeProfilePhotoInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType, FirebaseStorageRepositoryType firebaseStorageRepositoryType){
+        return new ChangeProfilePhotoInteractor(firebaseAuthRepositoryType,firebaseStorageRepositoryType);
     }
 
     @Provides

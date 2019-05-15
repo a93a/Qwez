@@ -2,8 +2,6 @@ package com.example.qwez.repository.sharedpref;
 
 import android.content.SharedPreferences;
 
-import com.example.qwez.repository.sharedpref.rxwrapper.SharedPrefsWrapper;
-
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;

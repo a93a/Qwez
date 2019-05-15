@@ -7,7 +7,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
-import io.reactivex.Observable;
 
 public final class FirebaseUserWrapper {
 
@@ -65,4 +64,5 @@ public final class FirebaseUserWrapper {
             MaybeTask.assign(emitter, firebaseUser.reauthenticateAndRetrieveData(authCredential));
         });
     }
+
 }

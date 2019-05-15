@@ -73,9 +73,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-firestore:19.0.0'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
     testImplementation 'com.google.firebase:firebase-auth:17.0.0'
     testImplementation 'com.google.firebase:firebase-core:16.0.9'
     testImplementation 'com.google.firebase:firebase-firestore:19.0.0'
+    testImplementation 'com.google.firebase:firebase-storage:17.0.0'
 
     //rxjava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
@@ -137,8 +139,7 @@ dependencies {
     //materialdialogs USE OLDER VERSION THAT IS COMPATIBLE WITH JAVA. NEWER IS ONLY KOTLIN COMPATIBLE
     //noinspection GradleDependency
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    //implementation 'com.afollestad.material-dialogs:lifecycle:2.8.1'
-    //implementation 'com.afollestad.material-dialogs:input:0.9.6.0'
+
 
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -155,6 +156,9 @@ dependencies {
 
     //apache commons language.
     implementation 'org.apache.commons:commons-text:1.6'
+
+    //rxpermissions
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 
 
 }

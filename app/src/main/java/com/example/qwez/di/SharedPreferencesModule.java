@@ -2,7 +2,6 @@ package com.example.qwez.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.example.qwez.repository.sharedpref.SharedPreferencesRepository;
 import com.example.qwez.repository.sharedpref.SharedPreferencesRepositoryType;

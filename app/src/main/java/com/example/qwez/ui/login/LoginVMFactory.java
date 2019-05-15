@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.qwez.interactor.LoginUserInteractor;
-import com.example.qwez.interactor.RememberUserInteractor;
 import com.example.qwez.interactor.SignupInteractor;
 import com.example.qwez.router.StartRouter;
 

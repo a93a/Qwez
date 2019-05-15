@@ -25,7 +25,6 @@ import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
-import com.example.qwez.util.ViewUtil;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.ui.start.recycler.CustomAdapter;
 import com.example.qwez.ui.start.recycler.GameAdapter;
@@ -33,6 +32,7 @@ import com.example.qwez.ui.start.recycler.ItemDecorator;
 import com.example.qwez.ui.start.recycler.SwipeDeleteHelper;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
+import com.example.qwez.util.ViewUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -41,6 +41,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class StartActivity extends BaseActivity{
 
@@ -111,7 +112,7 @@ public class StartActivity extends BaseActivity{
 
     }
 
-    private void setUserPhoto(Uri uri){
+    private void onPhoto(Uri uri){
         Glide.with(this)
                 .asBitmap()
                 .load(uri)
@@ -119,13 +120,8 @@ public class StartActivity extends BaseActivity{
                 .into(userImage);
     }
 
-    private void onPhoto(Uri uri){
-        setUserPhoto(uri);
-    }
-
     private void onUser(String s) {
         username.setText(s);
-        setUserPhoto(Uri.parse("file:///android_asset/user.png"));
     }
 
     private void onGames(List<Game> games) {

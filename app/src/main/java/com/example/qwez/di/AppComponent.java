@@ -17,7 +17,7 @@ import dagger.android.AndroidInjectionModule;
  */
 @ApplicationScope
 @Component(modules = {AndroidInjectionModule.class,
-        FireBaseAuthModule.class,
+        FirebaseModule.class,
         NetworkModule.class,
         StartModule.class,
         BinderModule.class,

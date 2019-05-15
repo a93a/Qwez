@@ -16,7 +16,6 @@ import com.example.qwez.R;
 import com.example.qwez.base.BaseFragment;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.BooleanEvent;
-import com.example.qwez.bus.event.LoginAttached;
 import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.interactor.RememberUserInteractor;
 import com.example.qwez.validator.EmailValidate;
@@ -26,12 +25,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
-import timber.log.Timber;
 
 
 public class LoginFragment extends BaseFragment {
