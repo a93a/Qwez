@@ -3,8 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/start_menu_highscore"
+        android:title="Item"
+        android:icon="@drawable/highscore"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/start_menu_settings"
         android:title="Item"
         android:icon="@drawable/settings"
         app:showAsAction="always"/>
+
 </menu>

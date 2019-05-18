@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,8 @@ public class LoginFragment extends BaseFragment {
     TextView bottomText;
     @BindView(R.id.checkBox)
     CheckBox checkBox;
+    @BindView(R.id.login_load_progress)
+    ProgressBar progressBar;
 
     @Override
     protected int getLayout() {

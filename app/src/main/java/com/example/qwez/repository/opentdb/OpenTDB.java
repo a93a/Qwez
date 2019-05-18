@@ -36,12 +36,10 @@ public class OpenTDB implements OpenTDBType {
                                                         int category,
                                                         String difficulty,
                                                         String type) {
-        return Single.fromObservable(api
-                        .getQuestions(amount, category, difficulty, QuestionType.MULTIPLE_CHOICE.getType())
+        return Single.fromObservable(api.getQuestions(amount, category, difficulty, QuestionType.MULTIPLE_CHOICE.getType())
                 .lift(new ApiOperator<>())
-                .doOnNext(body -> Timber.d("Q ERROR IS: %s", body.getQuestions().size()))
                 .map(ResponseBody::getQuestions)
-                        .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
         );
     }
 

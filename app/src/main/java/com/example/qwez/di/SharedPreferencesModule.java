@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import com.example.qwez.repository.sharedpref.SharedPreferencesRepository;
 import com.example.qwez.repository.sharedpref.SharedPreferencesRepositoryType;
-import com.example.qwez.repository.sharedpref.rxwrapper.SharedPrefsWrapper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,12 +18,6 @@ public class SharedPreferencesModule {
     @ApplicationScope
     SharedPreferencesRepositoryType sharedPreferencesRepositoryType(SharedPreferences sharedPreferences){
         return new SharedPreferencesRepository(sharedPreferences);
-    }
-
-    @Provides
-    @ApplicationScope
-    SharedPrefsWrapper sharedPrefsWrapper(SharedPreferences sharedPreferences){
-        return SharedPrefsWrapper.createSharedPrefsWrapper(sharedPreferences);
     }
 
     @Provides

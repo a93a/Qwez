@@ -1,5 +1,7 @@
 package com.example.qwez.di;
 
+import com.example.qwez.ui.highscore.HighscoreActivity;
+import com.example.qwez.ui.highscore.HighscoreModule;
 import com.example.qwez.ui.login.LoginActivity;
 import com.example.qwez.ui.login.LoginFragment;
 import com.example.qwez.ui.login.LoginFragmentModule;
@@ -45,5 +47,9 @@ public abstract class BinderModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = LoginFragmentModule.class)
     abstract LoginFragment bindLoginFragment();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = HighscoreModule.class)
+    abstract HighscoreActivity bindHighscoreActivity();
 
 }

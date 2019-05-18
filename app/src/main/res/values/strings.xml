@@ -23,4 +23,5 @@
     <string name="repeat_new_password">Repeat new password</string>
     <string name="err_text_dialog">Please choose a category and a difficulty</string>
     <string name="enter_old_pass">Enter old pass</string>
+    <string name="welcome_back">Welcome back!</string>
 </resources>

@@ -15,6 +15,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -67,6 +68,13 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
                 .switchIfEmpty(observer -> {
                     observer.onError(new RxWrapperNullException(RxWrapperNullException.NO_CURRENT_USER));
                 })
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Single<FirebaseUser> getCurrentUserOnce() {
+        return Single.fromObservable(getCurrentUser()
+                .take(1))
                 .subscribeOn(Schedulers.io());
     }
 

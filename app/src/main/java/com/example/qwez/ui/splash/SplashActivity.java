@@ -52,6 +52,6 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected int getLayout() {
-        return R.layout.layout_splash;
+        return R.layout.activity_splash;
     }
 }

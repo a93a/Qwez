@@ -72,7 +72,6 @@ public class StartActivity extends BaseActivity{
         recyclerView.addItemDecoration(new ItemDecorator(ItemDecorator.MARGIN));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeDeleteHelper(adapter, this));
         itemTouchHelper.attachToRecyclerView(recyclerView);
-
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this,factory).get(StartViewModel.class);
@@ -201,11 +200,12 @@ public class StartActivity extends BaseActivity{
     protected void onResume() {
         super.onResume();
         viewModel.getUser();
+        adapter.setClickable(true);
     }
 
     @Override
     protected int getLayout() {
-        return R.layout.layout_start;
+        return R.layout.activity_start;
     }
 
     @Override
@@ -214,6 +214,9 @@ public class StartActivity extends BaseActivity{
         switch (item.getItemId()){
             case R.id.start_menu_settings:
                 viewModel.openSettings(this);
+                break;
+            case R.id.start_menu_highscore:
+                viewModel.openHighscore(this);
                 break;
         }
         return true;

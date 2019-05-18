@@ -27,7 +27,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
     @NonNull
     @Override
     public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new GameHolder(R.layout.layout_item_question, parent);
+        return new GameHolder(R.layout.item_question, parent);
     }
 
     @Override

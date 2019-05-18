@@ -1,9 +1,12 @@
 package com.example.qwez.repository;
 
+import com.example.qwez.repository.opentdb.entity.ResponseBody;
+
 import io.reactivex.ObservableOperator;
 import io.reactivex.Observer;
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * Custom ObservableOperator that takes in Retrofit<T> Response.

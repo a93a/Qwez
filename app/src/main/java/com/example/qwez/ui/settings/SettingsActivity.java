@@ -2,7 +2,6 @@ package com.example.qwez.ui.settings;
 
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -27,11 +25,7 @@ import com.example.qwez.validator.PasswordValidate;
 import com.google.android.material.textfield.TextInputLayout;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import java.io.File;
-
 import javax.inject.Inject;
-
-import timber.log.Timber;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -172,7 +166,6 @@ public class SettingsActivity extends BaseActivity {
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("image/*");
             startActivityForResult(intent, READ_REQUEST_CODE);
-
         });
 
     }
@@ -209,7 +202,7 @@ public class SettingsActivity extends BaseActivity {
 
     @Override
     protected int getLayout() {
-        return R.layout.layout_settings;
+        return R.layout.activity_settings;
     }
 
 }

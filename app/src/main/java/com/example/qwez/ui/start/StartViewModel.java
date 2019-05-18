@@ -11,6 +11,7 @@ import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
 import com.example.qwez.repository.local.Game;
+import com.example.qwez.router.HighscoreRouter;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
 import com.example.qwez.util.Category;
@@ -33,19 +34,22 @@ public class StartViewModel extends BaseViewModel {
 
     private final SettingsRouter settingsRouter;
     private final QuestionRouter questionRouter;
+    private final HighscoreRouter highscoreRouter;
 
     public StartViewModel(FetchQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,
                           DeleteGameInteractor deleteGameInteractor,
-                          QuestionRouter questionRouter) {
+                          QuestionRouter questionRouter,
+                          HighscoreRouter highscoreRouter) {
         this.getQuestionsInteractor = getQuestionsInteractor;
         this.getAllGamesInteractor = getAllGamesInteractor;
         this.getUserInteractor = getUserInteractor;
         this.settingsRouter = settingsRouter;
         this.deleteGameInteractor = deleteGameInteractor;
         this.questionRouter = questionRouter;
+        this.highscoreRouter = highscoreRouter;
     }
 
     public void getQuestion(Category category, Difficulty difficulty){
@@ -97,6 +101,10 @@ public class StartViewModel extends BaseViewModel {
 
     public void openSettings(Context context){
         settingsRouter.open(context,false);
+    }
+
+    public void openHighscore(Context context){
+        highscoreRouter.open(context,false);
     }
 
     private void onGames(List<Game> games) {

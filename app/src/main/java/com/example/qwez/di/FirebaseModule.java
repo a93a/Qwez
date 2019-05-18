@@ -1,10 +1,15 @@
 package com.example.qwez.di;
 
+import androidx.room.PrimaryKey;
+
 import com.example.qwez.repository.firebase.FirebaseAuthRepository;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
+import com.example.qwez.repository.firebase.FirebaseDatabase;
+import com.example.qwez.repository.firebase.FirebaseDatabaseType;
 import com.example.qwez.repository.firebase.FirebaseStorageRepository;
 import com.example.qwez.repository.firebase.FirebaseStorageRepositoryType;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -16,6 +21,18 @@ import dagger.Provides;
  */
 @Module
 public class FirebaseModule {
+
+    @Provides
+    @ApplicationScope
+    FirebaseDatabaseType firebaseDatabaseType(FirebaseFirestore firebaseFirestore){
+        return new FirebaseDatabase(firebaseFirestore);
+    }
+
+    @Provides
+    @ApplicationScope
+    FirebaseFirestore firebaseFirestore(){
+        return FirebaseFirestore.getInstance();
+    }
 
     @Provides
     @ApplicationScope

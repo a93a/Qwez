@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
-import com.example.qwez.base.BaseActivityFragment;
+import com.example.qwez.base.BaseActivityWithFragment;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.bus.event.SignupEvent;
@@ -16,7 +16,7 @@ import com.example.qwez.ui.dialog.CustomMaterialDialog;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends BaseActivityFragment {
+public class LoginActivity extends BaseActivityWithFragment {
 
     @Inject
     LoginVMFactory factory;
@@ -84,7 +84,7 @@ public class LoginActivity extends BaseActivityFragment {
 
     @Override
     protected int getLayout() {
-        return R.layout.layout_login;
+        return R.layout.activity_login;
     }
 
 }

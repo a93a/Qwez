@@ -41,7 +41,6 @@ public class FetchQuestionsInteractor {
                         difficulty.getDifficulty(),
                         QuestionType.MULTIPLE_CHOICE.getType())
                 .map(QuestionConverter::toDatabase)
-                .doOnError(throwable -> Timber.d("Q ERROR IS: %s", throwable.getMessage()))
                 .flatMap(questions -> gameRepositoryType.addGameReturnId(new Game(Category.getAsString(category),Difficulty.getAsString(difficulty)))
                         .map(aLong -> {
                             questions.forEach(question -> question.setqId((int) (long)aLong));

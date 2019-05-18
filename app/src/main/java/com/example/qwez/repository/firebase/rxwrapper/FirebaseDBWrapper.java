@@ -4,13 +4,22 @@ import android.app.Activity;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.MetadataChanges;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.MaybeEmitter;
+import io.reactivex.MaybeOnSubscribe;
 
 public final class FirebaseDBWrapper {
 
@@ -77,4 +86,32 @@ public final class FirebaseDBWrapper {
         }, strategy);
    }
 
+   public static Maybe<QuerySnapshot> getCollection(CollectionReference ref){
+        return Maybe.create(emitter -> ref.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if(queryDocumentSnapshots.isEmpty()){
+                emitter.onComplete();
+            }else{
+                emitter.onSuccess(queryDocumentSnapshots);
+            }
+        }).addOnFailureListener(e -> {
+            if(!emitter.isDisposed()){
+                emitter.onError(e);
+            }
+        }));
+   }
+
+   public static Maybe<QuerySnapshot> getCollection(Query query){
+        return Maybe.create(emitter -> query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if(queryDocumentSnapshots.isEmpty()){
+                emitter.onComplete();
+            }else{
+                emitter.onSuccess(queryDocumentSnapshots);
+            }
+        }).addOnFailureListener(e -> {
+            if(!emitter.isDisposed()){
+                emitter.onError(e);
+            }
+        }));
+   }
+   
 }

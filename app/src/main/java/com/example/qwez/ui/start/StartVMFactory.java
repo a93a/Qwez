@@ -8,6 +8,7 @@ import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
+import com.example.qwez.router.HighscoreRouter;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
 
@@ -19,19 +20,22 @@ public class StartVMFactory implements ViewModelProvider.Factory {
     private final SettingsRouter settingsRouter;
     private final DeleteGameInteractor deleteGameInteractor;
     private final QuestionRouter questionRouter;
+    private final HighscoreRouter highscoreRouter;
 
     public StartVMFactory(FetchQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,
                           DeleteGameInteractor deleteGameInteractor,
-                          QuestionRouter questionRouter) {
+                          QuestionRouter questionRouter,
+                          HighscoreRouter highscoreRouter) {
         this.getQuestionsInteractor = getQuestionsInteractor;
         this.getAllGamesInteractor = getAllGamesInteractor;
         this.getUserInteractor = getUserInteractor;
         this.settingsRouter = settingsRouter;
         this.deleteGameInteractor = deleteGameInteractor;
         this.questionRouter = questionRouter;
+        this.highscoreRouter = highscoreRouter;
     }
 
     @SuppressWarnings("unchecked")
@@ -43,7 +47,8 @@ public class StartVMFactory implements ViewModelProvider.Factory {
                 getUserInteractor,
                 settingsRouter,
                 deleteGameInteractor,
-                questionRouter);
+                questionRouter,
+                highscoreRouter);
     }
 
 }

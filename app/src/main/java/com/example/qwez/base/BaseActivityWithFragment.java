@@ -3,7 +3,7 @@ package com.example.qwez.base;
 import androidx.annotation.IdRes;
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseActivityFragment extends BaseActivity {
+public abstract class BaseActivityWithFragment extends BaseActivity {
 
     /**
      * Replaces the current fragment in fragment container {@code id}. Also takes in

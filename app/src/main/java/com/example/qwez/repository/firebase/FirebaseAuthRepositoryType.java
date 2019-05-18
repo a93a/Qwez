@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseUser;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * FirebaseAuthRepository interface
@@ -29,6 +30,8 @@ public interface FirebaseAuthRepositoryType {
      * no user currently authorized.
      */
     Observable<FirebaseUser> getCurrentUser();
+
+    Single<FirebaseUser> getCurrentUserOnce();
 
     /**
      * Log out current authorized user. Returns Completable with operation result.
