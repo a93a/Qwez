@@ -27,7 +27,7 @@ public final class MaybeTask<T> implements OnSuccessListener<T>, OnFailureListen
      * @param <T> Task type
      */
     public static <T> void assign(MaybeEmitter<? super T> emitter, Task<T> task) {
-        MaybeTask<T> handler = new MaybeTask<T>(emitter);
+        MaybeTask<T> handler = new MaybeTask<>(emitter);
         task.addOnSuccessListener(handler);
         task.addOnFailureListener(handler);
         task.addOnCompleteListener(handler);
