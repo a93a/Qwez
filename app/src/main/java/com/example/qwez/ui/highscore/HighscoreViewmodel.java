@@ -8,25 +8,25 @@ import com.example.qwez.interactor.GetHighscoreInteractor;
 
 import java.util.List;
 
-public class HighscoreViewmodel extends BaseViewModel {
+class HighscoreViewmodel extends BaseViewModel {
     
     private MutableLiveData<List<Highscore>> highscore = new MutableLiveData<>();
     private MutableLiveData<Integer> yourscore = new MutableLiveData<>();
 
     private final GetHighscoreInteractor getUserHighscoreInteractor;
 
-    public HighscoreViewmodel(GetHighscoreInteractor interactor) {
+    HighscoreViewmodel(GetHighscoreInteractor interactor) {
         this.getUserHighscoreInteractor = interactor;
     }
 
-    public void getUserHighscore(){
+    void getUserHighscore(){
         progress.setValue(true);
         disposable = getUserHighscoreInteractor
                 .getUserScore()
                 .subscribe(this::onHighscore,this::onError);
     }
 
-    public void getHighscores(){
+    void getHighscores(){
         progress.setValue(true);
         disposable = getUserHighscoreInteractor
                 .getTop50Highscore()
@@ -43,11 +43,11 @@ public class HighscoreViewmodel extends BaseViewModel {
         yourscore.setValue(integer);
     }
 
-    public MutableLiveData<List<Highscore>> highscore() {
+    MutableLiveData<List<Highscore>> highscore() {
         return highscore;
     }
 
-    public MutableLiveData<Integer> yourscore() {
+    MutableLiveData<Integer> yourscore() {
         return yourscore;
     }
 }

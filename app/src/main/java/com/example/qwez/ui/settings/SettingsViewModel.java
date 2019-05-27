@@ -13,7 +13,7 @@ import com.example.qwez.interactor.DeleteAccountInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.router.LoginRouter;
 
-public class SettingsViewModel extends BaseViewModel {
+class SettingsViewModel extends BaseViewModel {
 
     private final MutableLiveData<Boolean> logout = new MutableLiveData<>();
     private final MutableLiveData<Boolean> passChanged = new MutableLiveData<>();
@@ -28,7 +28,7 @@ public class SettingsViewModel extends BaseViewModel {
     private final ChangeProfilePhotoInteractor changeProfilePhotoInteractor;
     private final DeleteAccountInteractor deleteAccountInteractor;
 
-    public SettingsViewModel(LogoutUserInteractor logoutUserInteractor,
+    SettingsViewModel(LogoutUserInteractor logoutUserInteractor,
                              ChangeUserPasswordInteractor changeUserPasswordInteractor,
                              LoginRouter loginRouter,
                              ChangeUserNickInteractor changeUserNickInteractor,
@@ -42,32 +42,32 @@ public class SettingsViewModel extends BaseViewModel {
         this.deleteAccountInteractor = deleteAccountInteractor;
     }
 
-    public void logoutUser(){
+    void logoutUser(){
         progress.setValue(true);
         disposable = logoutUserInteractor.logout()
                 .subscribe(this::onLogout,this::onError);
     }
 
-    public void changePassword(String oldPass, String newPass){
+    void changePassword(String oldPass, String newPass){
         progress.setValue(true);
         disposable = changeUserPasswordInteractor.changeUserPassword(oldPass,newPass)
                 .subscribe(this::onPassChange,this::onError);
     }
 
-    public void changeNick(String newNick){
+    void changeNick(String newNick){
         progress.setValue(true);
         disposable = changeUserNickInteractor.ChangeNick(newNick)
                 .subscribe(this::onNick,this::onError);
     }
 
-    public void changePhoto(Uri uri){
+    void changePhoto(Uri uri){
         progress.setValue(true);
         disposable = changeProfilePhotoInteractor.changeProfilePhoto(uri)
                 .subscribe(this::onPhotoChanged,this::onError);
 
     }
 
-    public void deleteAccount(String password){
+    void deleteAccount(String password){
         progress.setValue(true);
         disposable = deleteAccountInteractor.delete(password)
                 .subscribe(this::onAccountDeleted,this::onError);
@@ -98,27 +98,27 @@ public class SettingsViewModel extends BaseViewModel {
         logout.setValue(true);
     }
 
-    public void startLogin(Context context, boolean clearstack){
+    void startLogin(Context context, boolean clearstack){
         loginRouter.open(context, clearstack);
     }
 
-    public MutableLiveData<Boolean> logout() {
+    MutableLiveData<Boolean> logout() {
         return logout;
     }
 
-    public MutableLiveData<Boolean> passChange(){
+    MutableLiveData<Boolean> passChange(){
         return passChanged;
     }
 
-    public MutableLiveData<Boolean> nickChange(){
+    MutableLiveData<Boolean> nickChange(){
         return nickChange;
     }
 
-    public MutableLiveData<Boolean> photoChange(){
+    MutableLiveData<Boolean> photoChange(){
         return photoChange;
     }
 
-    public MutableLiveData<Boolean> accountDelete(){
+    MutableLiveData<Boolean> accountDelete(){
         return accountDelete;
     }
 

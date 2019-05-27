@@ -59,12 +59,16 @@ public class LoginActivity extends BaseActivityWithFragment {
 
     }
 
-    private void onSignup(Boolean aBoolean) {
-        viewModel.openStart(this, true);
+    private void onSignup(Boolean success) {
+        if(success){
+            viewModel.openStart(this, true);
+        }
     }
 
     private void onLogIn(Boolean success) {
-        viewModel.openStart(this,true);
+        if(success){
+            viewModel.openStart(this,true);
+        }
     }
 
     private void onError(ErrorCarrier error) {

@@ -7,11 +7,8 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.qwez.R;
 import com.example.qwez.bus.RxBus;
-import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePassowordEvent;
-import com.example.qwez.bus.event.ChangePhotoEvent;
-import com.example.qwez.bus.event.DeleteAccount;
-import com.example.qwez.bus.event.LogoutEvent;
+import com.example.qwez.bus.event.NullEvent;
 import com.example.qwez.util.ViewUtil;
 
 public class SettingsFragment extends PreferenceFragmentCompat{
@@ -24,7 +21,7 @@ public class SettingsFragment extends PreferenceFragmentCompat{
         if (logout != null) {
             logout.setOnPreferenceClickListener(preference -> {
                 ViewUtil.disablePreferenceShort(logout);
-                RxBus.publish(RxBus.TRY_LOG_OUT, new LogoutEvent());
+                RxBus.publish(RxBus.TRY_LOG_OUT, new NullEvent());
                 return true;
             });
         }
@@ -42,7 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat{
         if (changenick != null) {
             changenick.setOnPreferenceClickListener(preference -> {
                ViewUtil.disablePreferenceShort(changenick);
-                RxBus.publish(RxBus.TRY_CHANGE_NICK, new ChangeNickEvent());
+                RxBus.publish(RxBus.TRY_CHANGE_NICK, new NullEvent());
                 return true;
             });
         }
@@ -51,7 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat{
         if(changePhoto != null ) {
             changePhoto.setOnPreferenceClickListener(preference -> {
                 ViewUtil.disablePreferenceShort(changePhoto);
-                RxBus.publish(RxBus.TRY_CHANGE_PHOTO, new ChangePhotoEvent());
+                RxBus.publish(RxBus.TRY_CHANGE_PHOTO, new NullEvent());
                 return true;
             });
         }
@@ -60,7 +57,7 @@ public class SettingsFragment extends PreferenceFragmentCompat{
         if(deleteAccount != null){
             deleteAccount.setOnPreferenceClickListener(preference -> {
                 ViewUtil.disablePreferenceShort(deleteAccount);
-                RxBus.publish(RxBus.TRY_DELETE_ACCOUNT, new DeleteAccount());
+                RxBus.publish(RxBus.TRY_DELETE_ACCOUNT, new NullEvent());
                 return true;
             });
         }

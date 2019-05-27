@@ -26,7 +26,7 @@ public class GameHolder extends BaseViewHolder<Game> implements View.OnLongClick
     @BindView(R.id.question_icon)
     ImageView icon;
 
-    public GameHolder(@LayoutRes int layoutRes, ViewGroup parent) {
+    GameHolder(@LayoutRes int layoutRes, ViewGroup parent) {
         super(layoutRes,parent);
     }
 

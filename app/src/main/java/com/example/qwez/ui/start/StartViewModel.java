@@ -36,7 +36,7 @@ public class StartViewModel extends BaseViewModel {
     private final QuestionRouter questionRouter;
     private final HighscoreRouter highscoreRouter;
 
-    public StartViewModel(FetchQuestionsInteractor getQuestionsInteractor,
+    StartViewModel(FetchQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,
@@ -52,26 +52,26 @@ public class StartViewModel extends BaseViewModel {
         this.highscoreRouter = highscoreRouter;
     }
 
-    public void getQuestion(Category category, Difficulty difficulty){
+    void getQuestion(Category category, Difficulty difficulty){
         progress.setValue(true);
         disposable = getQuestionsInteractor
                 .getQuestionByCategoryMultiple(category, difficulty)
                 .subscribe(this::onQuestion, this::onError);
     }
 
-    public void getAllGames(){
+    void getAllGames(){
         disposable = getAllGamesInteractor
                 .getAllGames()
                 .subscribe(this::onGames,this::onError);
     }
 
-    public void getUser(){
+    void getUser(){
         progress.setValue(true);
         disposable = getUserInteractor.getUser()
                 .subscribe(this::onUser,this::onError);
     }
 
-    public void openQuestion(Context context, int qId){
+    void openQuestion(Context context, int qId){
         questionRouter.open(context, qId);
     }
 
@@ -90,7 +90,7 @@ public class StartViewModel extends BaseViewModel {
         }
     }
 
-    public void deleteGame(Game game){
+    void deleteGame(Game game){
         disposable = deleteGameInteractor.deleteGame(game)
                 .subscribe(this::onGameDeleted,this::onError);
     }
@@ -99,11 +99,11 @@ public class StartViewModel extends BaseViewModel {
         getAllGames();
     }
 
-    public void openSettings(Context context){
+    void openSettings(Context context){
         settingsRouter.open(context,false);
     }
 
-    public void openHighscore(Context context){
+    void openHighscore(Context context){
         highscoreRouter.open(context,false);
     }
 
@@ -111,7 +111,7 @@ public class StartViewModel extends BaseViewModel {
         gameData.setValue(games);
     }
 
-    public MutableLiveData<List<Game>> gameData() {
+    MutableLiveData<List<Game>> gameData() {
         return gameData;
     }
 
@@ -120,21 +120,21 @@ public class StartViewModel extends BaseViewModel {
         questionData.setValue(true);
     }
 
-    public void prepare(){
+    void prepare(){
         disposable = getUserInteractor.getUser()
                 .subscribe(this::onUser,this::onError);
         getAllGames();
     }
 
-    public MutableLiveData<Boolean> questions() {
+    MutableLiveData<Boolean> questions() {
         return questionData;
     }
 
-    public MutableLiveData<String> user(){
+    MutableLiveData<String> user(){
         return user;
     }
 
-    public MutableLiveData<Uri> userPhotoUrl(){
+    MutableLiveData<Uri> userPhotoUrl(){
         return userPhotoUrl;
     }
 }

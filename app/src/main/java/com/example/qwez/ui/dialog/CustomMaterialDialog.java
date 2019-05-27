@@ -131,7 +131,6 @@ public final class CustomMaterialDialog {
                 .adapter(adapter,manager);
     }
 
-
     /**
      * Empty dialog with title, positive button and negative button
      * @param title to set
@@ -143,20 +142,10 @@ public final class CustomMaterialDialog {
                 .title(title);
     }
 
-    public static MaterialDialog.Builder animatedLogin(Context context){
-        return null;
-    }
-
     public static MaterialDialog.Builder okWithText(String title, Context context, String text){
         return addNegPosBtn(context, LABEL_CANCEL, LABEL_OK)
                 .title(title)
                 .content(text);
     }
-
-    public static MaterialDialog.Builder loadingOK(String title, Context context){
-        return okDialog(title, context)
-                .customView(R.layout.dialog_loading, true);
-    }
-
 
 }

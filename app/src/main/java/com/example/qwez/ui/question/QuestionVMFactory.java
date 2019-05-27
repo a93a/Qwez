@@ -10,7 +10,7 @@ public class QuestionVMFactory implements ViewModelProvider.Factory {
 
     private final GetSingleGameAndQuestionsInteractor getSingleGameAndQuestionsInteractor;
 
-    public QuestionVMFactory(GetSingleGameAndQuestionsInteractor getSingleGameAndQuestionsInteractor) {
+    QuestionVMFactory(GetSingleGameAndQuestionsInteractor getSingleGameAndQuestionsInteractor) {
         this.getSingleGameAndQuestionsInteractor = getSingleGameAndQuestionsInteractor;
     }
 

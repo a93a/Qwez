@@ -17,13 +17,13 @@ public class SplashViewModel extends BaseViewModel {
     private final GetUserInteractor getUserInteractor;
     private final MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
 
-    public SplashViewModel(StartRouter startRouter, LoginRouter loginRouter, GetUserInteractor getUserInteractor) {
+    SplashViewModel(StartRouter startRouter, LoginRouter loginRouter, GetUserInteractor getUserInteractor) {
         this.startRouter = startRouter;
         this.loginRouter = loginRouter;
         this.getUserInteractor = getUserInteractor;
     }
 
-    public void getUser(){
+    void getUser(){
         disposable = getUserInteractor.getUser()
                 .subscribe(this::onUser, this::onError);
     }
@@ -35,11 +35,11 @@ public class SplashViewModel extends BaseViewModel {
         user.setValue(firebaseUser);
     }
 
-    public void openStart(Context context){
+    void openStart(Context context){
         startRouter.open(context, true);
     }
 
-    public void openLogin(Context context){
+    void openLogin(Context context){
         loginRouter.open(context, true);
     }
 

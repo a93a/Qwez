@@ -14,7 +14,7 @@ public class SplashVMFactory implements ViewModelProvider.Factory {
     private final GetUserInteractor getUserInteractor;
     private final LoginRouter loginRouter;
 
-    public SplashVMFactory(StartRouter startRouter, GetUserInteractor getUserInteractor, LoginRouter loginRouter) {
+    SplashVMFactory(StartRouter startRouter, GetUserInteractor getUserInteractor, LoginRouter loginRouter) {
         this.startRouter = startRouter;
         this.getUserInteractor = getUserInteractor;
         this.loginRouter = loginRouter;

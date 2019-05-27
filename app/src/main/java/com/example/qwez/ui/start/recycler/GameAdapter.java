@@ -37,7 +37,7 @@ public class GameAdapter extends BaseAdapter<Game,GameHolder> {
         });
     }
 
-    public void deleteItem(int position) {
+    void deleteItem(int position) {
         RxBus.publish(RxBus.DELETE_GAME, new GameEvent(datalist.get(position)));
         notifyDataSetChanged(); //restore view if not/after deleted
     }

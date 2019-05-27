@@ -25,7 +25,7 @@ public class HighscoreHolder extends BaseViewHolder<Highscore> {
      * @param layoutRes
      * @param parent
      */
-    public HighscoreHolder(@LayoutRes int layoutRes, ViewGroup parent) {
+    HighscoreHolder(@LayoutRes int layoutRes, ViewGroup parent) {
         super(layoutRes, parent);
     }
 

@@ -22,7 +22,7 @@ public class StartVMFactory implements ViewModelProvider.Factory {
     private final QuestionRouter questionRouter;
     private final HighscoreRouter highscoreRouter;
 
-    public StartVMFactory(FetchQuestionsInteractor getQuestionsInteractor,
+    StartVMFactory(FetchQuestionsInteractor getQuestionsInteractor,
                           GetAllGamesInteractor getAllGamesInteractor,
                           GetUserInteractor getUserInteractor,
                           SettingsRouter settingsRouter,

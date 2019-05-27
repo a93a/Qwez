@@ -10,10 +10,11 @@ public class HighscoreVMFactory implements ViewModelProvider.Factory {
 
     private final GetHighscoreInteractor getUserHighscoreInteractor;
 
-    public HighscoreVMFactory(GetHighscoreInteractor getUserHighscoreInteractor) {
+    HighscoreVMFactory(GetHighscoreInteractor getUserHighscoreInteractor) {
         this.getUserHighscoreInteractor = getUserHighscoreInteractor;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {

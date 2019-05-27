@@ -9,7 +9,7 @@ import com.example.qwez.interactor.LoginUserInteractor;
 import com.example.qwez.interactor.SignupInteractor;
 import com.example.qwez.router.StartRouter;
 
-public class LoginViewModel extends BaseViewModel {
+class LoginViewModel extends BaseViewModel {
 
     private final MutableLiveData<Boolean> logIn = new MutableLiveData<>();
     private final MutableLiveData<Boolean> signUp = new MutableLiveData<>();
@@ -18,7 +18,7 @@ public class LoginViewModel extends BaseViewModel {
     private final SignupInteractor signupInteractor;
     private final StartRouter startRouter;
 
-    public LoginViewModel(LoginUserInteractor loginUserInteractor,
+    LoginViewModel(LoginUserInteractor loginUserInteractor,
                           SignupInteractor signupInteractor,
                           StartRouter startRouter) {
         this.loginUserInteractor = loginUserInteractor;
@@ -26,13 +26,13 @@ public class LoginViewModel extends BaseViewModel {
         this.startRouter = startRouter;
     }
 
-    public void logInUser(String email, String password){
+    void logInUser(String email, String password){
         progress.setValue(true);
         disposable = loginUserInteractor.login(email, password)
                 .subscribe(this::onLoginSuccess, this::onError);
     }
 
-    public void signupUser(String email, String nick, String password){
+    void signupUser(String email, String nick, String password){
         progress.setValue(true);
         disposable = signupInteractor.signupUser(email, nick, password)
                 .subscribe(this::onSignupSuccess, this::onError);
@@ -48,15 +48,15 @@ public class LoginViewModel extends BaseViewModel {
         logIn.setValue(true);
     }
 
-    public void openStart(Context context, boolean clearStack){
+    void openStart(Context context, boolean clearStack){
         startRouter.open(context,clearStack);
     }
 
-    public MutableLiveData<Boolean> login() {
+    MutableLiveData<Boolean> login() {
         return logIn;
     }
 
-    public MutableLiveData<Boolean> singup() {
+    MutableLiveData<Boolean> singup() {
         return signUp;
     }
 }

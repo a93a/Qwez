@@ -3,7 +3,6 @@ package com.example.qwez.repository.firebase;
 import android.net.Uri;
 
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
-import com.example.qwez.repository.firebase.rxwrapper.FirebaseDBWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
 import com.google.firebase.auth.AuthCredential;

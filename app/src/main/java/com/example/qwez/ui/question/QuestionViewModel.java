@@ -10,7 +10,7 @@ import com.example.qwez.repository.local.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionViewModel extends BaseViewModel {
+class QuestionViewModel extends BaseViewModel {
 
     private final MutableLiveData<Question> question = new MutableLiveData<>();
 
@@ -18,11 +18,11 @@ public class QuestionViewModel extends BaseViewModel {
 
     private final GetSingleGameAndQuestionsInteractor getSingleGameAndQuestionsInteractor;
 
-    public QuestionViewModel(GetSingleGameAndQuestionsInteractor getSingleGameAndQuestionsInteractor) {
+    QuestionViewModel(GetSingleGameAndQuestionsInteractor getSingleGameAndQuestionsInteractor) {
         this.getSingleGameAndQuestionsInteractor = getSingleGameAndQuestionsInteractor;
     }
 
-    public void getQuestions(int id){
+    void getQuestions(int id){
         disposable = getSingleGameAndQuestionsInteractor.getGameQuestions(id)
                 .subscribe(this::onQuestions,this::onError);
     }
@@ -37,7 +37,7 @@ public class QuestionViewModel extends BaseViewModel {
 
     }
 
-    public MutableLiveData<Question> question(){
+    MutableLiveData<Question> question(){
         return question;
     }
 

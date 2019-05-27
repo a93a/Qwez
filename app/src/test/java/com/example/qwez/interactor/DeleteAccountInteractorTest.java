@@ -2,7 +2,6 @@ package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -16,10 +15,8 @@ import org.mockito.MockitoAnnotations;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import io.reactivex.observers.TestObserver;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

@@ -20,7 +20,7 @@ public class SettingsVMFactory implements ViewModelProvider.Factory {
     private final ChangeProfilePhotoInteractor changeProfilePhotoInteractor;
     private final DeleteAccountInteractor deleteAccountInteractor;
 
-    public SettingsVMFactory(LogoutUserInteractor logoutUserInteractor,
+    SettingsVMFactory(LogoutUserInteractor logoutUserInteractor,
                              ChangeUserPasswordInteractor changeUserPasswordInteractor,
                              LoginRouter loginRouter,
                              ChangeUserNickInteractor changeUserNickInteractor,
@@ -34,6 +34,7 @@ public class SettingsVMFactory implements ViewModelProvider.Factory {
         this.deleteAccountInteractor = deleteAccountInteractor;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {

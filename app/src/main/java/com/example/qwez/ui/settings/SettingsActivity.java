@@ -6,10 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,9 +19,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
-import com.example.qwez.bus.event.ChangeNickEvent;
-import com.example.qwez.bus.event.ChangePhotoEvent;
-import com.example.qwez.bus.event.DeleteAccount;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.validator.PasswordValidate;
@@ -32,7 +27,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import timber.log.Timber;
 
 public class SettingsActivity extends BaseActivity {
@@ -115,9 +109,7 @@ public class SettingsActivity extends BaseActivity {
 
         RxBus.subscribe(RxBus.TRY_LOG_OUT, this, o -> {
             MaterialDialog.Builder builder = CustomMaterialDialog.areYouSure("Are you sure?", this)
-                    .onNegative((dialog, which) -> {
-                        dialog.dismiss();
-                    })
+                    .onNegative((dialog, which) -> dialog.dismiss())
                     .onPositive((dialog, which) -> {
                         dialog.dismiss();
                         viewModel.logoutUser();
@@ -159,7 +151,6 @@ public class SettingsActivity extends BaseActivity {
         });
 
         RxBus.subscribe(RxBus.TRY_CHANGE_NICK, this, o -> {
-            ChangeNickEvent changeNickEvent = (ChangeNickEvent) o;
             MaterialDialog.Builder builder = CustomMaterialDialog.emptyDialog("Change nickname", this)
                     .input("new nickname", null, (dialog, input) -> {})
                     .onNegative((dialog, which) -> dialog.dismiss())
@@ -172,7 +163,6 @@ public class SettingsActivity extends BaseActivity {
         });
 
         RxBus.subscribe(RxBus.TRY_CHANGE_PHOTO, this, o -> {
-            ChangePhotoEvent c = (ChangePhotoEvent) o;
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("image/*");
@@ -230,8 +220,7 @@ public class SettingsActivity extends BaseActivity {
     private LinearLayout getLayoutForDialog(@LayoutRes int layout, @IdRes int root){
         LayoutInflater factory = LayoutInflater.from(this);
         final View stdView = factory.inflate(layout, null);
-        LinearLayout foundLayout = stdView.findViewById(root);
-        return foundLayout;
+        return stdView.findViewById(root);
     }
 
     @Override

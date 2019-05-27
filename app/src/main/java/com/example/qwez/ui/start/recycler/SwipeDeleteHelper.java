@@ -22,8 +22,6 @@ public class SwipeDeleteHelper extends ItemTouchHelper.SimpleCallback {
     private final GameAdapter adapter;
     private final Drawable icon;
     private final ColorDrawable background;
-    private static final int LIMIT_SWIPE_LENGTH = 10;
-
 
     public SwipeDeleteHelper(GameAdapter adapter, Context context) {
         super(0, ItemTouchHelper.LEFT);

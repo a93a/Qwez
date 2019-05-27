@@ -14,7 +14,7 @@ public class LoginVMFactory implements ViewModelProvider.Factory {
     private final SignupInteractor signupInteractor;
     private final StartRouter startRouter;
 
-    public LoginVMFactory(LoginUserInteractor loginUserInteractor,
+    LoginVMFactory(LoginUserInteractor loginUserInteractor,
                           SignupInteractor signupInteractor,
                           StartRouter startRouter) {
         this.loginUserInteractor = loginUserInteractor;
@@ -22,6 +22,7 @@ public class LoginVMFactory implements ViewModelProvider.Factory {
         this.startRouter = startRouter;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
