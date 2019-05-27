@@ -1,9 +1,12 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.firebase.FirebaseAuthRepository;
+import com.example.qwez.entity.Highscore;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.firebase.FirebaseDatabaseType;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -28,8 +31,18 @@ public class GetHighscoreInteractor {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<List<Integer>> getTop50Highscore(){
+    public Single<List<Highscore>> getTop50Highscore(){
         return firebaseDatabaseType.getTop50Highscores()
+                .map( highscores -> {
+                    List<Highscore> sorted = new ArrayList<>(highscores);
+                    Collections.sort(sorted, new Comparator<Highscore>() {
+                        @Override
+                        public int compare(Highscore o1, Highscore o2) {
+                            return o2.getScore() - o1.getScore();
+                        }
+                    });
+                    return sorted;
+                })
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

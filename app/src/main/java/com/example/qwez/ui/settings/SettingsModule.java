@@ -3,8 +3,10 @@ package com.example.qwez.ui.settings;
 import com.example.qwez.interactor.ChangeProfilePhotoInteractor;
 import com.example.qwez.interactor.ChangeUserNickInteractor;
 import com.example.qwez.interactor.ChangeUserPasswordInteractor;
+import com.example.qwez.interactor.DeleteAccountInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
+import com.example.qwez.repository.firebase.FirebaseDatabaseType;
 import com.example.qwez.repository.firebase.FirebaseStorageRepositoryType;
 import com.example.qwez.router.LoginRouter;
 
@@ -21,12 +23,19 @@ public class SettingsModule {
                                         LoginRouter loginRouter,
                                         ChangeUserPasswordInteractor changeUserPasswordInteractor,
                                         ChangeUserNickInteractor changeUserNickInteractor,
-                                        ChangeProfilePhotoInteractor changeProfilePhotoInteractor){
+                                        ChangeProfilePhotoInteractor changeProfilePhotoInteractor,
+                                        DeleteAccountInteractor deleteAccountInteractor){
         return new SettingsVMFactory(logoutUserInteractor,
                 changeUserPasswordInteractor,
                 loginRouter,
                 changeUserNickInteractor,
-                changeProfilePhotoInteractor);
+                changeProfilePhotoInteractor,
+                deleteAccountInteractor);
+    }
+
+    @Provides
+    DeleteAccountInteractor deleteAccountInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType){
+        return new DeleteAccountInteractor(firebaseAuthRepositoryType);
     }
 
     @Provides
@@ -35,8 +44,8 @@ public class SettingsModule {
     }
 
     @Provides
-    ChangeUserNickInteractor changeUserNickInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType){
-        return new ChangeUserNickInteractor(firebaseAuthRepositoryType);
+    ChangeUserNickInteractor changeUserNickInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType, FirebaseDatabaseType firebaseDatabaseType){
+        return new ChangeUserNickInteractor(firebaseAuthRepositoryType, firebaseDatabaseType);
     }
 
     @Provides

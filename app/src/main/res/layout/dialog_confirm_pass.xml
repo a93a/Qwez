@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/dialog_conf_pass_layout">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_dialog_conf_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true"
+        android:hint="@string/enter_password">
+
+        <EditText
+            android:id="@+id/edit_dialog_conf_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            tools:ignore="Autofill,LabelFor"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

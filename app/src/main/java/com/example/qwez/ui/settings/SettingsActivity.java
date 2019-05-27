@@ -6,11 +6,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -19,6 +23,7 @@ import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePhotoEvent;
+import com.example.qwez.bus.event.DeleteAccount;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.validator.PasswordValidate;
@@ -26,6 +31,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import timber.log.Timber;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -51,6 +59,7 @@ public class SettingsActivity extends BaseActivity {
         viewModel.passChange().observe(this, this::onPasswordChange);
         viewModel.nickChange().observe(this, this::onNickChanged);
         viewModel.photoChange().observe(this, this::onPhotoChaned);
+        viewModel.accountDelete().observe(this, this::onAccountDeleted);
 
         rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
@@ -67,6 +76,10 @@ public class SettingsActivity extends BaseActivity {
                 .beginTransaction()
                 .replace(R.id.setting_container, new SettingsFragment())
                 .commit();
+    }
+
+    private void onAccountDeleted(Boolean aBoolean) {
+        viewModel.startLogin(this, true);
     }
 
     private void onPhotoChaned(Boolean changed) {
@@ -113,9 +126,7 @@ public class SettingsActivity extends BaseActivity {
         });
 
         RxBus.subscribe(RxBus.TRY_CHANGE_PASSWORD, this, o -> {
-            LayoutInflater factory = LayoutInflater.from(this);
-            final View stdView = factory.inflate(R.layout.dialog_change_pass, null);
-            LinearLayout layout = stdView.findViewById(R.id.change_pass_linear);
+            LinearLayout layout = getLayoutForDialog(R.layout.dialog_change_pass,R.id.change_pass_linear);
 
             TextView oldpass = layout.findViewById(R.id.dialog_cp_pass_old);
             TextView pass1 = layout.findViewById(R.id.dialog_cp_pass_one);
@@ -168,6 +179,22 @@ public class SettingsActivity extends BaseActivity {
             startActivityForResult(intent, READ_REQUEST_CODE);
         });
 
+
+        RxBus.subscribe(RxBus.TRY_DELETE_ACCOUNT, this, o -> {
+            LinearLayout layout = getLayoutForDialog(R.layout.dialog_confirm_pass, R.id.dialog_conf_pass_layout);
+            TextView passText = layout.findViewById(R.id.edit_dialog_conf_pass);
+
+            MaterialDialog.Builder builder = CustomMaterialDialog.customDialog("Confirm deletion", this, layout)
+                    .onNegative((dialog, which) -> dialog.dismiss())
+                    .onPositive((dialog, which) -> {
+                        dialog.dismiss();
+                        String pass = passText.getText().toString();
+                        Timber.d("HELLO SIR %s",pass);
+                        viewModel.deleteAccount(pass);
+                    });
+            showCustomDialog(builder);
+        });
+
     }
 
     @Override
@@ -198,6 +225,13 @@ public class SettingsActivity extends BaseActivity {
         if(aBoolean){
             viewModel.startLogin(this, true);
         }
+    }
+
+    private LinearLayout getLayoutForDialog(@LayoutRes int layout, @IdRes int root){
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View stdView = factory.inflate(layout, null);
+        LinearLayout foundLayout = stdView.findViewById(root);
+        return foundLayout;
     }
 
     @Override

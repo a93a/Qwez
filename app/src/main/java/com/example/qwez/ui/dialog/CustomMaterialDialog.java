@@ -153,5 +153,10 @@ public final class CustomMaterialDialog {
                 .content(text);
     }
 
+    public static MaterialDialog.Builder loadingOK(String title, Context context){
+        return okDialog(title, context)
+                .customView(R.layout.dialog_loading, true);
+    }
+
 
 }

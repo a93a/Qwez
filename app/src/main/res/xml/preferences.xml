@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="Account">
+        android:title="Profile">
 
         <Preference
             android:icon="@drawable/changeusername"
@@ -36,6 +36,19 @@
             android:singleLine="true"
             android:title="Change profile photo" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Account">
+
+        <Preference
+            android:icon="@drawable/delete"
+            android:defaultValue="Default Value"
+            android:key="delete_account"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Delete Account" />
+
         <Preference
             android:icon="@drawable/logout"
             android:defaultValue="Default value"
@@ -43,7 +56,6 @@
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Log out" />
-
 
     </PreferenceCategory>
 

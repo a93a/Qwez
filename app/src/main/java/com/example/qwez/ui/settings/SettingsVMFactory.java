@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.qwez.interactor.ChangeProfilePhotoInteractor;
 import com.example.qwez.interactor.ChangeUserNickInteractor;
 import com.example.qwez.interactor.ChangeUserPasswordInteractor;
+import com.example.qwez.interactor.DeleteAccountInteractor;
 import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.router.LoginRouter;
 
@@ -17,22 +18,30 @@ public class SettingsVMFactory implements ViewModelProvider.Factory {
     private final LoginRouter loginRouter;
     private final ChangeUserNickInteractor changeUserNickInteractor;
     private final ChangeProfilePhotoInteractor changeProfilePhotoInteractor;
+    private final DeleteAccountInteractor deleteAccountInteractor;
 
     public SettingsVMFactory(LogoutUserInteractor logoutUserInteractor,
                              ChangeUserPasswordInteractor changeUserPasswordInteractor,
                              LoginRouter loginRouter,
                              ChangeUserNickInteractor changeUserNickInteractor,
-                             ChangeProfilePhotoInteractor changeProfilePhotoInteractor) {
+                             ChangeProfilePhotoInteractor changeProfilePhotoInteractor,
+                             DeleteAccountInteractor deleteAccountInteractor) {
         this.logoutUserInteractor = logoutUserInteractor;
         this.changeUserPasswordInteractor = changeUserPasswordInteractor;
         this.loginRouter = loginRouter;
         this.changeUserNickInteractor = changeUserNickInteractor;
         this.changeProfilePhotoInteractor = changeProfilePhotoInteractor;
+        this.deleteAccountInteractor = deleteAccountInteractor;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new SettingsViewModel(logoutUserInteractor, changeUserPasswordInteractor, loginRouter, changeUserNickInteractor, changeProfilePhotoInteractor);
+        return (T) new SettingsViewModel(logoutUserInteractor,
+                changeUserPasswordInteractor,
+                loginRouter,
+                changeUserNickInteractor,
+                changeProfilePhotoInteractor,
+                deleteAccountInteractor);
     }
 }

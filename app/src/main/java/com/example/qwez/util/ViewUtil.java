@@ -1,6 +1,7 @@
 package com.example.qwez.util;
 
 import android.annotation.SuppressLint;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.preference.Preference;
@@ -17,6 +18,15 @@ import io.reactivex.schedulers.Schedulers;
 public class ViewUtil {
 
     private static final int SHORT_DURATION_MILLISECONDS = 500;
+
+    public static void disableMenuItemShort(MenuItem item){
+        disableMenuItem(item, SHORT_DURATION_MILLISECONDS, TimeUnit.MILLISECONDS);
+    }
+
+    public static void disableMenuItem(MenuItem item, int duration, TimeUnit timeUnit){
+        item.setEnabled(false);
+        getTimer(duration, timeUnit).subscribe(o -> item.setEnabled(true));
+    }
 
     /**
      * Disable a Preference for a short amount of time (500 Milliseconds)

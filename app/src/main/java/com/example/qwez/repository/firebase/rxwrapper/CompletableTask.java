@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import io.reactivex.CompletableEmitter;
+import timber.log.Timber;
 
 /**
  * Wraps Task<T> into a CompletableEmitter.

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.qwez.ui.highscore.HighscoreActivity;
-import com.example.qwez.ui.login.LoginActivity;
 
 public class HighscoreRouter {
 

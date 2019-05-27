@@ -4,22 +4,27 @@ import android.app.Activity;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Map;
+
 import io.reactivex.BackpressureStrategy;
+import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
-import io.reactivex.MaybeEmitter;
-import io.reactivex.MaybeOnSubscribe;
+import timber.log.Timber;
 
 public final class FirebaseDBWrapper {
 
@@ -112,6 +117,11 @@ public final class FirebaseDBWrapper {
                 emitter.onError(e);
             }
         }));
+   }
+
+   public static Completable updateDocument(DocumentReference ref, Map<String,Object> fieldsAndValues){
+        final Task<Void> task = ref.update(fieldsAndValues);
+        return Completable.create(emitter -> CompletableTask.assign(emitter, task));
    }
    
 }

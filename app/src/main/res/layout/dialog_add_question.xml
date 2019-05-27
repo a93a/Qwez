@@ -4,25 +4,11 @@
     android:layout_height="match_parent"
     android:id="@+id/add_question_layout">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:gravity="start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/choose_a_category" />
-
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinner_add_cat"
         android:gravity="start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:gravity="start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/choose_difficulty" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinner_add_diff"

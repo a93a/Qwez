@@ -1,7 +1,5 @@
 package com.example.qwez.di;
 
-import androidx.room.PrimaryKey;
-
 import com.example.qwez.repository.firebase.FirebaseAuthRepository;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.firebase.FirebaseDatabase;

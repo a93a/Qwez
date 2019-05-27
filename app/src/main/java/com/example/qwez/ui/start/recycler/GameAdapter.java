@@ -4,19 +4,15 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qwez.R;
+import com.example.qwez.base.BaseAdapter;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.repository.local.Game;
 
-import java.util.ArrayList;
-import java.util.List;
+public class GameAdapter extends BaseAdapter<Game,GameHolder> {
 
-public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
-
-    private final List<Game> games = new ArrayList<>();
     private final Context context;
     private boolean isClickable;
 
@@ -32,7 +28,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
-        holder.bind(games.get(position));
+        holder.bind(datalist.get(position));
         holder.getItemView().setOnClickListener(v -> {
             if(isClickable){
                 Game game = holder.getData();
@@ -41,19 +37,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameHolder> {
         });
     }
 
-    @Override
-    public int getItemCount() {
-        return games.size();
-    }
-
-    public void setData(List<Game> newGames){
-        games.clear();
-        games.addAll(newGames);
-        notifyDataSetChanged();
-    }
-
     public void deleteItem(int position) {
-        RxBus.publish(RxBus.DELETE_GAME, new GameEvent(games.get(position)));
+        RxBus.publish(RxBus.DELETE_GAME, new GameEvent(datalist.get(position)));
         notifyDataSetChanged(); //restore view if not/after deleted
     }
 

@@ -1,4 +1,4 @@
-package com.example.qwez.ui.start.recycler;
+package com.example.qwez.ui.common;
 
 import android.graphics.Rect;
 import android.view.View;

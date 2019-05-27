@@ -10,6 +10,7 @@ import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.ChangeNickEvent;
 import com.example.qwez.bus.event.ChangePassowordEvent;
 import com.example.qwez.bus.event.ChangePhotoEvent;
+import com.example.qwez.bus.event.DeleteAccount;
 import com.example.qwez.bus.event.LogoutEvent;
 import com.example.qwez.util.ViewUtil;
 
@@ -51,6 +52,15 @@ public class SettingsFragment extends PreferenceFragmentCompat{
             changePhoto.setOnPreferenceClickListener(preference -> {
                 ViewUtil.disablePreferenceShort(changePhoto);
                 RxBus.publish(RxBus.TRY_CHANGE_PHOTO, new ChangePhotoEvent());
+                return true;
+            });
+        }
+
+        final Preference deleteAccount = findPreference("delete_account");
+        if(deleteAccount != null){
+            deleteAccount.setOnPreferenceClickListener(preference -> {
+                ViewUtil.disablePreferenceShort(deleteAccount);
+                RxBus.publish(RxBus.TRY_DELETE_ACCOUNT, new DeleteAccount());
                 return true;
             });
         }

@@ -3,6 +3,7 @@ package com.example.qwez.repository.firebase;
 import android.net.Uri;
 
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
+import com.example.qwez.repository.firebase.rxwrapper.FirebaseDBWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
 import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
 import com.google.firebase.auth.AuthCredential;
@@ -138,7 +139,14 @@ public class FirebaseAuthRepository implements FirebaseAuthRepositoryType {
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setPhotoUri(uri)
                 .build();
-        return FirebaseUserWrapper.updateUserProfile(firebaseUser,request);
+        return FirebaseUserWrapper.updateUserProfile(firebaseUser,request)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Completable deleteUser(FirebaseUser firebaseUser) {
+        return FirebaseUserWrapper.deleteUser(firebaseUser)
+                .subscribeOn(Schedulers.io());
     }
 
 }

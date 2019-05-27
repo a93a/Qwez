@@ -9,7 +9,6 @@ import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
-import timber.log.Timber;
 
 /**
  * OPENTDB API Repository

@@ -12,7 +12,7 @@ public final class FirebaseUserWrapper {
 
 
     private FirebaseUserWrapper(){
-        //private constructor to avoid instantiation
+
     }
 
     /**
@@ -60,9 +60,11 @@ public final class FirebaseUserWrapper {
      * @return Completable Emitter
      */
     public static Maybe<AuthResult> reAuthAndGetUser(FirebaseUser firebaseUser, AuthCredential authCredential){
-        return Maybe.create(emitter -> {
-            MaybeTask.assign(emitter, firebaseUser.reauthenticateAndRetrieveData(authCredential));
-        });
+        return Maybe.create(emitter -> MaybeTask.assign(emitter, firebaseUser.reauthenticateAndRetrieveData(authCredential)));
+    }
+
+    public static Completable deleteUser(FirebaseUser user){
+        return Completable.create(emitter -> CompletableTask.assign(emitter, user.delete()));
     }
 
 }

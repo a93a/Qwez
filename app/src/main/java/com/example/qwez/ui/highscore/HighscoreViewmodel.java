@@ -3,15 +3,14 @@ package com.example.qwez.ui.highscore;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.qwez.base.BaseViewModel;
+import com.example.qwez.entity.Highscore;
 import com.example.qwez.interactor.GetHighscoreInteractor;
 
 import java.util.List;
 
-import timber.log.Timber;
-
 public class HighscoreViewmodel extends BaseViewModel {
     
-    private MutableLiveData<List<Integer>> highscore = new MutableLiveData<>();
+    private MutableLiveData<List<Highscore>> highscore = new MutableLiveData<>();
     private MutableLiveData<Integer> yourscore = new MutableLiveData<>();
 
     private final GetHighscoreInteractor getUserHighscoreInteractor;
@@ -34,8 +33,9 @@ public class HighscoreViewmodel extends BaseViewModel {
                 .subscribe(this::onScores,this::onError);
     }
 
-    private void onScores(List<Integer> integers) {
-        integers.forEach(integer -> Timber.d("HELLO SIR %s",integer));
+    private void onScores(List<Highscore> scores) {
+        progress.setValue(false);
+        highscore.setValue(scores);
     }
 
     private void onHighscore(Integer integer) {
@@ -43,7 +43,7 @@ public class HighscoreViewmodel extends BaseViewModel {
         yourscore.setValue(integer);
     }
 
-    public MutableLiveData<List<Integer>> highscore() {
+    public MutableLiveData<List<Highscore>> highscore() {
         return highscore;
     }
 

@@ -2,6 +2,7 @@ package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
+import com.example.qwez.repository.firebase.FirebaseDatabaseType;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.junit.Before;
@@ -28,7 +29,11 @@ public class ChangeUserNickInteractorTest {
     @Mock
     FirebaseAuthRepositoryType firebaseAuthRepositoryType;
     @Mock
+    FirebaseDatabaseType firebaseDatabaseType;
+    @Mock
     FirebaseUser firebaseUser;
+
+    private static final String UID = "123";
 
     @InjectMocks
     ChangeUserNickInteractor changeUserNickInteractor;
@@ -41,7 +46,9 @@ public class ChangeUserNickInteractorTest {
     @Test
     public void changeNick() {
         when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
+        when(firebaseUser.getUid()).thenReturn(UID);
         when(firebaseAuthRepositoryType.changeUserNick(firebaseUser,"hey")).thenReturn(Completable.complete());
+        when(firebaseDatabaseType.updateNick(UID, "hey")).thenReturn(Completable.complete());
 
         changeUserNickInteractor.ChangeNick("hey")
                 .test()
@@ -49,6 +56,7 @@ public class ChangeUserNickInteractorTest {
                 .assertComplete();
 
         verify(firebaseAuthRepositoryType).changeUserNick(firebaseUser, "hey");
+        verify(firebaseDatabaseType).updateNick(UID, "hey");
 
     }
 }

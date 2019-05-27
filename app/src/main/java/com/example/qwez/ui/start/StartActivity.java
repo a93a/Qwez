@@ -25,10 +25,10 @@ import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.Game;
+import com.example.qwez.ui.common.ItemDecorator;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.ui.start.recycler.CustomAdapter;
 import com.example.qwez.ui.start.recycler.GameAdapter;
-import com.example.qwez.ui.start.recycler.ItemDecorator;
 import com.example.qwez.ui.start.recycler.SwipeDeleteHelper;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
@@ -41,7 +41,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 public class StartActivity extends BaseActivity{
 
@@ -157,13 +156,13 @@ public class StartActivity extends BaseActivity{
         final TextView err = layout.findViewById(R.id.err_text);
 
         final List<String> cats = Category.getList();
-        cats.add(0,"Category");
+        cats.add(0,"Choose A Category");
         final CustomAdapter<String> catAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,cats);
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(catAdapter);
 
         final List<String> diffs = Difficulty.getList();
-        diffs.add(0,"Difficulty");
+        diffs.add(0,"Choose A Difficulty");
         final CustomAdapter<String> diffAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,diffs);
         diffAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         diff.setAdapter(diffAdapter);
@@ -210,6 +209,7 @@ public class StartActivity extends BaseActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        ViewUtil.disableMenuItemShort(item);
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.start_menu_settings:

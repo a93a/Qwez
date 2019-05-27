@@ -63,5 +63,7 @@ public interface FirebaseAuthRepositoryType {
      */
     Completable changeUserPhoto(FirebaseUser firebaseUser, Uri uri);
 
+    Completable deleteUser(FirebaseUser firebaseUser);
+
 }
 
