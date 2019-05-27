@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Query;
@@ -116,6 +117,11 @@ public final class FirebaseDBWrapper {
    public static Completable updateDocument(DocumentReference ref, Map<String,Object> fieldsAndValues){
         final Task<Void> task = ref.update(fieldsAndValues);
         return Completable.create(emitter -> CompletableTask.assign(emitter, task));
+   }
+
+   public static Completable updateDocument(DocumentReference ref, String field, FieldValue fieldValue) {
+       final Task<Void> task = ref.update(field, fieldValue);
+       return Completable.create(emitter -> CompletableTask.assign(emitter, task));
    }
    
 }

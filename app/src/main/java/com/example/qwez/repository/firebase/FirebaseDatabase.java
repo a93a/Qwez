@@ -4,6 +4,7 @@ import com.example.qwez.entity.Highscore;
 import com.example.qwez.repository.firebase.rxwrapper.FirebaseDBWrapper;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -24,6 +25,7 @@ public class FirebaseDatabase implements FirebaseDatabaseType {
     private static final String SCORE = "score";
     private static final int LIMIT_SCORES = 50;
     private static final String USER_NICK = "nick";
+    private static final String USER_SCORE = "score";
 
     public FirebaseDatabase(FirebaseFirestore db) {
         this.db = db;
@@ -58,6 +60,13 @@ public class FirebaseDatabase implements FirebaseDatabaseType {
         final Map<String, Object> map = new HashMap<>();
         map.put(USER_NICK,newNick);
         return FirebaseDBWrapper.updateDocument(ref, map)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Completable updateHighscore(String uid, int addToHighscore) {
+        final DocumentReference ref = db.collection(USER).document(uid);
+        return FirebaseDBWrapper.updateDocument(ref, USER_SCORE, FieldValue.increment((long) addToHighscore))
                 .subscribeOn(Schedulers.io());
     }
 }

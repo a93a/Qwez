@@ -1,6 +1,7 @@
 package com.example.qwez.repository.firebase;
 
 import com.example.qwez.entity.Highscore;
+import com.example.qwez.repository.firebase.rxwrapper.CompletableTask;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface FirebaseDatabaseType {
     Single<List<Highscore>> getTop50Highscores();
 
     Completable updateNick(String uid, String newNick);
+
+    Completable updateHighscore(String uid, int addToHighscore);
 
 }

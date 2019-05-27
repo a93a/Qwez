@@ -27,14 +27,15 @@ exports.onUserCreation = functions.auth.user().onCreate((user) => {
 		usernick = "unknown"
 	}
 
-    return highscore_collection.doc(userid).set({
-        score: 0,
-        nick: usernick,
+    return user_collection.doc(userid).set({
+				nick: usernick,
+				photo: null,
+				score: 0
     }).then(user => {
 
-	 return user_collection.doc(userid).set({
-			nick: usernick,
-			photo: null
+	 return highscore_collection.doc(userid).set({
+		 score: 0,
+		 nick: usernick
 		})
 	})
 
@@ -66,11 +67,24 @@ exports.deleteUser = functions.firestore.document('user/{userID}').onDelete((sna
 exports.onUserNickUpdate = functions.firestore.document('user/{userid}').onWrite((change,context) => {
 
 	const changednick = change.after.data().nick
-	const userid = context.params.userid;
+	const userid = context.params.userid
 
 	return highscore_collection.doc(userid).update({
 		nick: changednick
 	})
+
+})
+
+//update highscore_collection score on user score changednick
+exports.onScoreUpdate = functions.firestore.document('user/{userid}').onWrite((change,context) => {
+
+	const changedscore = change.after.data().score
+	const userid = context.params.userid
+
+	return highscore_collection.doc(userid).update({
+		score: changedscore
+	})
+
 
 })
 
