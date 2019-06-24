@@ -8,6 +8,7 @@ import com.example.qwez.interactor.LogoutUserInteractor;
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.firebase.FirebaseDatabaseType;
 import com.example.qwez.repository.firebase.FirebaseStorageRepositoryType;
+import com.example.qwez.repository.local.GameRepositoryType;
 import com.example.qwez.router.LoginRouter;
 
 import javax.inject.Named;
@@ -34,17 +35,20 @@ public class SettingsModule {
     }
 
     @Provides
-    DeleteAccountInteractor deleteAccountInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType){
-        return new DeleteAccountInteractor(firebaseAuthRepositoryType);
+    DeleteAccountInteractor deleteAccountInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType,
+                                                    GameRepositoryType gameRepositoryType){
+        return new DeleteAccountInteractor(firebaseAuthRepositoryType, gameRepositoryType);
     }
 
     @Provides
-    ChangeProfilePhotoInteractor changeProfilePhotoInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType, FirebaseStorageRepositoryType firebaseStorageRepositoryType){
+    ChangeProfilePhotoInteractor changeProfilePhotoInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType,
+                                                              FirebaseStorageRepositoryType firebaseStorageRepositoryType){
         return new ChangeProfilePhotoInteractor(firebaseAuthRepositoryType,firebaseStorageRepositoryType);
     }
 
     @Provides
-    ChangeUserNickInteractor changeUserNickInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType, FirebaseDatabaseType firebaseDatabaseType){
+    ChangeUserNickInteractor changeUserNickInteractor(FirebaseAuthRepositoryType firebaseAuthRepositoryType,
+                                                      FirebaseDatabaseType firebaseDatabaseType){
         return new ChangeUserNickInteractor(firebaseAuthRepositoryType, firebaseDatabaseType);
     }
 

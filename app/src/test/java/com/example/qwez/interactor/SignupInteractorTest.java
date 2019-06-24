@@ -27,8 +27,12 @@ public class SignupInteractorTest {
 
     @Mock
     FirebaseAuthRepositoryType firebaseAuthRepositoryType;
+
     @Mock
     AuthResult authResult;
+
+    @Mock
+    Throwable error;
 
     @InjectMocks
     SignupInteractor interactor;
@@ -42,10 +46,23 @@ public class SignupInteractorTest {
     public void signupUser() {
         when(firebaseAuthRepositoryType.createUserEmailAndPassword(anyString(), anyString())).thenReturn(Maybe.just(authResult));
 
-        interactor.signupUser("fake", "fake2", "fake3")
+        interactor.signupUser("fake", "fake3")
                 .test()
                 .assertNoErrors()
                 .assertComplete();
+
+        verify(firebaseAuthRepositoryType).createUserEmailAndPassword("fake", "fake3");
+    }
+
+    @Test
+    public void signupUserError() {
+        when(firebaseAuthRepositoryType.createUserEmailAndPassword(anyString(), anyString())).thenReturn(Maybe.error(error));
+
+        interactor.signupUser("fake", "fake3")
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
 
         verify(firebaseAuthRepositoryType).createUserEmailAndPassword("fake", "fake3");
     }

@@ -56,7 +56,7 @@ class SettingsViewModel extends BaseViewModel {
 
     void changeNick(String newNick){
         progress.setValue(true);
-        disposable = changeUserNickInteractor.ChangeNick(newNick)
+        disposable = changeUserNickInteractor.changeNick(newNick)
                 .subscribe(this::onNick,this::onError);
     }
 

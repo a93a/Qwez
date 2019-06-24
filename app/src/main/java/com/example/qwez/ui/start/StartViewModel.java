@@ -10,7 +10,7 @@ import com.example.qwez.interactor.DeleteGameInteractor;
 import com.example.qwez.interactor.FetchQuestionsInteractor;
 import com.example.qwez.interactor.GetAllGamesInteractor;
 import com.example.qwez.interactor.GetUserInteractor;
-import com.example.qwez.repository.local.Game;
+import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.router.HighscoreRouter;
 import com.example.qwez.router.QuestionRouter;
 import com.example.qwez.router.SettingsRouter;
@@ -66,7 +66,6 @@ public class StartViewModel extends BaseViewModel {
     }
 
     void getUser(){
-        progress.setValue(true);
         disposable = getUserInteractor.getUser()
                 .subscribe(this::onUser,this::onError);
     }
@@ -122,8 +121,8 @@ public class StartViewModel extends BaseViewModel {
 
     void prepare(){
         disposable = getUserInteractor.getUser()
+                .doOnNext(firebaseUser -> getAllGames())
                 .subscribe(this::onUser,this::onError);
-        getAllGames();
     }
 
     MutableLiveData<Boolean> questions() {

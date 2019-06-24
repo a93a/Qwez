@@ -1,27 +1,29 @@
 package com.example.qwez.util;
 
+import com.example.qwez.repository.local.entity.Question;
+
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper Class for converting between {@link com.example.qwez.repository.opentdb.entity.Question} and {@link com.example.qwez.repository.local.Question}
+ * Helper Class for converting between {@link com.example.qwez.repository.opentdb.entity.Question} and {@link Question}
  */
-public final class QuestionConverter {
+public final class QuestionUtil {
 
-    private QuestionConverter(){
+    private QuestionUtil(){
         //private constructor to avoid instantiation
     }
 
     /**
-     * Convert a List of {@link com.example.qwez.repository.opentdb.entity.Question} to a List of{@link com.example.qwez.repository.local.Question}
+     * Convert a List of {@link com.example.qwez.repository.opentdb.entity.Question} to a List of{@link Question}
      * @param toConvert List of OPENTBD API Question(s) to convert
      * @return List of Local Database Question(s)
      */
-    public static List<com.example.qwez.repository.local.Question> toDatabase(List<com.example.qwez.repository.opentdb.entity.Question> toConvert) {
+    public static List<Question> toDatabase(List<com.example.qwez.repository.opentdb.entity.Question> toConvert) {
 
-        List<com.example.qwez.repository.local.Question> converted = new ArrayList<>();
+        List<Question> converted = new ArrayList<>();
 
         toConvert.forEach(question -> {
             String q = question.getQuestion();
@@ -35,7 +37,7 @@ public final class QuestionConverter {
             wA2 = StringEscapeUtils.unescapeHtml4(wA2);
             wA3 = StringEscapeUtils.unescapeHtml4(wA3);
 
-            converted.add(new com.example.qwez.repository.local.Question(
+            converted.add(new Question(
                     q,
                     qCA,
                     wA1,

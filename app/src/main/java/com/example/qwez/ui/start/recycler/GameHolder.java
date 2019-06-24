@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseViewHolder;
-import com.example.qwez.repository.local.Game;
+import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.util.Category;
 
 import butterknife.BindView;
@@ -25,6 +25,8 @@ public class GameHolder extends BaseViewHolder<Game> implements View.OnLongClick
     TextView diff;
     @BindView(R.id.question_icon)
     ImageView icon;
+    @BindView(R.id.how_many_answered)
+    TextView answered;
 
     GameHolder(@LayoutRes int layoutRes, ViewGroup parent) {
         super(layoutRes,parent);
@@ -36,12 +38,12 @@ public class GameHolder extends BaseViewHolder<Game> implements View.OnLongClick
             this.data = data;
             cat.setText(data.getCategory());
             diff.setText(data.getDifficulty());
+            answered.setText(String.format("%d/10", data.getAnswered()));
             Glide
                     .with(icon.getContext())
                     .asBitmap()
                     .load(
-                            Uri.parse(
-                                    String.format(
+                            Uri.parse(String.format(
                                             "file:///android_asset/categories/%s.png",
                                             Category.getMap().get(data.getCategory()))))
                     .into(icon);

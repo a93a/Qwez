@@ -8,6 +8,8 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.qwez.interactor.FetchQuestionsInteractor;
+import com.example.qwez.repository.local.entity.Game;
+import com.example.qwez.repository.local.entity.Question;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -56,13 +58,13 @@ public class GameRepositoryTest {
                 .allowMainThreadQueries()
                 .build();
 
-        gameRepositoryType = new GameRepository(gameDatabase.gameDao(), gameDatabase.questionDao(),gameDatabase.gameQuestionDao());
+        gameRepositoryType = new GameRepository(gameDatabase.gameDao(), gameDatabase.questionDao(),gameDatabase.gameQuestionDao(), gameDatabase);
     }
 
     @Test
     public void addQuestion() {
 
-        Game game = new Game("blah", "lah");
+        Game game = new Game("blah", "lah", answered);
 
         gameRepositoryType
                 .addGame(game)
@@ -143,8 +145,8 @@ public class GameRepositoryTest {
     @Test
     public void addGameReturnIdAddQuestion(){
 
-        Game game = new Game("blah", "lah");
-        Game game2 = new Game("nah", "fah");
+        Game game = new Game("blah", "lah", answered);
+        Game game2 = new Game("nah", "fah", answered);
 
         long id = gameRepositoryType
                 .addGameReturnId(game)

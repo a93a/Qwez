@@ -24,7 +24,7 @@ import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
 import com.example.qwez.entity.ErrorCarrier;
-import com.example.qwez.repository.local.Game;
+import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.ui.common.ItemDecorator;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.ui.start.recycler.CustomAdapter;
@@ -41,6 +41,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class StartActivity extends BaseActivity{
 
@@ -58,9 +59,6 @@ public class StartActivity extends BaseActivity{
     ImageView userImage;
 
     private GameAdapter adapter;
-
-    private static final String NO_CAT_SELECTION = "Category";
-    private static final String NO_DIFF_SELECTION = "Difficulty";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -155,14 +153,17 @@ public class StartActivity extends BaseActivity{
 
         final TextView err = layout.findViewById(R.id.err_text);
 
+        String choiceCat = getResources().getString(R.string.choose_a_category);
+        String choiceDif = getResources().getString(R.string.choose_difficulty);
+
         final List<String> cats = Category.getList();
-        cats.add(0,"Choose A Category");
+        cats.add(0,choiceCat);
         final CustomAdapter<String> catAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,cats);
         catAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(catAdapter);
 
         final List<String> diffs = Difficulty.getList();
-        diffs.add(0,"Choose A Difficulty");
+        diffs.add(0,choiceDif);
         final CustomAdapter<String> diffAdapter = new CustomAdapter<>(this, android.R.layout.simple_spinner_item,diffs);
         diffAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         diff.setAdapter(diffAdapter);
@@ -174,7 +175,7 @@ public class StartActivity extends BaseActivity{
                     String categoryString = (String) cat.getSelectedItem();
                     String difficultyString = (String) diff.getSelectedItem();
 
-                    if(!categoryString.equals(NO_CAT_SELECTION) && !difficultyString.equals(NO_DIFF_SELECTION)){
+                    if(!categoryString.equals(choiceCat) && !difficultyString.equals(choiceDif)){
                         dialog.dismiss();
                         Category category = Category.getMap().get(categoryString);
                         Difficulty difficulty = Difficulty.getMap().get(difficultyString);

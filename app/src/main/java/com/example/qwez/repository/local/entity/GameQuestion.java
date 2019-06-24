@@ -1,4 +1,4 @@
-package com.example.qwez.repository.local;
+package com.example.qwez.repository.local.entity;
 
 import androidx.room.Embedded;
 import androidx.room.Relation;

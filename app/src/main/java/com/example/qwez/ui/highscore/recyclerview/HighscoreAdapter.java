@@ -21,12 +21,12 @@ public class HighscoreAdapter extends BaseAdapter<Highscore,HighscoreHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull HighscoreHolder holder, int position) {
-        holder.bind(datalist.get(position));
+        holder.bind(dataList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return datalist.size();
+        return dataList.size();
     }
 
 

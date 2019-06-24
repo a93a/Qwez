@@ -9,7 +9,7 @@ import com.example.qwez.R;
 import com.example.qwez.base.BaseAdapter;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
-import com.example.qwez.repository.local.Game;
+import com.example.qwez.repository.local.entity.Game;
 
 public class GameAdapter extends BaseAdapter<Game,GameHolder> {
 
@@ -28,7 +28,7 @@ public class GameAdapter extends BaseAdapter<Game,GameHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
-        holder.bind(datalist.get(position));
+        holder.bind(dataList.get(position));
         holder.getItemView().setOnClickListener(v -> {
             if(isClickable){
                 Game game = holder.getData();
@@ -38,7 +38,7 @@ public class GameAdapter extends BaseAdapter<Game,GameHolder> {
     }
 
     void deleteItem(int position) {
-        RxBus.publish(RxBus.DELETE_GAME, new GameEvent(datalist.get(position)));
+        RxBus.publish(RxBus.DELETE_GAME, new GameEvent(dataList.get(position)));
         notifyDataSetChanged(); //restore view if not/after deleted
     }
 

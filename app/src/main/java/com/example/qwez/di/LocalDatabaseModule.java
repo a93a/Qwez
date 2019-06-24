@@ -4,12 +4,12 @@ import android.content.Context;
 
 import androidx.room.Room;
 
-import com.example.qwez.repository.local.GameDao;
 import com.example.qwez.repository.local.GameDatabase;
-import com.example.qwez.repository.local.GameQuestionDao;
 import com.example.qwez.repository.local.GameRepository;
 import com.example.qwez.repository.local.GameRepositoryType;
-import com.example.qwez.repository.local.QuestionDao;
+import com.example.qwez.repository.local.dao.GameDao;
+import com.example.qwez.repository.local.dao.GameQuestionDao;
+import com.example.qwez.repository.local.dao.QuestionDao;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,8 +26,11 @@ public class LocalDatabaseModule {
      */
     @Provides
     @ApplicationScope
-    GameRepositoryType gameRepositoryType(GameDao gameDao, QuestionDao questionDao, GameQuestionDao gameQuestionDao){
-        return new GameRepository(gameDao, questionDao,gameQuestionDao);
+    GameRepositoryType gameRepositoryType(GameDao gameDao,
+                                          QuestionDao questionDao,
+                                          GameQuestionDao gameQuestionDao,
+                                          GameDatabase gameDatabase){
+        return new GameRepository(gameDao, questionDao,gameQuestionDao, gameDatabase);
     }
 
     /**

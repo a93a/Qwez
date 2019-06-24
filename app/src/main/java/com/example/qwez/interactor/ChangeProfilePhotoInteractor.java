@@ -2,6 +2,8 @@ package com.example.qwez.interactor;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 import com.example.qwez.repository.firebase.FirebaseAuthRepositoryType;
 import com.example.qwez.repository.firebase.FirebaseStorageRepositoryType;
 
@@ -20,7 +22,7 @@ public class ChangeProfilePhotoInteractor {
     }
 
 
-    public Completable changeProfilePhoto(Uri uri){
+    public Completable changeProfilePhoto(@NonNull Uri uri){
         return authRepo.getCurrentUser()
                 .take(1)
                 .flatMapCompletable(firebaseUser -> storageRepo.uploadPhoto(firebaseUser.getUid(), uri)

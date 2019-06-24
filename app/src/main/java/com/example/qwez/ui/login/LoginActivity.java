@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivityWithFragment {
 
         RxBus.subscribe(RxBus.TRY_SIGN_UP, this, o -> {
             SignupEvent signupEvent = (SignupEvent) o;
-            viewModel.signupUser(signupEvent.getEmail(),signupEvent.getNick(),signupEvent.getPassword());
+            viewModel.signupUser(signupEvent.getEmail(),signupEvent.getPassword());
         });
 
     }

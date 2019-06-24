@@ -64,6 +64,8 @@ public final class RxBus {
     public static final int LOGIN_IS_ATTACHED = 10;
     public static final int TRY_CHANGE_PHOTO = 11;
     public static final int TRY_DELETE_ACCOUNT = 12;
+    public static final int START_OR_END_QUIZ = 13;
+    public static final int SHOW_NEXT_QUESTION = 14;
 
     //event type annotation
     @Retention(SOURCE)
@@ -79,7 +81,9 @@ public final class RxBus {
             TRY_CHANGE_NICK,
             LOGIN_IS_ATTACHED,
             TRY_CHANGE_PHOTO,
-            TRY_DELETE_ACCOUNT})
+            TRY_DELETE_ACCOUNT,
+            START_OR_END_QUIZ,
+            SHOW_NEXT_QUESTION})
     @interface Subject {
     }
 

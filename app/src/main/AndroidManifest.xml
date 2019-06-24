@@ -18,11 +18,14 @@
         <!-- Activities -->
 
         <activity android:name=".ui.start.StartActivity"
-            android:label="Games"/>
+            android:label="Games"
+            android:screenOrientation="sensorPortrait"/>
 
-        <activity android:name=".ui.question.QuestionActivity" />
+        <activity android:name=".ui.question.QuestionActivity"
+            android:screenOrientation="sensorPortrait"/>
 
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -30,15 +33,16 @@
         </activity>
 
         <activity android:name=".ui.login.LoginActivity"
-            android:label="@string/label_loginactivity" />
+            android:label="@string/label_loginactivity"
+            android:screenOrientation="sensorPortrait"/>
 
         <activity android:name=".ui.settings.SettingsActivity"
-            android:label="Settings"/>
+            android:label="Settings"
+            android:screenOrientation="sensorPortrait"/>
 
         <activity android:name=".ui.highscore.HighscoreActivity"
-            android:label="High Score"/>
-
-
+            android:label="High Score"
+            android:screenOrientation="sensorPortrait"/>
 
         <!-- services -->
         <service

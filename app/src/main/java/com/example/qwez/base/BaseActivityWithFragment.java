@@ -1,6 +1,7 @@
 package com.example.qwez.base;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public abstract class BaseActivityWithFragment extends BaseActivity {
@@ -12,7 +13,7 @@ public abstract class BaseActivityWithFragment extends BaseActivity {
      * @param id fragment container
      * @param addToStack flag determines if fragment added to fragment stack or not. True will add to stack.
      */
-    protected void replaceFragment(Fragment fragment, @IdRes int id, boolean addToStack){
+    protected void replaceFragment(@NonNull Fragment fragment,@IdRes int id, boolean addToStack){
         if(addToStack){
             getSupportFragmentManager()
                     .beginTransaction()

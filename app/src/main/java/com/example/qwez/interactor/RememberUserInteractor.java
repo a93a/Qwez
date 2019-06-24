@@ -1,5 +1,7 @@
 package com.example.qwez.interactor;
 
+import androidx.annotation.NonNull;
+
 import com.example.qwez.repository.sharedpref.SharedPreferencesRepositoryType;
 
 import io.reactivex.Completable;
@@ -14,7 +16,7 @@ public class RememberUserInteractor {
         this.sharedPreferencesRepositoryType = sharedPreferencesRepositoryType;
     }
 
-    public Completable setRemembered(String remember){
+    public Completable setRemembered(@NonNull String remember){
         return sharedPreferencesRepositoryType.setRemembered(remember)
                 .andThen( sharedPreferencesRepositoryType.setIsRemember(true))
                 .observeOn(AndroidSchedulers.mainThread());

@@ -24,7 +24,7 @@ public class DifficultyItem extends BaseViewHolder<String> {
             textView.setText(data);
             switch (data){
                 case "Easy":
-                    textView.setBackgroundColor(itemView.getResources().getColor(R.color.colorProgressGreen));
+                    textView.setBackgroundColor(itemView.getResources().getColor(R.color.colorProgressGreenLight));
                     break;
                 case "Medium":
                     textView.setBackgroundColor(itemView.getResources().getColor(R.color.colorProgressYellow));

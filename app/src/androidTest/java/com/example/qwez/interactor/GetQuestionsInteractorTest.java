@@ -6,19 +6,19 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
-import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameDatabase;
 import com.example.qwez.repository.local.GameRepository;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.repository.opentdb.OpenTDB;
 import com.example.qwez.repository.opentdb.OpenTDBAPI;
 import com.example.qwez.repository.opentdb.OpenTDBType;
 import com.example.qwez.repository.opentdb.entity.Question;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
-import com.example.qwez.util.QuestionConverter;
+import com.example.qwez.util.QuestionUtil;
 import com.example.qwez.util.QuestionType;
-import com.example.qwez.util.URL;
+import com.example.qwez.util.UrlConstant;
 import com.google.gson.Gson;
 
 import org.junit.Before;
@@ -73,11 +73,11 @@ public class GetQuestionsInteractorTest {
                 .allowMainThreadQueries()
                 .build();
 
-        gameRepositoryType = new GameRepository(gameDatabase.gameDao(), gameDatabase.questionDao(),gameDatabase.gameQuestionDao());
+        gameRepositoryType = new GameRepository(gameDatabase.gameDao(), gameDatabase.questionDao(),gameDatabase.gameQuestionDao(), gameDatabase);
 
         //build api
         OpenTDBAPI openTDBAPI = new Retrofit.Builder()
-                .baseUrl(URL.URL_END_POINT)
+                .baseUrl(UrlConstant.URL_END_POINT)
                 .client(new OkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
@@ -107,10 +107,10 @@ public class GetQuestionsInteractorTest {
         List<com.example.qwez.repository.opentdb.entity.Question> beforeConvert = test.values().get(0);
 
         //convert from remote to local
-        List<com.example.qwez.repository.local.Question> afterConvert = QuestionConverter.toDatabase(beforeConvert);
+        List<com.example.qwez.repository.local.entity.Question> afterConvert = QuestionUtil.toDatabase(beforeConvert);
 
         //add new game
-        int id = (int)(long)gameRepositoryType.addGameReturnId(new Game(Category.getAsString(Category.FILMS), Difficulty.EASY.getDifficulty())).blockingGet();
+        int id = (int)(long)gameRepositoryType.addGameReturnId(new Game(Category.getAsString(Category.FILMS), Difficulty.EASY.getDifficulty(), answered)).blockingGet();
 
         //set local id to game id
         afterConvert.forEach(question -> question.setqId(id));

@@ -1,9 +1,12 @@
 package com.example.qwez.repository;
 
+import com.example.qwez.repository.opentdb.entity.ResponseBody;
+
 import io.reactivex.ObservableOperator;
 import io.reactivex.Observer;
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * Custom ObservableOperator that takes in Retrofit<T> Response.
@@ -18,6 +21,8 @@ import retrofit2.Response;
  */
 public final class ApiOperator<T> implements ObservableOperator<T, Response<T>> {
 
+    private static final int RESPONSE_CODE_ERROR = 1;
+
     @Override
     public Observer<? super Response<T>> apply(final Observer<? super T> observer) throws Exception {
         return new DisposableObserver<Response<T>>() {
@@ -30,11 +35,16 @@ public final class ApiOperator<T> implements ObservableOperator<T, Response<T>> 
             @Override
             public void onNext(Response<T> tResponse) {
                 dispose();
-                if(!tResponse.isSuccessful()){
-                    observer.onError(new Exception("ApiOperator "+tResponse.message()));
+                if(!tResponse.isSuccessful()) {
+                    observer.onError(new Exception("ApiOperator " + tResponse.message()));
                 }else{
-                    observer.onNext(tResponse.body());
-                    observer.onComplete();
+                    ResponseBody responseBody = (ResponseBody) tResponse.body();
+                    if (responseBody != null && responseBody.getResponseCode()==RESPONSE_CODE_ERROR) {
+                        observer.onError(new Exception("ApiOperator empty QuestionList"));
+                    }else{
+                        observer.onNext(tResponse.body());
+                        observer.onComplete();
+                    }
                 }
             }
 

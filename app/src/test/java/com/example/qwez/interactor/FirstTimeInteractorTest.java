@@ -27,6 +27,9 @@ public class FirstTimeInteractorTest {
     @Mock
     SharedPreferencesRepositoryType sharedPreferencesRepositoryType;
 
+    @Mock
+    Throwable error;
+
     @InjectMocks
     FirstTimeInteractor firstTimeInteractor;
 
@@ -43,7 +46,19 @@ public class FirstTimeInteractorTest {
                 .assertNoErrors()
                 .assertValue(true);
         verify(sharedPreferencesRepositoryType).getNotFirstTime();
+    }
 
+    @Test
+    public void checkFirstTimeError() {
+        when(sharedPreferencesRepositoryType.getNotFirstTime()).thenReturn(Single.error(error));
+
+        firstTimeInteractor.checkNotFirstTime()
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
+
+        verify(sharedPreferencesRepositoryType).getNotFirstTime();
     }
 
     @Test
@@ -53,6 +68,19 @@ public class FirstTimeInteractorTest {
                 .test()
                 .assertNoErrors()
                 .assertComplete();
+
+        verify(sharedPreferencesRepositoryType).setNotFirstTime(true);
+    }
+
+    @Test
+    public void setNotFirstTimeError() {
+        when(sharedPreferencesRepositoryType.setNotFirstTime(true)).thenReturn(Completable.error(error));
+
+        firstTimeInteractor.setNotFirstTime()
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
 
         verify(sharedPreferencesRepositoryType).setNotFirstTime(true);
     }

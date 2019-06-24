@@ -7,6 +7,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * A RxJava implementation of a countdown timer.
@@ -46,6 +47,7 @@ public abstract class CountDownTimer {
      * Start the countdown iteration.
      */
     public void start(){
+        Timber.d("NEW TIMER");
         Observable
                 .zip(   //zip Observable.range and Observable.interval.
                         // Wait for 1 emission from each
@@ -62,6 +64,7 @@ public abstract class CountDownTimer {
 
                     @Override
                     public void onNext(Long aLong) {
+                        Timber.d("TICK %S", aLong);
                         onTick(aLong);
                     }
 
@@ -81,7 +84,9 @@ public abstract class CountDownTimer {
      * Cancel the countdown iteration
      */
     public void cancel(){
-        if(disposable!=null)
+        if(disposable!=null) {
             disposable.dispose();
+            Timber.d("TIMER CANCELLED");
+        }
     }
 }

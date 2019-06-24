@@ -16,7 +16,7 @@ public class ChangeUserNickInteractor {
         this.firebaseDatabaseType = firebaseDatabaseType;
     }
 
-    public Completable ChangeNick(String nick){
+    public Completable changeNick(String nick){
         return firebaseAuthRepositoryType.getCurrentUser()
                 .take(1)
                 .flatMapCompletable(firebaseUser -> firebaseAuthRepositoryType.changeUserNick(firebaseUser, nick)

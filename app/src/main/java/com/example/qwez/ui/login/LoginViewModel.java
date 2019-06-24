@@ -32,9 +32,9 @@ class LoginViewModel extends BaseViewModel {
                 .subscribe(this::onLoginSuccess, this::onError);
     }
 
-    void signupUser(String email, String nick, String password){
+    void signupUser(String email, String password){
         progress.setValue(true);
-        disposable = signupInteractor.signupUser(email, nick, password)
+        disposable = signupInteractor.signupUser(email, password)
                 .subscribe(this::onSignupSuccess, this::onError);
     }
 

@@ -16,7 +16,6 @@ class FirebaseTestHelper {
     static final String NEW_PASSWORD = "newtest123";
     static final Exception EXCEPTION = new Exception();
 
-
     static ArgumentCaptor<OnCompleteListener> testOnCompleteListener = ArgumentCaptor.forClass(OnCompleteListener.class);
     static ArgumentCaptor<OnSuccessListener> testOnSuccessListener = ArgumentCaptor.forClass(OnSuccessListener.class);
     static ArgumentCaptor<OnFailureListener> testOnFailureListener = ArgumentCaptor.forClass(OnFailureListener.class);

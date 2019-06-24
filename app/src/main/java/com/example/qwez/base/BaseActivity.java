@@ -1,9 +1,15 @@
 package com.example.qwez.base;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +27,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     //keep private instance for dismissing etc
     private MaterialDialog dialog;
 
+    /**
+     * Return the @LayoutRes id of the View to be used with the Activity extending this Class.
+     */
+    protected abstract @LayoutRes int getLayout();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +42,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected abstract int getLayout();
-
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -41,6 +50,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (hasFocus) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //Unregister this activity from RxBus to stop receiving events
+        RxBus.unregister(this);
+
+        //dismiss current dialog to avoid memory leaks
+        dismissDialog();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //case home button clicked
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 
     /**
@@ -70,7 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Set actionbar subtitle
      * @param subtitle to be displayed
      */
-    protected void setSubtitle(String subtitle) {
+    protected void setSubtitle(@NonNull String subtitle) {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setSubtitle(subtitle);
@@ -121,20 +152,9 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Displays a MaterialDialog dialog (See https://github.com/afollestad/material-dialogs)
      * @param builder MaterialDialog builder to build and show
      */
-    protected void showCustomDialog(MaterialDialog.Builder builder){
+    protected void showCustomDialog(@NonNull MaterialDialog.Builder builder){
         dismissDialog();
         dialog = builder.show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //case home button clicked
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
     }
 
     /**
@@ -146,15 +166,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Shows the keyboard
+     */
+    protected void showKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.showSoftInput(getCurrentFocus() , InputMethodManager.SHOW_IMPLICIT);
+        }
+    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        //Unregister this activity from RxBus to stop receiving events
-        RxBus.unregister(this);
-
-        //dismiss current dialog to avoid memory leaks
-        dismissDialog();
+    /**
+     * Hides the keyboard
+     */
+    protected void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }

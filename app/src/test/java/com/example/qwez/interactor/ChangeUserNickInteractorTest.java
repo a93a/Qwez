@@ -17,6 +17,8 @@ import org.mockito.MockitoAnnotations;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,10 +30,15 @@ public class ChangeUserNickInteractorTest {
 
     @Mock
     FirebaseAuthRepositoryType firebaseAuthRepositoryType;
+
     @Mock
     FirebaseDatabaseType firebaseDatabaseType;
+
     @Mock
     FirebaseUser firebaseUser;
+
+    @Mock
+    Throwable error;
 
     private static final String UID = "123";
 
@@ -50,10 +57,43 @@ public class ChangeUserNickInteractorTest {
         when(firebaseAuthRepositoryType.changeUserNick(firebaseUser,"hey")).thenReturn(Completable.complete());
         when(firebaseDatabaseType.updateNick(UID, "hey")).thenReturn(Completable.complete());
 
-        changeUserNickInteractor.ChangeNick("hey")
+        changeUserNickInteractor.changeNick("hey")
                 .test()
                 .assertNoErrors()
                 .assertComplete();
+
+        verify(firebaseAuthRepositoryType).changeUserNick(firebaseUser, "hey");
+        verify(firebaseDatabaseType).updateNick(UID, "hey");
+
+    }
+
+    @Test
+    public void changeNickError() {
+        when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
+        when(firebaseUser.getUid()).thenReturn(UID);
+        when(firebaseAuthRepositoryType.changeUserNick(firebaseUser,"hey")).thenReturn(Completable.error(error));
+        when(firebaseDatabaseType.updateNick(UID, "hey")).thenReturn(Completable.complete());
+
+        changeUserNickInteractor.changeNick("hey")
+                .test()
+                .assertNotComplete()
+                .assertError(error);
+
+        verify(firebaseAuthRepositoryType).changeUserNick(firebaseUser, "hey");
+        verify(firebaseDatabaseType,never()).updateNick(UID, "hey");
+
+    }
+
+    @Test
+    public void changeNickDBError() {
+        when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
+        when(firebaseUser.getUid()).thenReturn(UID);
+        when(firebaseAuthRepositoryType.changeUserNick(firebaseUser,"hey")).thenReturn(Completable.complete());
+        when(firebaseDatabaseType.updateNick(UID, "hey")).thenReturn(Completable.error(error));
+
+        changeUserNickInteractor.changeNick("hey")
+                .test()
+                .assertError(error);
 
         verify(firebaseAuthRepositoryType).changeUserNick(firebaseUser, "hey");
         verify(firebaseDatabaseType).updateNick(UID, "hey");

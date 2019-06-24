@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a1f7ad73ad45d6486cc13608d599111d",
+    "identityHash": "515240ea59a4c46a046c06e25a9d2bd3",
     "entities": [
       {
         "tableName": "games",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `category` TEXT, `difficulty` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `category` TEXT, `difficulty` TEXT, `answered` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "gameId",
@@ -25,6 +25,12 @@
             "columnName": "difficulty",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "answered",
+            "columnName": "answered",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -38,7 +44,7 @@
       },
       {
         "tableName": "questions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `question_id` INTEGER NOT NULL, `question` TEXT, `correct_answer` TEXT, `wrong_answer_one` TEXT, `wrong_answer_two` TEXT, `wrong_answer_three` TEXT, FOREIGN KEY(`question_id`) REFERENCES `games`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `question_id` INTEGER NOT NULL, `question` TEXT, `correct_answer` TEXT, `wrong_answer_one` TEXT, `wrong_answer_two` TEXT, `wrong_answer_three` TEXT, `answer_chosen` TEXT, FOREIGN KEY(`question_id`) REFERENCES `games`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -81,6 +87,12 @@
             "columnName": "wrong_answer_three",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "answerChosen",
+            "columnName": "answer_chosen",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -108,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a1f7ad73ad45d6486cc13608d599111d\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"515240ea59a4c46a046c06e25a9d2bd3\")"
     ]
   }
 }

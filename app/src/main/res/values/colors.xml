@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
     <resources>
 
+        <!-- app colors-->
         <color name="colorPrimary">#92D1C3</color>
         <color name="colorPrimaryDark">#8BB8A8</color>
         <color name="colorAccent">#FFD5FF</color>
         <color name="colorAccentDark">#B47EB3</color>
         <color name="colorThird">#FDF5BF</color>
 
-        <color name="colorProgressGreen">#C0FFE0</color>
+        <!-- progress colors-->
+        <color name="colorProgressGreenLight">#C0FFE0</color>
         <color name="colorProgressGreenDark">#00c262</color>
         <color name="colorProgressYellow">#FF8400</color>
+        <color name="colorProgressYellowLight">#FFFFE0</color>
         <color name="colorProgressRed">#E00000</color>
+        <color name="colorProgressRedLight">#FA8072</color>
 
+        <!-- Random colors-->
         <color name="colorSwipeDelete">#D81B60</color>
-
         <color name="colorDelete">#9F0000</color>
+
 
 </resources>

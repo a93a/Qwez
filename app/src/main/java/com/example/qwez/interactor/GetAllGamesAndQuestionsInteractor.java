@@ -1,7 +1,7 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.GameQuestion;
 
 import java.util.List;
 

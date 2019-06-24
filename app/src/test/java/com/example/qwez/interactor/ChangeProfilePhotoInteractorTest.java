@@ -24,6 +24,7 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.observers.TestObserver;
 
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -32,20 +33,30 @@ public class ChangeProfilePhotoInteractorTest {
 
     @Mock
     FirebaseStorageRepositoryType storage;
+
     @Mock
     FirebaseAuthRepositoryType auth;
+
     @Mock
     FirebaseUser user;
+
     @Mock
     UploadTask.TaskSnapshot taskSnapshot;
+
     @Mock
     StorageReference storageReference;
+
     @Mock
     Uri uri;
+
     @Mock
     Uri downloadUri;
+
     @Mock
     StorageMetadata metadata;
+
+    @Mock
+    Throwable error;
 
     @InjectMocks
     ChangeProfilePhotoInteractor interactor;
@@ -82,6 +93,27 @@ public class ChangeProfilePhotoInteractorTest {
 
         verify(storage).uploadPhoto(UID, uri);
         verify(storage).getDownloadUrl(storageReference);
+    }
+
+    @Test
+    public void changeProfilePhotoError() {
+        when(auth.getCurrentUser()).thenReturn(Observable.just(user));
+        when(user.getUid()).thenReturn(UID);
+        when(storage.uploadPhoto(UID, uri)).thenReturn(Single.error(error));
+
+        when(taskSnapshot.getMetadata()).thenReturn(metadata);
+        when(metadata.getReference()).thenReturn(storageReference);
+
+        when(storage.getDownloadUrl(storageReference)).thenReturn(Single.just(downloadUri));
+        when(auth.changeUserPhoto(user, downloadUri)).thenReturn(Completable.complete());
+
+        interactor.changeProfilePhoto(uri)
+                .test()
+                .assertNotComplete()
+                .assertError(error);
+
+        verify(storage).uploadPhoto(UID, uri);
+        verify(storage,never()).getDownloadUrl(storageReference);
 
     }
 }

@@ -1,5 +1,9 @@
 package com.example.qwez.repository.local;
 
+import com.example.qwez.repository.local.entity.Game;
+import com.example.qwez.repository.local.entity.GameQuestion;
+import com.example.qwez.repository.local.entity.Question;
+
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -70,5 +74,13 @@ public interface GameRepositoryType {
      * Get a Flowable that emits from a single GameQuestion
      */
     Flowable<GameQuestion> getGameQuestionBy(int id);
+
+    Single<Integer> updateQuestionAndReturnId(Question question);
+
+    Single<Question> getSingleQuestionById(int id);
+
+    Single<Game> getGameById(int id);
+
+    Completable deleteAll();
 
 }

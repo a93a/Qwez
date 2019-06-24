@@ -1,8 +1,9 @@
-package com.example.qwez.repository.local;
+package com.example.qwez.repository.local.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -38,6 +39,12 @@ public class Question {
     @ColumnInfo(name = "wrong_answer_three")
     private String wrongAnswer3;
 
+    @ColumnInfo(name = "answer_chosen")
+    private String answerChosen;
+
+    @Ignore
+    private String number;
+
     public Question(String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
         this.question = question;
         this.correctAnswer = correctAnswer;
@@ -45,8 +52,6 @@ public class Question {
         this.wrongAnswer2 = wrongAnswer2;
         this.wrongAnswer3 = wrongAnswer3;
     }
-
-
 
     public int getqId() {
         return qId;
@@ -103,4 +108,21 @@ public class Question {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getAnswerChosen() {
+        return answerChosen;
+    }
+
+    public void setAnswerChosen(String answerChosen) {
+        this.answerChosen = answerChosen;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
 }

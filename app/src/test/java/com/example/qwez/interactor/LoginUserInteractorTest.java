@@ -27,6 +27,9 @@ public class LoginUserInteractorTest {
     @Mock
     FirebaseAuthRepositoryType firebaseAuthRepositoryType;
 
+    @Mock
+    Throwable error;
+
     @InjectMocks
     LoginUserInteractor interactor;
 
@@ -46,4 +49,18 @@ public class LoginUserInteractorTest {
 
         verify(firebaseAuthRepositoryType).signInUserEmailAndPassword("test", "test2");
     }
+
+    @Test
+    public void loginError() {
+        when(firebaseAuthRepositoryType.signInUserEmailAndPassword(anyString(), anyString())).thenReturn(Completable.error(error));
+
+        interactor.login("test", "test2")
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
+
+        verify(firebaseAuthRepositoryType).signInUserEmailAndPassword("test", "test2");
+    }
+
 }

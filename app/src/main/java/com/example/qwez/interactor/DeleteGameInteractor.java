@@ -1,7 +1,7 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.Game;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

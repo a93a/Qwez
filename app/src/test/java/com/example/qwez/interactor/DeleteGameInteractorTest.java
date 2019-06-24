@@ -1,8 +1,8 @@
 package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
-import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.Game;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -27,17 +27,23 @@ public class DeleteGameInteractorTest {
     @Mock
     GameRepositoryType gameRepositoryType;
 
+    @Mock
+    Throwable error;
+
     @InjectMocks
     DeleteGameInteractor deleteGameInteractor;
+
+    Game game;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+
+        game = new Game("cat", "diff");
     }
 
     @Test
     public void deleteGame() {
-        Game game = new Game("cat", "diff");
         when(gameRepositoryType.deleteGame(game)).thenReturn(Completable.complete());
         deleteGameInteractor.deleteGame(game)
                 .test()
@@ -46,4 +52,18 @@ public class DeleteGameInteractorTest {
 
         verify(gameRepositoryType).deleteGame(game);
     }
+
+    @Test
+    public void deleteGameError() {
+        when(gameRepositoryType.deleteGame(game)).thenReturn(Completable.error(error));
+
+        deleteGameInteractor.deleteGame(game)
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
+
+        verify(gameRepositoryType).deleteGame(game);
+    }
+
 }

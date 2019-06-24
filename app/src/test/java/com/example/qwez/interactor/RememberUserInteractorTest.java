@@ -25,6 +25,9 @@ public class RememberUserInteractorTest {
     @Mock
     SharedPreferencesRepositoryType repository;
 
+    @Mock
+    Throwable error;
+
     @InjectMocks
     RememberUserInteractor interactor;
 
@@ -59,7 +62,7 @@ public class RememberUserInteractorTest {
     }
 
     @Test
-    public void getRememberIfExistsError(){
+    public void getRememberIfExistsNot(){
         when(repository.isRemembered()).thenReturn(Single.just(false));
 
         TestObserver<String> testObserver = interactor.getRememberIfExists()
@@ -70,6 +73,23 @@ public class RememberUserInteractorTest {
         testObserver.assertComplete()
                 .assertNoValues();
 
+
+    }
+
+    @Test
+    public void getRememberIfExistsError() {
+        when(repository.getRemembered()).thenReturn(Single.error(error));
+        when(repository.isRemembered()).thenReturn(Single.just(true));
+
+        TestObserver<String> observer = interactor.getRememberIfExists()
+                .test();
+
+        verify(repository).isRemembered();
+        verify(repository).getRemembered();
+
+        observer.assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
 
     }
 }

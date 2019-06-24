@@ -1,5 +1,12 @@
 package com.example.qwez.repository.local;
 
+import com.example.qwez.repository.local.dao.GameDao;
+import com.example.qwez.repository.local.dao.GameQuestionDao;
+import com.example.qwez.repository.local.dao.QuestionDao;
+import com.example.qwez.repository.local.entity.Game;
+import com.example.qwez.repository.local.entity.GameQuestion;
+import com.example.qwez.repository.local.entity.Question;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,12 +24,17 @@ public class GameRepository implements GameRepositoryType {
     private final GameDao gameDao;
     private final QuestionDao questionDao;
     private final GameQuestionDao gameQuestionDao;
+    private final GameDatabase gameDatabase;
 
     @Inject
-    public GameRepository(GameDao gameDao, QuestionDao questionDao, GameQuestionDao gameQuestionDao) {
+    public GameRepository(GameDao gameDao,
+                          QuestionDao questionDao,
+                          GameQuestionDao gameQuestionDao,
+                          GameDatabase gameDatabase) {
         this.gameDao = gameDao;
         this.questionDao = questionDao;
         this.gameQuestionDao = gameQuestionDao;
+        this.gameDatabase = gameDatabase;
     }
 
     /**
@@ -162,6 +174,30 @@ public class GameRepository implements GameRepositoryType {
     @Override
     public Flowable<GameQuestion> getGameQuestionBy(int id) {
         return gameQuestionDao.getGameQuestionById(id)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Single<Integer> updateQuestionAndReturnId(Question question) {
+        return questionDao.insertAndReturnId(question)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Single<Question> getSingleQuestionById(int id) {
+        return questionDao.getById(id)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Single<Game> getGameById(int id) {
+        return gameDao.getGameById(id)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Completable deleteAll() {
+        return Completable.fromRunnable(gameDatabase::clearAllTables)
                 .subscribeOn(Schedulers.io());
     }
 

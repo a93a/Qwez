@@ -1,7 +1,10 @@
-package com.example.qwez.repository.local;
+package com.example.qwez.repository.local.dao;
 
 import androidx.room.Dao;
 import androidx.room.Query;
+import androidx.room.Update;
+
+import com.example.qwez.repository.local.entity.Question;
 
 import java.util.List;
 
@@ -19,5 +22,11 @@ public interface QuestionDao extends BaseDao<Question> {
 
     @Query("DELETE FROM questions WHERE question_id=:id")
     Completable deleteById(int id);
+
+    @Update
+    Single<Integer> insertAndReturnId(Question question);
+
+    @Query("SELECT * FROM QUESTIONS where id=:id")
+    Single<Question> getById(int id);
 
 }

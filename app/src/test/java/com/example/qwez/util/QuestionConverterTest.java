@@ -23,10 +23,10 @@ public class QuestionConverterTest {
         Question question = new Question("categ", "type", "diff", "1?", "1", wrongAnswers);
         questions.add(question);
 
-        List<com.example.qwez.repository.local.Question> converted = QuestionConverter.toDatabase(questions);
+        List<com.example.qwez.repository.local.entity.Question> converted = QuestionUtil.toDatabase(questions);
 
         assertEquals(converted.size(),1 );
-        com.example.qwez.repository.local.Question questionConverted = converted.get(0);
+        com.example.qwez.repository.local.entity.Question questionConverted = converted.get(0);
         assertEquals(questionConverted.getCorrectAnswer(), question.getCorrectAnswer());
         assertEquals(questionConverted.getWrongAnswer1(), question.getIncorrectAnswers().get(0));
 

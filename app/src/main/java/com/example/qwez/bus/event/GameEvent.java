@@ -1,6 +1,6 @@
 package com.example.qwez.bus.event;
 
-import com.example.qwez.repository.local.Game;
+import com.example.qwez.repository.local.entity.Game;
 
 /**
  * POJO class for {@link com.example.qwez.bus.RxBus} event type.

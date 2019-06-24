@@ -31,8 +31,12 @@ public class ChangeUserPasswordInteractorTest {
 
     @Mock
     FirebaseAuthRepositoryType firebaseAuthRepositoryType;
+
     @Mock
     FirebaseUser firebaseUser;
+
+    @Mock
+    Throwable error;
 
     @InjectMocks
     ChangeUserPasswordInteractor changeUserPasswordInteractor;
@@ -57,6 +61,23 @@ public class ChangeUserPasswordInteractorTest {
 
         verify(firebaseAuthRepositoryType).getCurrentUser();
         verify(firebaseAuthRepositoryType).changeUserPassword(firebaseUser, NEW_PASS);
+        verify(firebaseAuthRepositoryType).reAuthenticateUser(firebaseUser, EMAIL, PASS);
+    }
 
+    @Test
+    public void changeUserPasswordError() {
+        when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.just(firebaseUser));
+        when(firebaseAuthRepositoryType.changeUserPassword(firebaseUser, NEW_PASS)).thenReturn(Completable.error(error));
+        when(firebaseUser.getEmail()).thenReturn(EMAIL);
+        when(firebaseAuthRepositoryType.reAuthenticateUser(firebaseUser, EMAIL, PASS)).thenReturn(Completable.complete());
+
+        changeUserPasswordInteractor.changeUserPassword(PASS,NEW_PASS)
+                .test()
+                .assertNotComplete()
+                .assertError(error);
+
+        verify(firebaseAuthRepositoryType).getCurrentUser();
+        verify(firebaseAuthRepositoryType).changeUserPassword(firebaseUser, NEW_PASS);
+        verify(firebaseAuthRepositoryType).reAuthenticateUser(firebaseUser, EMAIL, PASS);
     }
 }

@@ -1,8 +1,8 @@
 package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
-import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.GameQuestion;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -15,6 +15,7 @@ import org.mockito.MockitoAnnotations;
 
 import io.reactivex.Flowable;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +27,9 @@ public class GetSingleGameAndQuestionsInteractorTest {
 
     @Mock
     GameRepositoryType gameRepositoryType;
+
+    @Mock
+    Throwable error;
 
     @InjectMocks
     GetSingleGameAndQuestionsInteractor interactor;
@@ -49,5 +53,19 @@ public class GetSingleGameAndQuestionsInteractorTest {
                 .assertValue(gameQuestion);
 
         verify(gameRepositoryType).getGameQuestionBy(id);
+    }
+
+    @Test
+    public void getGameQuestionsError() {
+        when(gameRepositoryType.getGameQuestionBy(anyInt())).thenReturn(Flowable.error(error));
+
+        int random = 343;
+
+        interactor.getGameQuestions(random)
+                .test()
+                .assertNoValues()
+                .assertError(error);
+
+        verify(gameRepositoryType).getGameQuestionBy(random);
     }
 }

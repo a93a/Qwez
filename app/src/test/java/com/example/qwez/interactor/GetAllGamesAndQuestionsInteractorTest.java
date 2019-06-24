@@ -1,8 +1,8 @@
 package com.example.qwez.interactor;
 
 import com.example.qwez.RxResources;
-import com.example.qwez.repository.local.GameQuestion;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.GameQuestion;
 
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -30,6 +30,9 @@ public class GetAllGamesAndQuestionsInteractorTest {
 
     @Mock
     GameRepositoryType gameRepositoryType;
+
+    @Mock
+    Throwable error;
 
     @InjectMocks
     GetAllGamesAndQuestionsInteractor interactor;
@@ -60,6 +63,17 @@ public class GetAllGamesAndQuestionsInteractorTest {
 
         assertEquals(3, amountreceived);
 
+        verify(gameRepositoryType).getAllGamesAndQuestions();
+    }
+
+    @Test
+    public void getAllGamesAndQuestionsError() {
+        when(gameRepositoryType.getAllGamesAndQuestions()).thenReturn(Flowable.error(error));
+
+        interactor.getAllGamesAndQuestions()
+                .test()
+                .assertNoValues()
+                .assertError(error);
 
         verify(gameRepositoryType).getAllGamesAndQuestions();
     }

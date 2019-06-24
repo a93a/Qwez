@@ -1,7 +1,6 @@
 package com.example.qwez.repository.firebase;
 
 import com.example.qwez.entity.Highscore;
-import com.example.qwez.repository.firebase.rxwrapper.CompletableTask;
 
 import java.util.List;
 

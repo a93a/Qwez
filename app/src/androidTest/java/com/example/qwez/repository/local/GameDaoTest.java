@@ -7,6 +7,9 @@ import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.qwez.repository.local.dao.GameDao;
+import com.example.qwez.repository.local.entity.Game;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -25,7 +28,7 @@ public class GameDaoTest {
 
     private GameDatabase gameDatabase;
     private GameDao gameDao;
-    private final Game game = new Game("blah", "nah");
+    private final Game game = new Game("blah", "nah", answered);
 
 
 
@@ -140,7 +143,7 @@ public class GameDaoTest {
     @Test
     public void test(){
 
-        Game localMutableGame = new Game("123", "456");
+        Game localMutableGame = new Game("123", "456", answered);
 
         gameDao
                 .insert(localMutableGame)

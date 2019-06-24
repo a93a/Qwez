@@ -1,13 +1,16 @@
-package com.example.qwez.repository.local;
+package com.example.qwez.repository.local.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.qwez.repository.local.entity.Game;
+
 import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 /**
  * Dao for @Entity Game
@@ -23,5 +26,8 @@ public interface GameDao extends BaseDao<Game> {
 
     @Query("DELETE FROM games WHERE id=:id")
     Completable deleteById(int id);
+
+    @Query("SELECT * FROM games WHERE id=:id")
+    Single<Game> getGameById(int id);
 
 }

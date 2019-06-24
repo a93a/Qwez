@@ -70,8 +70,6 @@ public class FirebaseUserWrapperTest {
 
         testObserver.assertError(EXCEPTION)
                 .assertNotComplete();
-
-
     }
 
     @Test

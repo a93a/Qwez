@@ -28,9 +28,6 @@ public class SplashViewModel extends BaseViewModel {
                 .subscribe(this::onUser, this::onError);
     }
 
-    public void init(){
-    }
-
     private void onUser(FirebaseUser firebaseUser) {
         user.setValue(firebaseUser);
     }

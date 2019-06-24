@@ -1,16 +1,17 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.local.Game;
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.repository.opentdb.OpenTDBType;
 import com.example.qwez.util.Category;
 import com.example.qwez.util.Difficulty;
 import com.example.qwez.util.QuestionC;
-import com.example.qwez.util.QuestionConverter;
+import com.example.qwez.util.QuestionUtil;
 import com.example.qwez.util.QuestionType;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 /**
  * Interactor to get Questions from API, and store them in local database
@@ -39,7 +40,7 @@ public class FetchQuestionsInteractor {
                         category.getCategory(),
                         difficulty.getDifficulty(),
                         QuestionType.MULTIPLE_CHOICE.getType())
-                .map(QuestionConverter::toDatabase)
+                .map(QuestionUtil::toDatabase)
                 .flatMap(questions -> gameRepositoryType.addGameReturnId(new Game(Category.getAsString(category),Difficulty.getAsString(difficulty)))
                         .map(aLong -> {
                             questions.forEach(question -> question.setqId((int) (long)aLong));

@@ -1,7 +1,7 @@
 package com.example.qwez.di;
 
 import com.example.qwez.repository.opentdb.OpenTDBAPI;
-import com.example.qwez.util.URL;
+import com.example.qwez.util.UrlConstant;
 import com.google.gson.Gson;
 
 import dagger.Module;
@@ -36,7 +36,7 @@ public class NetworkModule {
     @ApplicationScope
     Retrofit retrofit(OkHttpClient okHttpClient, Gson gson){
         return new Retrofit.Builder()
-                .baseUrl(URL.URL_END_POINT)
+                .baseUrl(UrlConstant.URL_END_POINT)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())

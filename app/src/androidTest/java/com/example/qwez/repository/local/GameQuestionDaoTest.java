@@ -7,6 +7,13 @@ import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.qwez.repository.local.dao.GameDao;
+import com.example.qwez.repository.local.dao.GameQuestionDao;
+import com.example.qwez.repository.local.dao.QuestionDao;
+import com.example.qwez.repository.local.entity.Game;
+import com.example.qwez.repository.local.entity.GameQuestion;
+import com.example.qwez.repository.local.entity.Question;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,7 +60,7 @@ public class GameQuestionDaoTest {
 
     @Test
     public void storeAndGet() {
-        Game game = new Game("cat","diff");
+        Game game = new Game("cat","diff", answered);
         int id = (int) gameDao.insertReturnId(game);
         for(int i=0;i<5;i++){
             Question question = new Question("1", "2", "3", "4", "5");

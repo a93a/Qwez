@@ -1,4 +1,4 @@
-package com.example.qwez.repository.local;
+package com.example.qwez.repository.local.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -20,9 +20,13 @@ public class Game {
     @ColumnInfo(name = "difficulty")
     private String difficulty;
 
+    @ColumnInfo(name = "answered")
+    private int answered;
+
     public Game(String category, String difficulty) {
         this.category = category;
         this.difficulty = difficulty;
+        this.answered = 0;
     }
 
     public int getGameId() {
@@ -47,5 +51,13 @@ public class Game {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public int getAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(int answered) {
+        this.answered = answered;
     }
 }

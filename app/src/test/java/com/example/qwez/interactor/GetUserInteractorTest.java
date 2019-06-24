@@ -31,6 +31,9 @@ public class GetUserInteractorTest {
     @Mock
     FirebaseUser firebaseUser;
 
+    @Mock
+    Throwable error;
+
     @InjectMocks
     GetUserInteractor interactor;
 
@@ -53,4 +56,18 @@ public class GetUserInteractorTest {
         assertEquals(firebaseUser, f);
         verify(firebaseAuthRepositoryType).getCurrentUser();
     }
+
+    @Test
+    public void getUserError() {
+        when(firebaseAuthRepositoryType.getCurrentUser()).thenReturn(Observable.error(error));
+
+        interactor.getUser()
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
+
+        verify(firebaseAuthRepositoryType).getCurrentUser();
+    }
+
 }

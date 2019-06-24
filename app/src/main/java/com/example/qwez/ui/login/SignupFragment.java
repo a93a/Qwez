@@ -15,7 +15,6 @@ import com.example.qwez.base.BaseFragment;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.SignupEvent;
 import com.example.qwez.validator.EmailValidate;
-import com.example.qwez.validator.EmptyValidate;
 import com.example.qwez.validator.PasswordValidate;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -29,10 +28,6 @@ public class SignupFragment extends BaseFragment {
     EditText email;
     @BindView(R.id.layout_email_signup)
     TextInputLayout layoutEmail;
-    @BindView(R.id.editText_nickname_signup)
-    EditText nick;
-    @BindView(R.id.layout_nickname_signup)
-    TextInputLayout layoutNick;
     @BindView(R.id.editText_password_signup)
     EditText pass;
     @BindView(R.id.layout_pass_signup)
@@ -58,25 +53,18 @@ public class SignupFragment extends BaseFragment {
     @OnClick(R.id.button_signup_signup)
     void signUpClick(){
         String emailText = email.getText().toString();
-        String nickText = nick.getText().toString();
         String pass1 = pass.getText().toString();
         String pass2 = passAgain.getText().toString();
-        if(validateForm(emailText,nickText,pass1,pass2)){
-            RxBus.publish(RxBus.TRY_SIGN_UP, new SignupEvent(emailText,nickText,pass1));
+        if(validateForm(emailText,pass1,pass2)){
+            RxBus.publish(RxBus.TRY_SIGN_UP, new SignupEvent(emailText,pass1));
         }
     }
 
-    private boolean validateForm(String e, String n, String p1, String p2){
+    private boolean validateForm(String e, String p1, String p2){
         EmailValidate emailValidate = new EmailValidate();
         boolean validEmail = emailValidate.isValid(e);
         if (!validEmail){
             layoutEmail.setError(emailValidate.getErrorMessage());
-            return false;
-        }
-        EmptyValidate emptyValidate = new EmptyValidate();
-        boolean validNick = emptyValidate.isValid(n);
-        if(!validNick){
-            layoutNick.setError(emptyValidate.getErrorMessage());
             return false;
         }
         PasswordValidate passwordValidate = new PasswordValidate();
@@ -89,7 +77,7 @@ public class SignupFragment extends BaseFragment {
         }else{
             layoutPass.setError(passwordValidate.getErrorMessage());
         }
-        return validEmail && validNick && pass1valid && passEqual;
+        return validEmail && pass1valid && passEqual;
     }
 
 }

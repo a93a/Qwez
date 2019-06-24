@@ -26,6 +26,9 @@ public class LogoutUserInteractorTest {
     @Mock
     FirebaseAuthRepositoryType firebaseAuthRepositoryType;
 
+    @Mock
+    Throwable error;
+
     @InjectMocks
     LogoutUserInteractor interactor;
 
@@ -42,6 +45,19 @@ public class LogoutUserInteractorTest {
                 .test()
                 .assertNoErrors()
                 .assertComplete();
+
+        verify(firebaseAuthRepositoryType).logoutUser();
+    }
+
+    @Test
+    public void logoutError() {
+        when(firebaseAuthRepositoryType.logoutUser()).thenReturn(Completable.error(error));
+
+        interactor.logout()
+                .test()
+                .assertNotComplete()
+                .assertNoValues()
+                .assertError(error);
 
         verify(firebaseAuthRepositoryType).logoutUser();
     }

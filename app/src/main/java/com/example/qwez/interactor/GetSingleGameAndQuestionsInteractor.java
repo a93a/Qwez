@@ -1,7 +1,11 @@
 package com.example.qwez.interactor;
 
-import com.example.qwez.repository.local.GameQuestion;
+import androidx.annotation.NonNull;
+
 import com.example.qwez.repository.local.GameRepositoryType;
+import com.example.qwez.repository.local.entity.GameQuestion;
+
+import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
