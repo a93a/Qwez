@@ -1,6 +1,7 @@
 package com.example.qwez.repository.local.dao;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
@@ -9,6 +10,7 @@ import com.example.qwez.repository.local.entity.Question;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
@@ -31,6 +33,5 @@ public interface GameQuestionDao {
     @Query("SELECT * FROM questions where questions.answer_chosen=questions.correct_answer and questions.question_id=:gameId")
     Single<List<Question>> getPoints(int gameId);
     //can't manage to get it to return GameQuestion Object?
-
 
 }

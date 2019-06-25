@@ -9,6 +9,7 @@ import com.example.qwez.repository.local.entity.Question;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 /**
@@ -28,5 +29,8 @@ public interface QuestionDao extends BaseDao<Question> {
 
     @Query("SELECT * FROM QUESTIONS where id=:id")
     Single<Question> getById(int id);
+
+    @Query("SELECT * FROM QUESTIONS where question_id=:id")
+    Flowable<List<Question>> getAllQuestionsByGameId(int id);
 
 }

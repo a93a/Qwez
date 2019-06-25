@@ -207,4 +207,10 @@ public class GameRepository implements GameRepositoryType {
                 .subscribeOn(Schedulers.io());
     }
 
+    @Override
+    public Flowable<List<Question>> getAllQuestionsByGameId(int id) {
+        return questionDao.getAllQuestionsByGameId(id)
+                .subscribeOn(Schedulers.io());
+    }
+
 }

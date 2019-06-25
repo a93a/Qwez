@@ -2,6 +2,7 @@ package com.example.qwez.interactor.rx;
 
 import com.example.qwez.entity.Highscore;
 import com.example.qwez.repository.local.entity.Game;
+import com.example.qwez.repository.local.entity.GameQuestion;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,11 @@ public class Operators {
         List<Highscore> sorted = new ArrayList<>(highscores);
         Collections.sort(sorted, (o1, o2) -> o2.getScore() - o1.getScore());
         return sorted;
+    };
+
+    public static final Function<List<GameQuestion>,List<GameQuestion>> SET_GAME_SCORES = gameQuestions -> {
+        gameQuestions.forEach(gameQuestion -> gameQuestion.game.setAnswered(gameQuestion.questions.size()));
+        return gameQuestions;
     };
 
 }

@@ -4,6 +4,8 @@ import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.repository.local.entity.GameQuestion;
 import com.example.qwez.repository.local.entity.Question;
 
+import org.intellij.lang.annotations.Flow;
+
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -84,5 +86,7 @@ public interface GameRepositoryType {
     Completable deleteAll();
 
     Single<List<Question>> getAllCorrectQuestions(int id);
+
+    Flowable<List<Question>> getAllQuestionsByGameId(int id);
 
 }
