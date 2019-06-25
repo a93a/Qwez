@@ -3,10 +3,10 @@ language: android
 jdk: oraclejdk8
 dist: trusty
 android:
-   # licenses:
-   # - 'android-sdk-preview-license-.+'
-   # - 'android-sdk-license-.+'
-   # - 'google-gdk-license-.+' 
+    licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+' 
   components:
     - tools
     - tools
