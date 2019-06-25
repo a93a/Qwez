@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
@@ -185,4 +187,27 @@ public abstract class BaseActivity extends AppCompatActivity {
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
+
+    /**
+     * Replaces the current fragment in fragment container {@code id}. Also takes in
+     * parameter to decide whether to add fragment to stack over the old.
+     * @param fragment to be replaced with
+     * @param id fragment container
+     * @param addToStack flag determines if fragment added to fragment stack or not. True will add to stack.
+     */
+    protected void replaceFragment(@NonNull Fragment fragment, @IdRes int id, boolean addToStack){
+        if(addToStack){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(id, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }else{
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(id, fragment)
+                    .commit();
+        }
+    }
+
 }

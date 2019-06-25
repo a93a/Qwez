@@ -129,7 +129,7 @@ public class StartActivity extends BaseActivity{
     }
 
     private void onError(ErrorCarrier error) {
-        showCustomDialog(CustomMaterialDialog.error("Error",this, "Something went wrong: "+error.message+". Please try again"));
+        showCustomDialog(CustomMaterialDialog.error("Error",this, "Something went wrong: "+error.getMessage()+". Please try again"));
     }
 
     private void onQuestion(Boolean addedQestion) {

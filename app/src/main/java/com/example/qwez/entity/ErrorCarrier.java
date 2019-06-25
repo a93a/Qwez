@@ -5,10 +5,13 @@ package com.example.qwez.entity;
  */
 public class ErrorCarrier {
 
-    public final String message;
+    private final String message;
 
     public ErrorCarrier(String message) {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
 }

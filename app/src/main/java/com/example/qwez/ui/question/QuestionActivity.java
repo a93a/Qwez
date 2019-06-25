@@ -6,14 +6,17 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.qwez.R;
-import com.example.qwez.base.BaseActivityWithFragment;
+import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.entity.FinishedGame;
 import com.example.qwez.entity.IntroData;
 import com.example.qwez.util.ExtrasConstant;
 
 import javax.inject.Inject;
 
-public class QuestionActivity extends BaseActivityWithFragment {
+import timber.log.Timber;
+
+public class QuestionActivity extends BaseActivity {
 
     @Inject
     QuestionVMFactory factory;
@@ -29,6 +32,9 @@ public class QuestionActivity extends BaseActivityWithFragment {
         viewModel.showIntro().observe(this, this::onShowIntro);
         viewModel.showEnd().observe(this, this::onShowEnd);
         viewModel.startQuiz().observe(this, this::onStartQuiz);
+        viewModel.finishQuiz().observe(this, this::onQuizFinished);
+
+        Timber.d("Viewmodel: %s", viewModel.toString());
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
@@ -36,6 +42,12 @@ public class QuestionActivity extends BaseActivityWithFragment {
             viewModel.prepare(qId);
         }
 
+    }
+
+    private void onQuizFinished(Boolean finished) {
+        if(finished){
+            viewModel.openStart(this);
+        }
     }
 
     private void onStartQuiz(Boolean start) {

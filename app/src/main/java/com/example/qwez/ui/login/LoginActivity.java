@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
-import com.example.qwez.base.BaseActivityWithFragment;
+import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.bus.event.SignupEvent;
@@ -16,7 +16,7 @@ import com.example.qwez.ui.dialog.CustomMaterialDialog;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends BaseActivityWithFragment {
+public class LoginActivity extends BaseActivity {
 
     @Inject
     LoginVMFactory factory;
@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivityWithFragment {
     }
 
     private void onError(ErrorCarrier error) {
-        showCustomDialog(CustomMaterialDialog.error("Error",this, "Something went wrong: "+error.message+". Please try again"));
+        showCustomDialog(CustomMaterialDialog.error("Error",this, "Something went wrong: "+error.getMessage()+". Please try again"));
     }
 
     private void onProgress(Boolean progress) {

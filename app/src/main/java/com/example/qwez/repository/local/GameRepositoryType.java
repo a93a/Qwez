@@ -83,4 +83,6 @@ public interface GameRepositoryType {
 
     Completable deleteAll();
 
+    Single<List<Question>> getAllCorrectQuestions(int id);
+
 }

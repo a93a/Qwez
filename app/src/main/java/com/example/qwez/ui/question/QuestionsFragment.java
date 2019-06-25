@@ -65,9 +65,13 @@ public class QuestionsFragment extends BaseFragment{
         viewModel.question().observe(this, this::onQuestion);
         viewModel.answer().observe(this, this::onAnswer);
         viewModel.timeoutAnswer().observe(this, this::onTimeout);
+
+        Timber.d("Viewmodel: %s", viewModel.toString());
+
     }
 
     private void onTimeout(String s) {
+        Timber.d("onTimeout");
         progressBar.setVisibility(View.INVISIBLE);
         button.setText(TIMEOUT_TEXT);
         button.setVisibility(View.VISIBLE);
@@ -78,6 +82,7 @@ public class QuestionsFragment extends BaseFragment{
     }
 
     private void onAnswer(Answer answer) {
+        Timber.d("onAnswer");
         progressBar.setVisibility(View.INVISIBLE);
         button.setVisibility(View.VISIBLE);
         setAnswerViewColor(ans1, answer);
@@ -100,6 +105,9 @@ public class QuestionsFragment extends BaseFragment{
     }
 
     private void onQuestion(Question question) {
+
+        Timber.d("onQuestion");
+
         canAnswer = true;
 
         button.setVisibility(View.INVISIBLE);
@@ -167,6 +175,7 @@ public class QuestionsFragment extends BaseFragment{
     }
 
     private void onAnswerClick(TextView ans){
+        Timber.d("onAnswerClick");
         if(canAnswer){
             disposeOfTimer();
             viewModel.chooseAnswer(ans.getText().toString());
@@ -199,6 +208,7 @@ public class QuestionsFragment extends BaseFragment{
     }
 
     private void disposeOfTimer(){
+        Timber.d("disposeOfTimer");
         if(timer != null){
             timer.cancel();
         }

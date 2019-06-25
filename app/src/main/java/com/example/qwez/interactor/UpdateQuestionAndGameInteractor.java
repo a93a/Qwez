@@ -23,9 +23,9 @@ public class UpdateQuestionAndGameInteractor {
 
     public Completable updateQuestion(@NonNull Question question){
         return gameRepositoryType.updateQuestion(question)
-                .andThen(gameRepositoryType.getGameById(question.getqId())
-                        .map(GAME_MAPPER)
-                        .flatMapCompletable(gameRepositoryType::updateGame))
+                //.andThen(gameRepositoryType.getGameById(question.getqId())
+                        //.map(GAME_MAPPER)
+                        //.flatMapCompletable(gameRepositoryType::updateGame))
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

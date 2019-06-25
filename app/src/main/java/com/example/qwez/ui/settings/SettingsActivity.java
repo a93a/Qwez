@@ -84,7 +84,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void onError(ErrorCarrier errorCarrier) {
-        MaterialDialog.Builder builder = CustomMaterialDialog.error("Error", this, errorCarrier.message);
+        MaterialDialog.Builder builder = CustomMaterialDialog.error("Error", this, errorCarrier.getMessage());
         showCustomDialog(builder);
     }
 

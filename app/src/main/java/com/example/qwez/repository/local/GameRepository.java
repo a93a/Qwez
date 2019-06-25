@@ -201,4 +201,10 @@ public class GameRepository implements GameRepositoryType {
                 .subscribeOn(Schedulers.io());
     }
 
+    @Override
+    public Single<List<Question>> getAllCorrectQuestions(int id) {
+        return gameQuestionDao.getPoints(id)
+                .subscribeOn(Schedulers.io());
+    }
+
 }
