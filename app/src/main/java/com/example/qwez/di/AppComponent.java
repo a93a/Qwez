@@ -12,6 +12,8 @@ import com.example.qwez.ui.start.StartModule;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
+import dagger.android.AndroidInjector;
+
 
 /**
  * Dagger Component

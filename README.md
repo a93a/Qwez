@@ -1,8 +1,13 @@
 # Qwez
 [![Build Status](https://travis-ci.org/aliamid93/Qwez.svg?branch=master)](https://travis-ci.org/aliamid93/Qwez)
 
+## OBS OBS OBS!!
+- Please beware that Interactors (=Use cases) does perform a bit of "server-side" code!! This is because not having access to some of the paid-for features from Firebase (function triggers, etc). I did have to put some of the server side code in
+the interactors/usecases, solely for having the app work to try out some new things without paying for Firebase. This all was just for fun and learning!! Of course this code would never have a place in a commersial product.
+
 ## Architecture:
-- MVVM: Model-Viewmodel-Model
+![Architecture](architecture.png)
+- MVVM: Model-View-Viewmodel
 - Repository: One repository per data type e.g sharedpreferences repository, Firebase repository etc
 - Uses a [RxJava Bus](https://github.com/aliamid93/Qwez/tree/master/app/src/main/java/com/example/qwez/bus) for communication between different parts of the application.
 - Interactor's (Aka Use-cases): Single responsibility interactor classes for interacting with repository/repositories, services, etc. This is where the applications "business logic" resides.

@@ -5,30 +5,24 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import androidx.fragment.app.Fragment;
-
+import com.example.qwez.di.AppComponent;
 import com.example.qwez.di.DaggerAppComponent;
 import com.facebook.stetho.Stetho;
-
 import javax.inject.Inject;
-
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.HasAndroidInjector;
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 import timber.log.Timber;
 
 /**
  * Application Class
  */
-public class App extends Application implements HasActivityInjector,HasSupportFragmentInjector {
+public class App extends Application implements HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Activity> dispatchingActivityInjector;
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> dispatchingFragmentInjector;
+    DispatchingAndroidInjector<Object> dispatchingActivityInjector;
 
     @Override
     public void onCreate() {
@@ -75,12 +69,7 @@ public class App extends Application implements HasActivityInjector,HasSupportFr
     }
 
     @Override
-    public AndroidInjector<Activity> activityInjector() {
+    public AndroidInjector<Object> androidInjector() {
         return dispatchingActivityInjector;
-    }
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingFragmentInjector;
     }
 }
