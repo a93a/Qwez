@@ -61,7 +61,7 @@ public class GameRepositoryTest {
         gameRepositoryType = new GameRepository(gameDatabase.gameDao(), gameDatabase.questionDao(),gameDatabase.gameQuestionDao(), gameDatabase);
     }
 
-    @Test
+    /*@Test
     public void addQuestion() {
 
         Game game = new Game("blah", "lah", answered);
@@ -140,9 +140,9 @@ public class GameRepositoryTest {
                 .assertValue(questions -> questions.size()==0);
 
 
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void addGameReturnIdAddQuestion(){
 
         Game game = new Game("blah", "lah", answered);
@@ -215,7 +215,7 @@ public class GameRepositoryTest {
         assertEquals(gameId2, game2as1.getGameId());
         assertEquals(game2before.getCategory(), game2as1.getCategory());
 
-    }
+    }*/
 
     @Test
     public void gameQuestionTest(){

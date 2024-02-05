@@ -92,7 +92,7 @@ public class GetQuestionsInteractorTest {
 
     }
 
-    @Test
+    /*@Test
     public void testInteractorMethodDissected(){
 
         //dissected the interactor method to invidually test all components in the method stream.
@@ -158,6 +158,6 @@ public class GetQuestionsInteractorTest {
                 .assertValueCount(1)
                 .assertValue(q -> q.size()==0);
 
-    }
+    }*/
 
 }

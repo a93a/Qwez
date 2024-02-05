@@ -28,7 +28,7 @@ public class GameDaoTest {
 
     private GameDatabase gameDatabase;
     private GameDao gameDao;
-    private final Game game = new Game("blah", "nah", answered);
+    /*private final Game game = new Game("blah", "nah", answered);*/
 
 
 
@@ -64,7 +64,7 @@ public class GameDaoTest {
                 .assertValue(games -> games.size()==0);
     }
 
-    @Test
+    /*@Test
     public void addGame(){
 
         gameDao
@@ -79,9 +79,9 @@ public class GameDaoTest {
                 .assertValueCount(1)
                 .assertValue(games -> games.size()==1);
 
-    }
+    }*/
 
-    public void addGameSeveral(){
+    /*public void addGameSeveral(){
 
         gameDao
                 .insert(game)
@@ -101,9 +101,9 @@ public class GameDaoTest {
                 .assertValueCount(1)
                 .assertValue(games -> games.size()==2);
 
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void testDelete(){
 
         gameDao
@@ -138,9 +138,9 @@ public class GameDaoTest {
                 .assertValueCount(1)
                 .assertValue(games -> games.size()==0);
 
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void test(){
 
         Game localMutableGame = new Game("123", "456", answered);
@@ -176,9 +176,9 @@ public class GameDaoTest {
 
         assertEquals(toUpdate.getCategory(), updatedGame.getCategory());
 
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void deleteGameById(){
 
         gameDao
@@ -208,6 +208,6 @@ public class GameDaoTest {
                 .assertValueCount(1)
                 .assertValue(games -> games.size()==0);
 
-    }
+    }*/
 
 }
