@@ -1,5 +1,23 @@
 # Qwez
-[![Build Status](https://travis-ci.org/aliamid93/Qwez.svg?branch=master)](https://travis-ci.org/aliamid93/Qwez)
+
+## What is Qwez?
+Qwez is a questionare app! Here's what you can do:
+- Create an account
+- Log in and log out
+- Change user password, email, and profile photo.
+- Choose a category & difficulty and get 10 questions. You can now answer these to score points! But hurry up, there is a timer.
+- See a global highscore of all users (incl. your own). You can see how you compare to other players. 
+
+## Modernisation
+This App is currently going through a modernisation process to change outdated components to modern, while still being written in Java (Mostly). Here is a TODO list of changes:
+- :white_check_mark: Migrate to Kotlin DSL and library version catalog
+- :white_square_button: Migrate from Butterknife to Viewbinding
+- :white_square_button: Migrate from RxPermissions to AndroidX ActivityResult API
+- :white_square_button: Modularize the application
+- :white_square_button: Migrate from RxBus
+- :white_square_button: Redesign the UI elements
+- :white_square_button: Migrate to Hilt
+
 
 ## OBS OBS OBS!!
 - Please beware that Interactors (=Use cases) does perform a bit of "server-side" code!! This is because not having access to some of the paid-for features from Firebase (function triggers, etc). I did have to put some of the server side code in
