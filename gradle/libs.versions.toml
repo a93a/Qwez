@@ -1,0 +1,209 @@
+[versions]
+
+# AndroidX
+appcompat = "1.6.1"
+constraintlayout = "2.1.3"
+recyclerview = "1.2.1"
+lifecycle_viewmodel = "2.4.1"
+lifecycle_viewmodel_ktx = "2.4.1"
+lifecycle_extensions = "2.2.0"
+lifecycle_common_java8 = "2.4.1"
+lifecycle_reactivestreams = "2.4.1"
+preference = "1.2.0"
+# core_testing = "2.1.0"
+# room_testing = "2.4.2"
+legacy_support_v4 = "1.0.0"
+media = "1.6.0"
+
+# Dagger
+dagger = "2.42"
+
+# Powermock
+powermock = "2.0.2"
+
+# Firebase
+firebase_auth = "21.0.4"
+firebase_core = "21.0.0"
+firebase_firestore = "24.1.2"
+firebase_storage = "20.0.1"
+firebase_functions = "20.1.0"
+firebase_messaging = "23.0.4"
+firebase_iid = "21.1.0"
+firebase_crashlytics = "18.2.10"
+firebase_analytics = "21.0.0"
+
+# RxJava
+rxandroid = "2.1.0"
+rxjava = "2.2.9"
+
+# Retrofit
+retrofit = "2.5.0"
+retrofit_converter_gson = "2.5.0"
+retrofit_adapter_rxjava2 = "2.5.0"
+
+# Room
+room_runtime = "2.5.0-alpha01"
+room_compiler = "2.5.0-alpha01"
+room_rxjava2 = "2.5.0-alpha01"
+room_testing = "2.5.0-alpha01"
+core_testing = "2.1.0"
+
+# Test
+test_runner = "1.4.0"
+test_rules = "1.4.0"
+espresso_core = "3.4.0"
+test_ext_junit = "1.1.3"
+junit = "4.13.2"
+
+# OKHTTP
+okhttp_logging_interceptor = "5.0.0-alpha.8"
+okhttp = "5.0.0-alpha.8"
+
+# Mockito
+mockito_core = "2.25.0"
+
+# Butterknife
+butterknife = "10.1.0"
+butterknife_compiler = "10.1.0"
+
+# LeakCanary
+leakcanary = "2.9.1"
+
+# Material Design
+material = "1.6.0"
+
+# Lottie
+lottie = "3.0.0"
+
+# MaterialDialogs
+material_dialogs = "0.9.6.0"
+
+# Timber
+timber = "4.7.1"
+
+# CardView
+cardview = "1.0.0"
+
+# Glide
+glide = "4.9.0"
+
+# Stetho
+stetho = "1.5.1"
+
+# Apache Commons Language
+commons_text = "1.6"
+
+# RxPermissions
+rxpermissions = "0.10.2"
+
+[libraries]
+
+# Android
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycle_viewmodel" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle_viewmodel_ktx" }
+lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle_extensions" }
+lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle_common_java8" }
+lifecycle-reactivestreams = { group = "androidx.lifecycle", name = "lifecycle-reactivestreams", version.ref = "lifecycle_reactivestreams" }
+preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
+# Room test?
+core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "core_testing" }
+room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room_testing" }
+legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy_support_v4" }
+media = { group = "androidx.media", name = "media", version.ref = "media" }
+
+
+# Dagger
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+dagger-android = { group = "com.google.dagger", name = "dagger-android", version.ref = "dagger" }
+dagger-android-support = { group = "com.google.dagger", name = "dagger-android-support", version.ref = "dagger" }
+dagger-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger" }
+
+# Mockito
+powermock-core = { group = "org.powermock", name = "powermock-core", version.ref = "powermock" }
+powermock-api-mockito2 = { group = "org.powermock", name = "powermock-api-mockito2", version.ref = "powermock" }
+powermock-module-junit4-rule-agent = { group = "org.powermock", name = "powermock-module-junit4-rule-agent", version.ref = "powermock" }
+powermock-module-junit4-rule = { group = "org.powermock", name = "powermock-module-junit4-rule", version.ref = "powermock" }
+powermock-module-junit4 = { group = "org.powermock", name = "powermock-module-junit4", version.ref = "powermock" }
+
+# Firebase
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebase_auth" }
+firebase-core = { group = "com.google.firebase", name = "firebase-core", version.ref = "firebase_core" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebase_firestore" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebase_storage" }
+firebase-functions = { group = "com.google.firebase", name = "firebase-functions", version.ref = "firebase_functions" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebase_messaging" }
+firebase-iid = { group = "com.google.firebase", name = "firebase-iid", version.ref = "firebase_iid" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebase_crashlytics" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebase_analytics" }
+
+# RxJava
+rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxandroid" }
+rxjava = { group = "io.reactivex.rxjava2", name = "rxjava", version.ref = "rxjava" }
+
+# Retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit_converter_gson" }
+retrofit-adapter-rxjava2 = { group = "com.squareup.retrofit2", name = "adapter-rxjava2", version.ref = "retrofit_adapter_rxjava2" }
+
+# Room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room_runtime" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_compiler" }
+room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "room_rxjava2" }
+# room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room_testing" }
+# core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "core_testing" }
+
+# Test
+test-runner = { group = "androidx.test", name = "runner", version.ref = "test_runner" }
+test-rules = { group = "androidx.test", name = "rules", version.ref = "test_rules" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso_core" }
+test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "test_ext_junit" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+# OKHTTP
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp_logging_interceptor" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+
+# Mockito
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito_core" }
+
+# Butterknife
+butterknife = { group = "com.jakewharton", name = "butterknife", version.ref = "butterknife" }
+butterknife-compiler = { group = "com.jakewharton", name = "butterknife-compiler", version.ref = "butterknife_compiler" }
+
+# LeakCanary
+leakcanary-debug = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
+leakcanary-release = { group = "com.squareup.leakcanary", name = "leakcanary-android-no-op", version.ref = "leakcanary" }
+
+# Material Design
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# Lottie
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+
+# MaterialDialogs
+material_dialogs = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "material_dialogs" }
+
+# Timber
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+# CardView
+cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+
+# Glide
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide_compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+
+# Stetho
+stetho = { group = "com.facebook.stetho", name = "stetho", version.ref = "stetho" }
+
+# Apache Commons Language
+commons_text = { group = "org.apache.commons", name = "commons-text", version.ref = "commons_text" }
+
+# RxPermissions
+rxpermissions = { group = "com.github.tbruyelle", name = "rxpermissions", version.ref = "rxpermissions" }
+
+[plugins]

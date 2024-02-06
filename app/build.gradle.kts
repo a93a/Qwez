@@ -51,83 +51,87 @@ android {
     lintOptions {
         isAbortOnError = false
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.10")
-    implementation("com.google.firebase:firebase-analytics:21.0.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.4.0")
-    androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
 
-    testImplementation("org.powermock:powermock-core:2.0.2")
-    testImplementation("org.powermock:powermock-api-mockito2:2.0.2")
-    testImplementation("org.powermock:powermock-module-junit4-rule-agent:2.0.2")
-    testImplementation("org.powermock:powermock-module-junit4-rule:2.0.2")
-    testImplementation("org.powermock:powermock-module-junit4:2.0.2")
+    // AndroidX
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
+    implementation(libs.recyclerview)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.extensions)
+    kapt(libs.lifecycle.common.java8)
+    implementation(libs.lifecycle.common.java8)
+    implementation(libs.lifecycle.reactivestreams)
+    implementation(libs.preference)
+    androidTestImplementation(libs.core.testing)
+    androidTestImplementation(libs.room.testing)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.media)
 
-    // Overriding conflicted dependencies
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.media:media:1.6.0")
+    // AndroidX Test
+    androidTestImplementation(libs.test.runner)
+    androidTestImplementation(libs.test.rules)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.test.ext.junit)
+
+    // JUnit
+    testImplementation(libs.junit)
+
+    // Powermock
+    testImplementation(libs.powermock.core)
+    testImplementation(libs.powermock.api.mockito2)
+    testImplementation(libs.powermock.module.junit4.rule.agent)
+    testImplementation(libs.powermock.module.junit4.rule)
+    testImplementation(libs.powermock.module.junit4)
 
     // Dagger2
-    implementation("com.google.dagger:dagger:2.42")
-    kapt("com.google.dagger:dagger-compiler:2.42")
-    implementation("com.google.dagger:dagger-android:2.42")
-    implementation("com.google.dagger:dagger-android-support:2.42")
-    kapt("com.google.dagger:dagger-android-processor:2.42")
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+    implementation(libs.dagger.android)
+    implementation(libs.dagger.android.support)
+    kapt(libs.dagger.android.processor)
 
     // Firebase
-    implementation("com.google.firebase:firebase-auth:21.0.4")
-    implementation("com.google.firebase:firebase-core:21.0.0")
-    implementation("com.google.firebase:firebase-firestore:24.1.2")
-    implementation("com.google.firebase:firebase-storage:20.0.1")
-    implementation("com.google.firebase:firebase-functions:20.1.0")
-    implementation("com.google.firebase:firebase-messaging:23.0.4")
-    testImplementation("com.google.firebase:firebase-auth:21.0.4")
-    testImplementation("com.google.firebase:firebase-core:21.0.0")
-    testImplementation("com.google.firebase:firebase-firestore:24.1.2")
-    testImplementation("com.google.firebase:firebase-storage:20.0.1")
-    testImplementation("com.google.firebase:firebase-functions:20.1.0")
-    testImplementation("com.google.firebase:firebase-messaging:23.0.4")
-
-    implementation("com.google.firebase:firebase-iid:21.1.0")
-    // Firebase Crashlytics / Fabric
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.core)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.functions)
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.iid)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
+    testImplementation(libs.firebase.auth)
+    testImplementation(libs.firebase.core)
+    testImplementation(libs.firebase.firestore)
+    testImplementation(libs.firebase.storage)
+    testImplementation(libs.firebase.functions)
+    testImplementation(libs.firebase.messaging)
 
     // RxJava
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
-    implementation("io.reactivex.rxjava2:rxjava:2.2.9")
-    // implementation("com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2")
+    implementation(libs.rxandroid)
+    implementation(libs.rxjava)
+    // Optional: Uncomment if needed
+    // implementation(libs.rxbinding)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.5.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
-    implementation("com.squareup.retrofit2:adapter-rxjava2:2.5.0")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.adapter.rxjava2)
 
     // OkHttp
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.8")
-    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.8")
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.okhttp)
 
     // Mockito
-    testImplementation("org.mockito:mockito-core:2.25.0")
-
-    // Android Components
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.4.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    kapt("androidx.lifecycle:lifecycle-common-java8:2.4.1")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.1")
-    implementation("androidx.lifecycle:lifecycle-reactivestreams:2.4.1")
-    implementation("androidx.preference:preference:1.2.0")
-
-    // Android Components Test Helpers
-    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
-    androidTestImplementation("androidx.room:room-testing:2.4.2")
+    testImplementation(libs.mockito.core)
 
     // Room
     // DONT UPDATE TO 2.1.0-alpha06 !!! IT HAS A BUG WHICH IS A PAIN IN THE ASS !!!
@@ -135,55 +139,49 @@ dependencies {
     // kapt("androidx.room:room-compiler:2.1.0-alpha04")
     // implementation("androidx.room:room-rxjava2:2.1.0-alpha04")
     // androidTestImplementation("androidx.room:room-testing:2.1.0-alpha04")
-    implementation("androidx.room:room-runtime:2.5.0-alpha01")
-    kapt("androidx.room:room-compiler:2.5.0-alpha01")
-    implementation("androidx.room:room-rxjava2:2.5.0-alpha01")
-    androidTestImplementation("androidx.room:room-testing:2.5.0-alpha01")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.rxjava2)
+    androidTestImplementation(libs.room.testing)
+    testImplementation(libs.core.testing)
 
     // ButterKnife
-    implementation("com.jakewharton:butterknife:10.1.0")
-    kapt("com.jakewharton:butterknife-compiler:10.1.0")
+    implementation(libs.butterknife)
+    kapt(libs.butterknife.compiler)
 
     // LeakCanary
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.9.1")
-    releaseImplementation("com.squareup.leakcanary:leakcanary-android-no-op:2.9.1")
-
-    // RecyclerView
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    debugImplementation(libs.leakcanary.debug)
+    releaseImplementation(libs.leakcanary.release)
 
     // Material Design
-    implementation("com.google.android.material:material:1.6.0")
+    implementation(libs.material)
 
     // Lottie
-    implementation("com.airbnb.android:lottie:3.0.0")
-
-    // Design
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.6.0")
+    implementation(libs.lottie)
 
     // MaterialDialogs USE OLDER VERSION THAT IS COMPATIBLE WITH JAVA. NEWER IS ONLY KOTLIN COMPATIBLE
     //noinspection GradleDependency
-    implementation("com.afollestad.material-dialogs:core:0.9.6.0")
+    // MaterialDialogs (use older version for Java compatibility)
+    implementation(libs.material.dialogs)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(libs.timber)
 
     // CardView
-    implementation("androidx.cardview:cardview:1.0.0")
+    implementation(libs.cardview)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.9.0")
-    kapt("com.github.bumptech.glide:compiler:4.9.0")
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
 
     // Stetho
-    implementation("com.facebook.stetho:stetho:1.5.1")
+    implementation(libs.stetho)
 
     // Apache Commons Language
-    implementation("org.apache.commons:commons-text:1.6")
+    implementation(libs.commons.text)
 
     // RxPermissions
-    implementation("com.github.tbruyelle:rxpermissions:0.10.2")
+    implementation(libs.rxpermissions)
 }
 
 kapt {
