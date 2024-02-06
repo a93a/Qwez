@@ -1,12 +1,13 @@
 # Qwez
 
 ## What is Qwez?
-Qwez is a questionare app! Here's what you can do:
+Qwez is a questionare app! Here's the features & what you can do within the app:
 - Create an account
 - Log in and log out
 - Change user password, email, and profile photo.
 - Choose a category & difficulty and get 10 questions. You can now answer these to score points! But hurry up, there is a timer.
-- See a global highscore of all users (incl. your own). You can see how you compare to other players. 
+- See a global highscore of all users (incl. your own). You can see how you compare to other players.
+- The app uses Firebase for user authenticaion, storage (user profile photos) and maintaining highscores. When you create an account, log in, log out or delete an account it is all taken care of by Firebase. Photos are uploaded to Firebase storage, and access from there.
 
 ## Modernisation
 This App is currently going through a modernisation process to change outdated components to modern, while still being written in Java (Mostly). Here is a TODO list of changes:
