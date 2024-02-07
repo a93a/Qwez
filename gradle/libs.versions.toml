@@ -27,7 +27,7 @@ firebase_core = "21.0.0"
 firebase_firestore = "24.1.2"
 firebase_storage = "20.0.1"
 firebase_functions = "20.1.0"
-firebase_messaging = "23.0.4"
+firebase_messaging = "23.0.6"
 firebase_iid = "21.1.0"
 firebase_crashlytics = "18.2.10"
 firebase_analytics = "21.0.0"
@@ -68,6 +68,7 @@ butterknife_compiler = "10.1.0"
 
 # LeakCanary
 leakcanary = "2.9.1"
+leakcanary-release = "1.6.3"
 
 # Material Design
 material = "1.6.0"
@@ -176,7 +177,7 @@ butterknife-compiler = { group = "com.jakewharton", name = "butterknife-compiler
 
 # LeakCanary
 leakcanary-debug = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
-leakcanary-release = { group = "com.squareup.leakcanary", name = "leakcanary-android-no-op", version.ref = "leakcanary" }
+leakcanary-release = { group = "com.squareup.leakcanary", name = "leakcanary-android-no-op", version.ref = "leakcanary-release" }
 
 # Material Design
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
