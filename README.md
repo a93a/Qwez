@@ -18,7 +18,7 @@ This App is currently going through a modernisation process to change outdated c
 - :white_square_button: Migrate from RxBus
 - :white_square_button: Redesign the UI elements
 - :white_square_button: Migrate to Hilt
-
+- :white_square_button: Migrate to Datastore
 
 ## OBS OBS OBS!!
 - Please beware that Interactors (=Use cases) does perform a bit of "server-side" code!! This is because not having access to some of the paid-for features from Firebase (function triggers, etc). I did have to put some of the server side code in
