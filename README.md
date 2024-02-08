@@ -1,4 +1,5 @@
 # Qwez
+Get the app under releases to the right :point_right:
 
 ## What is Qwez?
 Qwez is a questionare app! Here's the features & what you can do within the app:
