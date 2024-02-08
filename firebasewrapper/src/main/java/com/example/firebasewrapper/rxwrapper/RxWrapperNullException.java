@@ -1,4 +1,4 @@
-package com.example.qwez.repository.firebase.rxwrapper;
+package com.example.firebasewrapper.rxwrapper;
 
 /**
  * RxWrapper specific Exception class

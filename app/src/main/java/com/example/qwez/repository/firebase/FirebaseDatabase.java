@@ -1,7 +1,7 @@
 package com.example.qwez.repository.firebase;
 
+import com.example.firebasewrapper.rxwrapper.FirebaseDBWrapper;
 import com.example.qwez.entity.Highscore;
-import com.example.qwez.repository.firebase.rxwrapper.FirebaseDBWrapper;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;

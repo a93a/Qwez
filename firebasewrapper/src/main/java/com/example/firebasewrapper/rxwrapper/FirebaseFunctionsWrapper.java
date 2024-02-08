@@ -1,4 +1,4 @@
-package com.example.qwez.repository.firebase.rxwrapper;
+package com.example.firebasewrapper.rxwrapper;
 
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;

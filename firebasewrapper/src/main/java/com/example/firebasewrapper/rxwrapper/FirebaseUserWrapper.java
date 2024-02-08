@@ -1,4 +1,4 @@
-package com.example.qwez.repository.firebase.rxwrapper;
+package com.example.firebasewrapper.rxwrapper;
 
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;

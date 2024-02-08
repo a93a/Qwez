@@ -59,6 +59,9 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
+    // Modules
+    implementation(project(":firebasewrapper"))
+
     // AndroidX
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)

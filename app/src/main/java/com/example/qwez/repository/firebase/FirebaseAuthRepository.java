@@ -2,9 +2,9 @@ package com.example.qwez.repository.firebase;
 
 import android.net.Uri;
 
-import com.example.qwez.repository.firebase.rxwrapper.FirebaseAuthWrapper;
-import com.example.qwez.repository.firebase.rxwrapper.FirebaseUserWrapper;
-import com.example.qwez.repository.firebase.rxwrapper.RxWrapperNullException;
+import com.example.firebasewrapper.rxwrapper.FirebaseAuthWrapper;
+import com.example.firebasewrapper.rxwrapper.FirebaseUserWrapper;
+import com.example.firebasewrapper.rxwrapper.RxWrapperNullException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;

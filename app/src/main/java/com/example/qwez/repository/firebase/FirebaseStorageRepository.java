@@ -2,7 +2,7 @@ package com.example.qwez.repository.firebase;
 
 import android.net.Uri;
 
-import com.example.qwez.repository.firebase.rxwrapper.FirebaseStorageWrapper;
+import com.example.firebasewrapper.rxwrapper.FirebaseStorageWrapper;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
