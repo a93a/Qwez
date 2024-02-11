@@ -8,6 +8,8 @@ import com.example.qwez.interactor.GetHighscoreInteractor;
 
 import java.util.List;
 
+import timber.log.Timber;
+
 class HighscoreViewmodel extends BaseViewModel {
     
     private MutableLiveData<List<Highscore>> highscore = new MutableLiveData<>();

@@ -16,6 +16,7 @@ import java.util.Map;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class FirebaseDatabase implements FirebaseDatabaseType {
 

@@ -22,6 +22,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class HighscoreActivity extends BaseActivity {
 
@@ -100,9 +101,11 @@ public class HighscoreActivity extends BaseActivity {
     }
 
     private void onError(ErrorCarrier errorCarrier) {
+
     }
 
     private void onHighscore(Integer integer) {
+        Timber.d("BUZZ Gotten highscore: %s", integer);
         highScoreLabel.setText(String.format("%s", integer));
     }
 }

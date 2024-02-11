@@ -7,6 +7,7 @@ import com.example.qwez.repository.local.entity.GameQuestion;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import io.reactivex.functions.Function;
 
@@ -26,12 +27,12 @@ public class Operators {
     };
 
     /**
-     * Takes a List of Highscore Objects and sorts them in Descending order
+     * Takes a List of Highscore Objects and sorts them in Descending order. Also filteres out zero points
      */
     public static final Function<List<Highscore>,List<Highscore>> SORT_HIGHSCORES = highscores -> {
-        List<Highscore> sorted = new ArrayList<>(highscores);
-        Collections.sort(sorted, (o1, o2) -> o2.getScore() - o1.getScore());
-        return sorted;
+        return highscores.stream()
+                .filter(highscore -> highscore.getScore() != 0)
+                .sorted((o1, o2) -> o2.getScore() - o1.getScore()).collect(Collectors.toList());
     };
 
     public static final Function<List<GameQuestion>,List<GameQuestion>> SET_GAME_SCORES = gameQuestions -> {
