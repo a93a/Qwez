@@ -38,6 +38,11 @@ the interactors/usecases, solely for having the app work to try out some new thi
     - Create Viewmodel
     - Create Viewmodel factory
     - Provide all dependencies via Module, provide dependencies in parameters to factory+viewmodel
+ 
+# Modularization
+This app uses modularzation to seperate the different components of the application.
+- app module: Contains all the UI code, repositories, datasources, etc. Modularization into features, core, remote, local etc is in the works.
+- firebasewrapper module: Library for adding reactive extensions (RxJava) to Firebase.
     
 # Following libraries are using in this app:
 
