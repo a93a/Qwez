@@ -23,6 +23,7 @@ import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.GameEvent;
+import com.example.qwez.databinding.ActivityStartBinding;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.repository.local.entity.Game;
 import com.example.qwez.ui.common.ItemDecorator;
@@ -39,37 +40,35 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import timber.log.Timber;
 
-public class StartActivity extends BaseActivity{
+public class StartActivity extends BaseActivity<ActivityStartBinding>{
 
     @Inject
     StartVMFactory factory;
     StartViewModel viewModel;
 
-    @BindView(R.id.button_add_question)
-    FloatingActionButton button;
-    @BindView(R.id.recyclerview_questions)
-    RecyclerView recyclerView;
-    @BindView(R.id.username_display)
-    TextView username;
-    @BindView(R.id.user_image)
-    ImageView userImage;
-
     private GameAdapter adapter;
+
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     *
+     * @param binding the layout binding
+     */
+    public StartActivity(ActivityStartBinding binding) {
+        super(binding);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         adapter = new GameAdapter(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new ItemDecorator(ItemDecorator.MARGIN));
+        binding.recyclerviewQuestions.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerviewQuestions.setAdapter(adapter);
+        binding.recyclerviewQuestions.addItemDecoration(new ItemDecorator(ItemDecorator.MARGIN));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeDeleteHelper(adapter, this));
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(adapter);
+        itemTouchHelper.attachToRecyclerView(binding.recyclerviewQuestions);
 
         viewModel = ViewModelProviders.of(this,factory).get(StartViewModel.class);
         viewModel.questions().observe(this, this::onQuestion);
@@ -113,11 +112,11 @@ public class StartActivity extends BaseActivity{
                 .asBitmap()
                 .load(uri)
                 .apply(RequestOptions.circleCropTransform())    //do i really need this?? Cardview takes care of this?
-                .into(userImage);
+                .into(binding.userImage);
     }
 
     private void onUser(String s) {
-        username.setText(s);
+        binding.usernameDisplay.setText(s);
     }
 
     private void onGames(List<Game> games) {
@@ -140,9 +139,8 @@ public class StartActivity extends BaseActivity{
         }
     }
 
-    @OnClick(R.id.button_add_question)
     void onClick(){
-        ViewUtil.disableViewShort(button);
+        ViewUtil.disableViewShort(binding.buttonAddQuestion);
 
         LayoutInflater factory = LayoutInflater.from(this);
         final View stdView = factory.inflate(R.layout.dialog_add_question, null);

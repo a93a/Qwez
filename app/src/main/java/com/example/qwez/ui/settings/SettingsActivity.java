@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.databinding.ActivitySettingsBinding;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 import com.example.qwez.validator.PasswordValidate;
@@ -29,7 +30,7 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-public class SettingsActivity extends BaseActivity {
+public class SettingsActivity extends BaseActivity<ActivitySettingsBinding> {
 
     @Inject
     SettingsVMFactory factory;
@@ -37,6 +38,15 @@ public class SettingsActivity extends BaseActivity {
 
     private final RxPermissions rxPermissions = new RxPermissions(this);
     private static final int READ_REQUEST_CODE = 42;
+
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     *
+     * @param binding the layout binding
+     */
+    public SettingsActivity(ActivitySettingsBinding binding) {
+        super(binding);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,6 +15,7 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     //data to bind to this viewholder
     protected T data;
 
+
     /**
      * Create a BaseViewHolder with {@code layoutRes} layout
      * @param layoutRes

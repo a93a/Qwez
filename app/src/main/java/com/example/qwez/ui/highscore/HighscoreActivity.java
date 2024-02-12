@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
+import com.example.qwez.databinding.ActivityHighscoreBinding;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.entity.Highscore;
 import com.example.qwez.ui.highscore.recyclerview.HighscoreAdapter;
@@ -21,25 +22,24 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import timber.log.Timber;
 
-public class HighscoreActivity extends BaseActivity {
+public class HighscoreActivity extends BaseActivity<ActivityHighscoreBinding> {
 
     @Inject
     HighscoreVMFactory factory;
     HighscoreViewmodel viewmodel;
 
-    @BindView(R.id.your_actual_score)
-    TextView highScoreLabel;
-    @BindView(R.id.highscore_recyclerview)
-    RecyclerView recyclerView;
-    @BindView(R.id.loading_recyclerview)
-    ProgressBar progressBar;
-    @BindView(R.id.no_data)
-    TextView emptylist;
-
     private HighscoreAdapter adapter;
+
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     *
+     * @param binding the layout binding
+     */
+    public HighscoreActivity(ActivityHighscoreBinding binding) {
+        super(binding);
+    }
 
 
     @Override
@@ -53,15 +53,16 @@ public class HighscoreActivity extends BaseActivity {
 
         enableDisplayHomeAsUp();
 
-        adapter = new HighscoreAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
 
-        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        adapter = new HighscoreAdapter();
+        binding.highscoreRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+        binding.highscoreRecyclerview.setAdapter(adapter);
+
+        binding.highscoreRecyclerview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 //finished loading
-                recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                binding.highscoreRecyclerview.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
 
@@ -79,22 +80,22 @@ public class HighscoreActivity extends BaseActivity {
 
     private void onProgress(Boolean progress) {
         if(progress){
-            recyclerView.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
+            binding.highscoreRecyclerview.setVisibility(View.INVISIBLE);
+            binding.loadingRecyclerview.setVisibility(View.VISIBLE);
         }else{
-            progressBar.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
+            binding.loadingRecyclerview.setVisibility(View.GONE);
+            binding.highscoreRecyclerview.setVisibility(View.VISIBLE);
         }
     }
 
     private void onHighscores(List<Highscore> highscores) {
         if(highscores.size() == 0){
-            recyclerView.setVisibility(View.GONE);
-            emptylist.setVisibility(View.VISIBLE);
+            binding.highscoreRecyclerview.setVisibility(View.GONE);
+            binding.noData.setVisibility(View.VISIBLE);
         }else{
-            if(emptylist.getVisibility() == View.VISIBLE){
-                emptylist.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+            if(binding.noData.getVisibility() == View.VISIBLE){
+                binding.noData.setVisibility(View.GONE);
+                binding.highscoreRecyclerview.setVisibility(View.VISIBLE);
             }
             adapter.setData(highscores);
         }
@@ -106,6 +107,6 @@ public class HighscoreActivity extends BaseActivity {
 
     private void onHighscore(Integer integer) {
         Timber.d("BUZZ Gotten highscore: %s", integer);
-        highScoreLabel.setText(String.format("%s", integer));
+        binding.yourActualScore.setText(String.format("%s", integer));
     }
 }

@@ -25,6 +25,10 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         getByName("release") {
             isDebuggable = false

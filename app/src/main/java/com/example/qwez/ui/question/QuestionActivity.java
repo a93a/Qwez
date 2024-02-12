@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
+import com.example.qwez.databinding.ActivitySettingsBinding;
 import com.example.qwez.entity.FinishedGame;
 import com.example.qwez.entity.IntroData;
 import com.example.qwez.util.ExtrasConstant;
@@ -16,11 +17,20 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-public class QuestionActivity extends BaseActivity {
+public class QuestionActivity extends BaseActivity<ActivitySettingsBinding> {
 
     @Inject
     QuestionVMFactory factory;
     QuestionViewModel viewModel;
+
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     *
+     * @param binding the layout binding
+     */
+    public QuestionActivity(ActivitySettingsBinding binding) {
+        super(binding);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

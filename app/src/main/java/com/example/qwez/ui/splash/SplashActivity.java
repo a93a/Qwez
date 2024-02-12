@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.qwez.R;
 import com.example.qwez.base.BaseActivity;
+import com.example.qwez.databinding.ActivitySplashBinding;
 import com.example.qwez.entity.ErrorCarrier;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -14,11 +15,20 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
 
     @Inject
     SplashVMFactory factory;
     SplashViewModel viewModel;
+
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     *
+     * @param binding the layout binding
+     */
+    public SplashActivity(ActivitySplashBinding binding) {
+        super(binding);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

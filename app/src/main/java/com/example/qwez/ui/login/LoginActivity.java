@@ -11,16 +11,26 @@ import com.example.qwez.base.BaseActivity;
 import com.example.qwez.bus.RxBus;
 import com.example.qwez.bus.event.LoginEvent;
 import com.example.qwez.bus.event.SignupEvent;
+import com.example.qwez.databinding.ActivityLoginBinding;
 import com.example.qwez.entity.ErrorCarrier;
 import com.example.qwez.ui.dialog.CustomMaterialDialog;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Inject
     LoginVMFactory factory;
     LoginViewModel viewModel;
+
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     *
+     * @param binding the layout binding
+     */
+    public LoginActivity(ActivityLoginBinding binding) {
+        super(binding);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -16,6 +16,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.qwez.R;
@@ -24,24 +25,34 @@ import com.example.qwez.bus.RxBus;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
     //keep private instance for dismissing etc
     private MaterialDialog dialog;
+    protected VB binding;
 
     /**
      * Return the @LayoutRes id of the View to be used with the Activity extending this Class.
      */
     protected abstract @LayoutRes int getLayout();
 
+    /**
+     * Create BaseActivity with {@code binding} layout binding
+     * @param binding the layout binding
+     */
+    public BaseActivity(VB binding) {
+        this.binding = binding;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AndroidInjection.inject(this);
-        if(getLayout() != 0){
+        setContentView(binding.getRoot());
+        /*if(getLayout() != 0){
             setContentView(getLayout());
             ButterKnife.bind(this);
-        }
+        }*/
     }
 
     @Override
